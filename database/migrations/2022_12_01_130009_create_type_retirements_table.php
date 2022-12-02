@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreaManagersTable extends Migration
+class CreateTypeRetirementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAreaManagersTable extends Migration
      */
     public function up()
     {
-        Schema::create('area_managers', function (Blueprint $table) {
+        Schema::create('type_retirements', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('number_id');
-            $table->string('email');
+            $table->string('description');
+        
         });
     }
 
@@ -29,6 +28,6 @@ class CreateAreaManagersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area_managers');
+        Schema::dropIfExists('type_retirements');
     }
 }

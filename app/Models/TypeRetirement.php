@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Area_manager extends Model
+class TypeRetirement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'number_id',
-        'email'
+        'description',
+               
     ];
+    public function retirement()
+    {
+        return $this->belongsTo('App\Retirement');
+    }
 }
