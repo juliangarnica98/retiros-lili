@@ -15,6 +15,7 @@ class BossController extends Controller
     {
         return view('boss.index');
     }
+   
 
     /**
      * Show the form for creating a new resource.

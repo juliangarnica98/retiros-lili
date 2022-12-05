@@ -16,7 +16,7 @@ class RetirementController extends Controller
 
     public function index()
     {
-        return view('retiros');
+        return view('boss.retirement');
     }
 
     public function importExcel(Request $request)

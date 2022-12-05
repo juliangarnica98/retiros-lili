@@ -18,9 +18,11 @@ Route::get('/', function () {  return  redirect('/login');});
 
 Auth::routes(["register" => false]);
 
-Route::get('administrador', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.index');
+Route::get('administrador', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 
 Route::resource('boss', App\Http\Controllers\BossController::class)->only('index','show');
+
+Route::get('retiros', [App\Http\Controllers\RetirementController::class, 'index'])->name('retirement.index');
 
 Route::post('admin-import-excel', [App\Http\Controllers\RetirementController::class, 'importExcel'])->name('admin.import.excel');
 
