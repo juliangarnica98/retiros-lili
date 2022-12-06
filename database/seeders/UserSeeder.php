@@ -1,9 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,6 +21,7 @@ class UserSeeder extends Seeder
             'email'=>'admin@fastmoda.com', 
             'password' => Hash::make('lilipink')
             ])->assignRole('Admin');
+       
         
     }
 }

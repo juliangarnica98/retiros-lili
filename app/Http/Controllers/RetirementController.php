@@ -12,14 +12,19 @@ class RetirementController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:boss.index');
     }
 
     public function index()
     {
         return view('boss.retirement');
     }
+    public function importar()
+    {
+        return view('boss.import');
+    }
 
-    public function importExcel(Request $request)
+    public function importCollaborator(Request $request)
     {
         $file = $request->file('file');
         Excel::import(new UsersImport, $file);

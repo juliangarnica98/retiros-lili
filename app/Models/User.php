@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Collaborator');
     }
+
+
+  
+
+    // public function isJefe() {
+    //     if ($this->hasRole('Jefe')) {
+    //         return true;
+    //     }
+    //     return false; 
+    // }
 }

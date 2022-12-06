@@ -20,6 +20,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+<style>
+  .gradient-custom-2{
+    background: rgb(232,81,153);
+    background: linear-gradient(90deg, rgba(232,81,153,1) 0%, rgba(3,168,162,1) 100%);
+  }
+</style>
 <body>
     <div id="app">
         <section class="gradient-form" style="background-color: #eee; ">
