@@ -16,7 +16,7 @@
                     @endif
 
                     {{ __('You are logged in!') }} --}}
-                    <form action="{{route('admin.import.excel')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('admin.import.collaborator')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('message'))
                             <p>{{Session::get('message')}}</p>

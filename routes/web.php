@@ -48,6 +48,7 @@ Route::group(['prefix' => 'jefe'], function() {
     Route::get('colaboradores', [App\Http\Controllers\BossController::class,'show'])->name('boss.show');
     Route::get('retiros', [App\Http\Controllers\RetirementController::class, 'index'])->name('retirement.index');
     Route::get('importar', [App\Http\Controllers\RetirementController::class, 'importar'])->name('retirement.importar');
+    Route::post('busqueda', [App\Http\Controllers\BossController::class, 'busqueda'])->name('boss.search');
     Route::post('admin-import-colaborator', [App\Http\Controllers\RetirementController::class, 'importCollaborator'])->name('admin.import.collaborator');
 });
 

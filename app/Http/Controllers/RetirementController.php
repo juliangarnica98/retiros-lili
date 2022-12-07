@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Imports\UsersImport;
+use App\Imports\CollabolatorsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RetirementController extends Controller
@@ -12,7 +13,7 @@ class RetirementController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:boss.index');
+        // $this->middleware('can:boss.index');
     }
 
     public function index()
@@ -24,10 +25,17 @@ class RetirementController extends Controller
         return view('boss.import');
     }
 
-    public function importCollaborator(Request $request)
+    public function importExcel(Request $request)
     {
         $file = $request->file('file');
         Excel::import(new UsersImport, $file);
+
+        return back()->with('message','importancion de usuarios completa');
+    }
+    public function importCollaborator(Request $request)
+    {
+        $file = $request->file('file');
+        Excel::import(new CollabolatorsImport, $file);
 
         return back()->with('message','importancion de usuarios completa');
     }

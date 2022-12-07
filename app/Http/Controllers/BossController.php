@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Collaborator;
+use App\Models\Position;
+use Illuminate\Support\Facades\Auth;
 
 class BossController extends Controller
 {
@@ -30,12 +33,19 @@ class BossController extends Controller
 
     public function show()
     {
-        return view('boss.collaborator');
+        $positions = Position::all();
+        $collaborators = Collaborator::where('state','1')->where('user_id',Auth::user()->id)->paginate();
+        return view('boss.collaborator',compact('collaborators','positions'));
     }
 
     public function edit($id)
     {
         
+    }
+    public function busqueda(Request $request){
+        $collaborators = Collaborator::where('document',$request->document)->firts(); 
+        $name = $collaborators->name;
+        return response()->json(['name' => $name]);
     }
 
     /**

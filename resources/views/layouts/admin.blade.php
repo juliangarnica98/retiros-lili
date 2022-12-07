@@ -364,9 +364,11 @@
                         <li class="nav-item dropdown no-arrow" >
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-5 d-none d-lg-inline" > {{ Auth::user()->name }}</span>
+                                {{-- <span class="mr-5 d-none d-lg-inline" >{{ Auth::user()->name[0] }} </span> --}}
+                                <span class="mr-5 pr-5">{{ Auth::user()->name }}</span>
+                                {{-- {{ Auth::user()->name }} --}}
                                 {{-- <img class="img-profile rounded-circle"
-                                    src=""> --}}
+                                    src="">  --}}
                                     {{-- <div class="topbar-divider d-none d-sm-block"></div>
                                     <i class="fas fa-ellipsis-h"></i> --}}
                             </a>

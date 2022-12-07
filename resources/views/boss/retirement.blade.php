@@ -91,12 +91,12 @@
 
                                 <div class="form-group"> <!-- Full Name -->
                                     <label for="full_name_id" class="control-label">Identificación del colaborador</label>
-                                    <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder="">
+                                    <input type="text" class="form-control" id="document" name="document" placeholder="" onchange="myFunction()">
                                 </div>    
                             
                                 <div class="form-group"> <!-- Street 1 -->
                                     <label for="street1_id" class="control-label" >Nombre del colaborador</label>
-                                    <input type="text" class="form-control" id="street1_id" name="street1" placeholder="" readonly>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="" readonly>
                                 </div>                    
                                                         
                                 
@@ -285,6 +285,10 @@
 </div>
 <script>
   var currentTab = 0; // Current tab is set to be the first tab (0)
+
+  var documento = document.getElementById("document");
+  var name = document.getElementById("name");
+
   showTab(currentTab); // Display the current tab
   function showTab(n) {
     // This function will display the specified tab of the form...
@@ -352,6 +356,20 @@
     //... and adds the "active" class on the current step:
     x[n].className += " active";
   }
+  //busqueda del nombre
+  // function myFunction() {
+
+   
+  //   var x = document.getElementById("document").value;
+  //   document.getElementById("name").value = "You selected: " + x;
+  // }
+
+  documento.addEventListener("change", function() {
+    if(activities.value == "addNew")
+      {
+          addActivityItem();
+      }
+  });
   </script>
 @endsection
 
