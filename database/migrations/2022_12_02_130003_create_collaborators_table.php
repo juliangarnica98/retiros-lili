@@ -26,6 +26,12 @@ class CreateCollaboratorsTable extends Migration
             
             $table->unsignedBigInteger('position_id');
             $table->foreign('position_id')->references('id')->on('positions');
+
+            $table->unsignedBigInteger('regional_id');
+            $table->foreign('regional_id')->references('id')->on('regionals');
+
+            $table->unsignedBigInteger('gerencia_id');
+            $table->foreign('gerencia_id')->references('id')->on('gerencias');
         });
     }
 

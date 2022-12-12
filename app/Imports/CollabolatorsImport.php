@@ -21,15 +21,13 @@ class CollabolatorsImport implements ToModel
         // ]);
         
         $positions = Position::where("description", "like", "%".$row[3]."%")->first();
-        $position = $positions->id;
-        
-       
+    
         return new Collaborator(
             [
                 'name' => $row[2],
                 'state'=>1, 
                 'document' => $row[1],
-                'position_id'=> $position,
+                'position_id'=>$positions->id ,
                 'user_id'=> Auth::user()->id
             ]);
     }

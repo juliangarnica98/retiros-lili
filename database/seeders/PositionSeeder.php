@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+
+
 class PositionSeeder extends Seeder
 {
     /**
@@ -13,6 +15,11 @@ class PositionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // $data=[
+        //     [
+        //         'description' => 'ESTABILIDAD LABORAL','area_id'=>'1',
+        //     ],
+        // ];
+        
     }
 }

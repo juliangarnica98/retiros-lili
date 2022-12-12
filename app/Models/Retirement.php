@@ -10,17 +10,18 @@ class Retirement extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'document_user',
+        // 'document_user',
 
         'collaborator_id',
         'document_collaborator',
+        'name_collaborator',
 
         'type_retirement_id',
 
         'performance',
 
         'last_day',
-        //
+        
         'money_pend',
         'money_conc',
         'money_amou',
@@ -37,9 +38,9 @@ class Retirement extends Model
         'date_d_4',
         'date_d_5',
 
-        'cum_bonus',
-        'cat_bonus',
-        'ext_bonus',
+        // 'cum_bonus',
+        // 'cat_bonus',
+        // 'ext_bonus',
 
         'cell',
         'letter',

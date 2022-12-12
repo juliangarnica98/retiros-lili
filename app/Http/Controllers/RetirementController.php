@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TypeRetirement;
+use App\Models\Retirement;
+use Illuminate\Support\Facades\Auth;
 
 use App\Imports\UsersImport;
 use App\Imports\CollabolatorsImport;
+use App\Models\Collaborator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RetirementController extends Controller
@@ -18,25 +22,60 @@ class RetirementController extends Controller
 
     public function index()
     {
-        return view('boss.retirement');
+        $type_retirements = TypeRetirement::paginate();
+        return view('boss.retirement',compact('type_retirements'));
     }
-    public function importar()
-    {
-        return view('boss.import');
-    }
+    
 
-    public function importExcel(Request $request)
-    {
-        $file = $request->file('file');
-        Excel::import(new UsersImport, $file);
+    
 
-        return back()->with('message','importancion de usuarios completa');
-    }
-    public function importCollaborator(Request $request)
-    {
-        $file = $request->file('file');
-        Excel::import(new CollabolatorsImport, $file);
+    public function create(Request $request){
+        // dd($request->all());
+        $retiro = new Retirement();
+        $retiro->user_id=Auth::user()->id;
 
-        return back()->with('message','importancion de usuarios completa');
+        // $colaborador = Collaborator::where('id',$request->collaborator_id) ;
+        // $colaborador->state = "0";
+        // $colaborador->save();
+
+        $retiro->collaborator_id=$request->collaborator_id;
+        $retiro->document_collaborator=$request->document_collaborator;
+        $retiro->name_collaborator=$request->name_collaborator;
+
+        $retiro->performance=$request->performance;
+        $retiro->type_retirement_id=$request->type_retirement_id;
+        $retiro->last_day=$request->last_day;
+
+        $retiro->money_pend=$request->money_pend;
+        $retiro->money_amou=$request->money_amou;
+        $retiro->money_conc=$request->money_conc;
+
+        $retiro->date_1=$request->date_1;
+        $retiro->date_2=$request->date_2;
+        $retiro->date_3=$request->date_3;
+        $retiro->date_4=$request->date_4;
+        $retiro->date_5=$request->date_5;
+
+        $retiro->date_d_1=$request->date_d_1;
+        $retiro->date_d_2=$request->date_d_2;
+        $retiro->date_d_3=$request->date_d_3;
+        $retiro->date_d_4=$request->date_d_4;
+        $retiro->date_d_5=$request->date_d_5;
+
+        // $retiro->cum_bonus=$request->cum_bonus;
+        // $retiro->cat_bonus=$request->cat_bonus;
+        // $retiro->ext_bonus=$request->ext_bonus;
+
+        $retiro->admin_ent=$request->ad_carnet."," .$request->ad_tokens."," .$request->ad_pc."," .$request->ad_ninguno;
+        $retiro->store_ent=$request->ti_jean."," .$request->ti_camisa. "," .$request->ti_gafete."," .$request->ti_token."," . $request->ti_carnet."," . $request->ti_canguro. "," .$request->ti_ninguno;
+
+        // $retiro->pc=$request->pc;
+        $retiro->cell=$request->cell;
+        $retiro->delivery_certificate=$request->delivery_certificate;
+        $retiro->letter=$request->letter;
+
+        $retiro->save();
+
+        return back();
     }
 }

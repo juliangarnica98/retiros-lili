@@ -37,79 +37,69 @@
                                 <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th >Fecha de retiro</th>
+                                    <th colspan="5">Nombre del colaborador</th>
+                                    <th >documento del colaborador</th>
+                                    <th >Desempeño</th>
+                                    <th >Tipo de retiro</th>
+                                    <th >Ultimo dia laborado</th>
+                                    <th >dinero pendiente</th>
+                                    <th >cantidad dinero pendiente</th>
+                                    <th >concepto de dinero pendiente</th>
+                                    <th >fecha novedad 1</th>
+                                    <th >fecha novedad 2</th>
+                                    <th >fecha novedad 3</th>
+                                    <th >fecha novedad 4</th>
+                                    <th >fecha novedad 5</th>
+                                    <th >fecha dominical 1</th>
+                                    <th >fecha dominical 2</th>
+                                    <th >fecha dominical 3</th>
+                                    <th >fecha dominical 4</th>
+                                    <th >fecha dominical 5</th>
+                                    <th >Bono de cumplimiento tienda</th>
+                                    <th >Horas extra</th>
+                                    <th >Entrega <strong>Perfil de tienda</strong></th>
+                                    <th >Entrega <strong>Administrador</strong></th>
+                                    <th >Equipo celular</th>
+                                    <th >Acta de entrega</th>
+                                    <th >Carta de renuncia</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    
+                                @foreach ($retiros as $retiro)
+                                {{-- {{dd($retiro)}} --}}
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    
+                                    <th>{{date('d-m-Y',strtotime($retiro->created_at))}}</th>
+                                    <th colspan="5" ><strong>{{$retiro->name_collaborator}}</strong></th>
+                                    <td>{{$retiro->document_collaborator}}</td>
+                                    <td>{{$retiro->performance}}</td>
+                                    <td>{{$retiro->type_retirement_id}}</td>
+                                    <td>{{$retiro->last_day}}</td>
+                                    <th>{{$retiro->money_pend}}</th>
+                                    <td>{{$retiro->money_amou}}</td>
+                                    <td>{{$retiro->money_conc}}</td>
+                                    <td>{{$retiro->date_1}}</td>
+                                    <td>{{$retiro->date_2}}</td>
+                                    <th>{{$retiro->date_3}}</th>
+                                    <td>{{$retiro->date_4}}</td>
+                                    <td>{{$retiro->date_5}}</td>
+                                    <td>{{$retiro->date_d_1}}</td>
+                                    <td>{{$retiro->date_d_2}}</td>
+                                    <th>{{$retiro->date_d_3}}</th>
+                                    <td>{{$retiro->date_d_4}}</td>
+                                    <td>{{$retiro->date_d_5}}</td>
+                                    <td>{{$retiro->cum_bonus}}</td>
+                                    <td>{{$retiro->cat_bonus}}</td>
+                                    <th>{{$retiro->ext_bonus}}</th>
+                                    <td>{{$retiro->store_ent}}</td>
+                                    <td>{{$retiro->admin_ent}}</td>
+                                    <td>{{$retiro->cell}}</td>
+                                    <td>{{$retiro->delivery_certificate}}</td>
+                                    <td>{{$retiro->letter}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                                 </table>
                             </div>

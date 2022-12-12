@@ -21,6 +21,15 @@
                         @if(Session::has('message'))
                             <p>{{Session::get('message')}}</p>
                         @endif
+                        <select class="form-select form-select-lg form-control" aria-label=".form-select-lg example">
+                            <option selected>Seleccione el jefe</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        
+                        <hr class="sidebar-divider">
+
                         <div class="input-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroupFileAddon01">Archivo</span>

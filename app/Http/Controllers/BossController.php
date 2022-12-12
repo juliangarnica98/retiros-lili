@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Collaborator;
 use App\Models\Position;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Retirement;
 
 class BossController extends Controller
 {
@@ -17,7 +18,8 @@ class BossController extends Controller
     }
     public function index()
     {
-        return view('boss.index');
+        $retiros = Retirement::paginate();
+        return view('boss.index',compact('retiros'));
     }
    
     public function create()
@@ -43,29 +45,24 @@ class BossController extends Controller
         
     }
     public function busqueda(Request $request){
-        $collaborators = Collaborator::where('document',$request->document)->firts(); 
-        $name = $collaborators->name;
-        return response()->json(['name' => $name]);
+        
+        $collaborator = Collaborator::where('document',$request->document)->first(); 
+        $id = $collaborator->id;
+        $name = $collaborator->name;
+        if(empty($name)){
+            return response()->json(null);
+        }
+        return response()->json(['name' => $name,'id'=>$id]);
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

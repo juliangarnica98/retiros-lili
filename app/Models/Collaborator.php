@@ -14,6 +14,8 @@ class Collaborator extends Model
         'document',
         'state',
         'position_id',
+        'gerencia_id',
+        'regional_id'
     ];
     public function user()
     {
@@ -27,5 +29,13 @@ class Collaborator extends Model
     public function retirement()
     {
         return $this->belongsTo('App\Retirement');
+    }
+    public function gerencia() 
+    {
+        return $this->hasOne('App\Gerencia');
+    }
+    public function regional() 
+    {
+        return $this->hasOne('App\Regional');
     }
 }

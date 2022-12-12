@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Retiros LiliY&oi- @yield('title')</title>
 
     <!-- Custom fonts for this template-->
@@ -103,25 +103,12 @@
                 </li>
                 <hr class="sidebar-divider">
                 <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.tiporetiro')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+                    <a class="nav-link text-center" href="{{route('admin.importar2')}}">
+                      {{-- <i class="fas fa-fw fa-tachometer-alt"></i>  --}}
                         <i class="fas fa-solid fa-user"></i>
-                        <span>Tipos de retiro</span></a>
-                </li>
+                        <span>Importar colaboradores</span></a>
                 <hr class="sidebar-divider">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.areas')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-layer-group"></i>
-                        <span>Areas</span></a>
-                </li>
-                <hr class="sidebar-divider">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.cargos')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-solid fa-users"></i>
-                        <span>Cargos</span></a>
-                </li>
+              
             </div>
          
             @endcan
@@ -140,13 +127,7 @@
                         <i class="fas fa-solid fa-user"></i>
                         <span>Realizar retiro</span></a>
                 </li>
-                <hr class="sidebar-divider">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('retirement.importar')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Importar colaboradores</span></a>
-                </li>
+               
                 <li class="nav-item">
                     <a class="nav-link text-center" href="{{route('boss.show')}}">
                         {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
@@ -158,29 +139,6 @@
                 
             @endcan
 
-            <!-- Nav Item - Charts -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li> --}}
-
-            <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li> --}}
-
-            <!-- Divider -->
-            {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            {{-- <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div> --}}
-
-            <!-- Sidebar Message -->
             
 
         </ul>
