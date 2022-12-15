@@ -12,6 +12,7 @@
     <title>Retiros LiliY&oi- @yield('title')</title>
 
     <!-- Custom fonts for this template-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{asset('libs/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -65,6 +66,34 @@
     .container{
         padding-top: 5%;
     }
+    table{
+        table-layout: fixed;
+        font-size: 1rem;
+    }
+
+    .miTablaPersonalizada th{
+        width: 10vw;
+        overflow: auto;
+        font-size: 1rem;
+    }
+    .headt td {
+        height:2rem;
+    }
+    input {
+        color: #000000;
+        /* background-color:hsl(240, 8%, 3%); */
+        border:none;
+        
+        border-bottom:3px solid rgb(232,81,153);
+    }
+    /* .swal2-styled.swal2-confirm.swalBtnColor {
+        color: #FFC900
+    }
+    button.swal2-confirm {
+        background: rgb(232,81,153);
+        background: linear-gradient(90deg, rgba(232,81,153,1) 47%, rgba(3,168,162,1) 100%);
+    } */
+
    
     
 </style>
@@ -125,7 +154,7 @@
                     <a class="nav-link text-center" href="{{route('retirement.index')}}">
                         {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                         <i class="fas fa-solid fa-user"></i>
-                        <span>Realizar retiro</span></a>
+                        <span>Realizar retiro directo</span></a>
                 </li>
                
                 <li class="nav-item">
@@ -335,13 +364,13 @@
                                 aria-labelledby="userDropdown" style="background-color: #fff">
                                 <a class="dropdown-item" href="#" style="color: rgb(252,0,126)">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 " ></i>
-                                    Profile
+                                    Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="color: rgb(252,0,126)">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                                     {{-- <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> --}}
-                                    Logout
+                                    Salir
                                 </a>
                                 
                             </div>
@@ -354,7 +383,7 @@
 
                 <!-- Begin Page Content -->
 
-                <main class="py-1">
+                <main class="py-0">
                     @yield('content')
                 </main>
                 {{-- <div class="container-fluid">
@@ -718,16 +747,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary"  href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
+                    document.getElementById('logout-form').submit();"> Salir</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>

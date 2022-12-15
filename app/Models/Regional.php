@@ -15,4 +15,19 @@ class Regional extends Model
     {
         return $this->belongsTo('App\Collaborator');
     }
+
+    public function positions()
+    {
+        return $this->hasMany('App\Position');
+    }
+
+    public function bosss()
+    {
+        return $this->hasMany('App\Boss');
+    }
+    public function cdcs()
+    {
+        return $this->hasMany('App\Cdc');
+    }
+    
 }

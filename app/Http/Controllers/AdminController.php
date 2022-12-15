@@ -8,10 +8,12 @@ use App\Models\Position;
 use App\Models\Retirement;
 use App\Models\TypeRetirement;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
 
 use App\Imports\UsersImport;
 use App\Imports\CollabolatorsImport;
 use App\Models\Collaborator;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -30,7 +32,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $retiros = Retirement::all();
+        Paginator::useBootstrap();
+        $retiros = Retirement::paginate(7);
         return view('admin.tableretiros',compact('retiros'));
     }
     public function importar()
@@ -39,7 +42,9 @@ class AdminController extends Controller
     }
     public function importar2()
     {
-        return view('admin.import');
+        $jefes = User::role('Jefe')->get();
+        // dd($jefes);
+        return view('admin.import',compact('jefes'));
     }
     public function areas()
     {
@@ -106,6 +111,17 @@ class AdminController extends Controller
     public function importExcel(Request $request)
     {
         $file = $request->file('file');
+        if($file == null){
+            return back()->with('error','Seleccione un archivo');
+        } 
+        $validator = Validator::make($request->all(), [
+            'file*' => 'required|mimes:xlsx'
+        ]);
+        
+        if($validator->fails()){
+            return back()->with('error','Seleccione un archivo valido');
+        }
+       
         Excel::import(new UsersImport, $file);
 
         return back()->with('message','importancion de usuarios completa');
@@ -113,8 +129,18 @@ class AdminController extends Controller
     public function importCollaborator(Request $request)
     {
         $file = $request->file('file');
-        Excel::import(new CollabolatorsImport, $file);
+        if($file == null){
+            return back()->with('error','Seleccione un archivo');
+        } 
+        $validator = Validator::make($request->all(), [
+            'file*' => 'required|mimes:xlsx'
+        ]);
+        
+        if($validator->fails()){
+            return back()->with('error','Seleccione un archivo valido');
+        }
+        Excel::import(new CollabolatorsImport($request->jefe), $file);
 
-        return back()->with('message','importancion de usuarios completa');
+        return back()->with('message','Importancion de usuarios completa');
     }
 }

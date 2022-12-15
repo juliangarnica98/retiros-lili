@@ -7,6 +7,7 @@ use App\Models\Collaborator;
 use App\Models\Position;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Retirement;
+use Illuminate\Pagination\Paginator;
 
 class BossController extends Controller
 {
@@ -18,7 +19,9 @@ class BossController extends Controller
     }
     public function index()
     {
-        $retiros = Retirement::paginate();
+        Paginator::useBootstrap();
+        
+        $retiros = Retirement::where('user_id',auth()->id())->paginate(7);
         return view('boss.index',compact('retiros'));
     }
    
@@ -36,7 +39,8 @@ class BossController extends Controller
     public function show()
     {
         $positions = Position::all();
-        $collaborators = Collaborator::where('state','1')->where('user_id',Auth::user()->id)->paginate();
+        Paginator::useBootstrap();
+        $collaborators = Collaborator::where('state','1')->where('user_id',Auth::user()->id)->paginate(6);
         return view('boss.collaborator',compact('collaborators','positions'));
     }
 
@@ -47,12 +51,15 @@ class BossController extends Controller
     public function busqueda(Request $request){
         
         $collaborator = Collaborator::where('document',$request->document)->first(); 
-        $id = $collaborator->id;
-        $name = $collaborator->name;
-        if(empty($name)){
-            return response()->json(null);
+        
+        if($collaborator){
+            $id = $collaborator->id;
+            $name = $collaborator->name;
+            $position = $collaborator->position_id;
+            return response()->json(['name' => $name,'id'=>$id,'position'=>$position]);
         }
-        return response()->json(['name' => $name,'id'=>$id]);
+        return response()->json(['name' => "",'id'=>"",'position'=>""]);
+        
        
     }
 

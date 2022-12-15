@@ -18,14 +18,20 @@
                     {{ __('You are logged in!') }} --}}
                     <form action="{{route('admin.import.collaborator')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @if(Session::has('message'))
-                            <p>{{Session::get('message')}}</p>
+                        @if(Session::has('error'))
+                        <script>
+                            Swal.fire(
+                            'Error al importar archivo',
+                            "{{Session::get('error')}}",
+                            'error'
+                            )
+                            
+                        </script>
                         @endif
-                        <select class="form-select form-select-lg form-control" aria-label=".form-select-lg example">
-                            <option selected>Seleccione el jefe</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select form-select-lg form-control" aria-label=".form-select-lg example" name="jefe">
+                           @foreach ($jefes as $jefe)
+                           <option value="{{$jefe->id}}">{{$jefe->name}}</option>
+                           @endforeach                        
                         </select>
                         
                         <hr class="sidebar-divider">

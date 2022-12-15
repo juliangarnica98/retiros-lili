@@ -19,8 +19,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
 
                     {{ __('You are logged in!') }} --}}
+                     @csrf
+                        @if(Session::has('error'))
+                        <script>
+                            Swal.fire(
+                            'Error al importar archivo',
+                            "{{Session::get('error')}}",
+                            'error'
+                            )
+                        </script>
+                        @endif
                     <form action="{{route('admin.import.excel')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('message'))

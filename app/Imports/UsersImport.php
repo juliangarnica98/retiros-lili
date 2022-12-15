@@ -23,9 +23,9 @@ class UsersImport implements ToModel
         //  ]);
         return User::create(
             [
-                'name' => $row[0],
-                'email'=>$row[1], 
-                'password' => Hash::make($row[2])
+                'name' => $row[1],
+                'email'=>$row[3], 
+                'password' => Hash::make($row[0])
             ])->assignRole('Jefe');
     }
 }

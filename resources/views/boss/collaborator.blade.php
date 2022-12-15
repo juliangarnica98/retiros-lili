@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container pt-4">
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div class="col-md-12">
             
             {{-- <div class="card">
                 <div class="card-header">Importe los jefes activos</div>
@@ -30,9 +30,9 @@
             
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
                 class="fas fa-download fa-sm "></i> Generar reporte</a> --}}
-                <hr class="sidebar-divider">
+                {{-- <hr class="sidebar-divider"> --}}
                 <div class="card">
-                    <div class=" mt-3">
+                    <div class="">
                         <div class="row text-center">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -66,26 +66,17 @@
                         </div>
                     </div>
                 </div>
-            <hr class="sidebar-divider">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+            
         </div>
         
     </div>
 </div>
+<div class="container pt-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 text-xs-center">
+            {{ $collaborators->links() }}
+        </div>
+    </div>
+</div>
+
 @endsection

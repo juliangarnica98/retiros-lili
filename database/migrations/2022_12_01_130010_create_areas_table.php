@@ -17,6 +17,9 @@ class CreateAreasTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('description');
+
+            $table->unsignedBigInteger('gerencia_id');
+            $table->foreign('gerencia_id')->references('id')->on('gerencias');
         });
     }
 

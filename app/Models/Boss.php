@@ -5,26 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class Boss extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
-        'description',
-        'area_id',
-        'regional_id'
-        
+        'name',
+        'email',
+        'regional_id',
+        'cdc_id'
     ];
-    public function area()
-    {
-        return $this->belongsTo('App\Area');
-    }
     public function regional()
     {
         return $this->belongsTo('App\Regional');
     }
-
-    public function collaborator()
+    public function cdcs()
     {
-        return $this->belongsTo('App\Collaborator');
+        return $this->hasMany('App\Cdc');
     }
 }

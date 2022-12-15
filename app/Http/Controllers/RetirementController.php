@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Imports\UsersImport;
 use App\Imports\CollabolatorsImport;
 use App\Models\Collaborator;
+use App\Models\Position;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RetirementController extends Controller
@@ -22,8 +23,9 @@ class RetirementController extends Controller
 
     public function index()
     {
+        $positions = Position::paginate();
         $type_retirements = TypeRetirement::paginate();
-        return view('boss.retirement',compact('type_retirements'));
+        return view('boss.retirement',compact('type_retirements','positions'));
     }
     
 
@@ -34,9 +36,9 @@ class RetirementController extends Controller
         $retiro = new Retirement();
         $retiro->user_id=Auth::user()->id;
 
-        // $colaborador = Collaborator::where('id',$request->collaborator_id) ;
-        // $colaborador->state = "0";
-        // $colaborador->save();
+         $colaborador = Collaborator::where('id',$request->collaborator_id)->first();
+         $colaborador->state = "0";
+         $colaborador->save();
 
         $retiro->collaborator_id=$request->collaborator_id;
         $retiro->document_collaborator=$request->document_collaborator;
@@ -50,17 +52,18 @@ class RetirementController extends Controller
         $retiro->money_amou=$request->money_amou;
         $retiro->money_conc=$request->money_conc;
 
-        $retiro->date_1=$request->date_1;
-        $retiro->date_2=$request->date_2;
-        $retiro->date_3=$request->date_3;
-        $retiro->date_4=$request->date_4;
-        $retiro->date_5=$request->date_5;
-
-        $retiro->date_d_1=$request->date_d_1;
-        $retiro->date_d_2=$request->date_d_2;
-        $retiro->date_d_3=$request->date_d_3;
-        $retiro->date_d_4=$request->date_d_4;
-        $retiro->date_d_5=$request->date_d_5;
+        $retiro->date_1= $request->date_1 == '2000-01-01' ? '':$request->date_1 ;
+        $retiro->date_2= $request->date_2 == '2000-01-01' ? '':$request->date_2 ;
+        $retiro->date_3= $request->date_3 == '2000-01-01' ? '':$request->date_3 ;
+        $retiro->date_4= $request->date_4 == '2000-01-01' ? '':$request->date_4 ;
+        $retiro->date_5= $request->date_5 == '2000-01-01' ? '':$request->date_5 ;
+     
+        $retiro->date_d_1= $request->date_d_1 == '2000-01-01' ? '':$request->date_d_1 ;
+        $retiro->date_d_2= $request->date_d_2 == '2000-01-01' ? '':$request->date_d_2 ;
+        $retiro->date_d_3= $request->date_d_3 == '2000-01-01' ? '':$request->date_d_3 ;
+        $retiro->date_d_4= $request->date_d_4 == '2000-01-01' ? '':$request->date_d_4 ;
+        $retiro->date_d_5= $request->date_d_5 == '2000-01-01' ? '':$request->date_d_5 ;
+    
 
         // $retiro->cum_bonus=$request->cum_bonus;
         // $retiro->cat_bonus=$request->cat_bonus;
@@ -75,7 +78,7 @@ class RetirementController extends Controller
         $retiro->letter=$request->letter;
 
         $retiro->save();
-
-        return back();
+        return back()->with('message','Se a realizado el retiro de '.$retiro->name_collaborator.' satisfactoriamente');
+        
     }
 }

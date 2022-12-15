@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Area;
+use App\Models\Boss;
+use Database\Factories\BossFactory;
 use Illuminate\Database\Seeder;
 
-class AreaSeeder extends Seeder
+class BossSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +15,6 @@ class AreaSeeder extends Seeder
      */
     public function run()
     {
-        
+        Boss::factory()->count(5)->create();
     }
 }

@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container pt-4">
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div class="col-md-12">
             {{-- <div class="card">
                 <div class="card-header">Importe los jefes activos</div>
 
@@ -25,20 +25,24 @@
                     </form>
                 </div>
             </div> --}}
-            <h1 class="text-center">Retiros realizados</h1>
+           
             
             <a href="#" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
                 class="fas fa-download fa-sm "></i> Generar reporte</a>
+                <div class="d-flex justify-content-center">
+                    <input id="searchTerm" class=" text-center col-md-6" type="text" onkeyup="doSearch()" placeholder="Buscar ..."/>
+                </div>
+                <p id="search"></p>
                 <hr class="sidebar-divider">
                 <div class="card mt-3">
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <div class="table-responsive">
-                                <table class="table">
+                            <div class="table-responsive table-sm ">
+                                <table class="table " id="datos-jefe">
                                 <thead>
-                                <tr>
+                                <tr class="miTablaPersonalizada">
                                     <th >Fecha de retiro</th>
-                                    <th colspan="5">Nombre del colaborador</th>
+                                    <th colspan="5" style=" width: 25vw;">Nombre del colaborador</th>
                                     <th >documento del colaborador</th>
                                     <th >Desempeño</th>
                                     <th >Tipo de retiro</th>
@@ -56,10 +60,9 @@
                                     <th >fecha dominical 3</th>
                                     <th >fecha dominical 4</th>
                                     <th >fecha dominical 5</th>
-                                    <th >Bono de cumplimiento tienda</th>
-                                    <th >Horas extra</th>
-                                    <th >Entrega <strong>Perfil de tienda</strong></th>
-                                    <th >Entrega <strong>Administrador</strong></th>
+                                    
+                                    <th style=" width: 25vw;">Entrega <strong>Perfil de tienda</strong></th>
+                                    <th style=" width: 25vw;" >Entrega <strong>Administrador</strong></th>
                                     <th >Equipo celular</th>
                                     <th >Acta de entrega</th>
                                     <th >Carta de renuncia</th>
@@ -69,10 +72,10 @@
                                     
                                 @foreach ($retiros as $retiro)
                                 {{-- {{dd($retiro)}} --}}
-                                <tr>
+                                <tr class="headt">
                                     
                                     <th>{{date('d-m-Y',strtotime($retiro->created_at))}}</th>
-                                    <th colspan="5" ><strong>{{$retiro->name_collaborator}}</strong></th>
+                                    <th colspan="5" >{{$retiro->name_collaborator}}</th>
                                     <td>{{$retiro->document_collaborator}}</td>
                                     <td>{{$retiro->performance}}</td>
                                     <td>{{$retiro->type_retirement_id}}</td>
@@ -90,9 +93,7 @@
                                     <th>{{$retiro->date_d_3}}</th>
                                     <td>{{$retiro->date_d_4}}</td>
                                     <td>{{$retiro->date_d_5}}</td>
-                                    <td>{{$retiro->cum_bonus}}</td>
-                                    <td>{{$retiro->cat_bonus}}</td>
-                                    <th>{{$retiro->ext_bonus}}</th>
+                                    
                                     <td>{{$retiro->store_ent}}</td>
                                     <td>{{$retiro->admin_ent}}</td>
                                     <td>{{$retiro->cell}}</td>
@@ -107,25 +108,109 @@
                     </div>
                 </div>
             <hr class="sidebar-divider">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+            
         </div>
         
     </div>
 </div>
+<div class="container pt-3">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 text-xs-center">
+            {{ $retiros->links() }}
+        </div>
+    </div>
+</div>
+<script>
+    function doSearch()
+
+{
+
+const tableReg = document.getElementById('datos-jefe');
+
+const searchText = document.getElementById('searchTerm').value.toLowerCase();
+
+let total = 0;
+
+
+
+// Recorremos todas las filas con contenido de la tabla
+
+for (let i = 1; i < tableReg.rows.length; i++) {
+
+    // Si el td tiene la clase "noSearch" no se busca en su cntenido
+
+    if (tableReg.rows[i].classList.contains("noSearch")) {
+
+        continue;
+
+    }
+
+
+
+    let found = false;
+
+    const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+
+    // Recorremos todas las celdas
+
+    for (let j = 0; j < cellsOfRow.length && !found; j++) {
+
+        const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+
+        // Buscamos el texto en el contenido de la celda
+
+        if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
+
+            found = true;
+
+            total++;
+
+        }
+
+    }
+
+    if (found) {
+
+        tableReg.rows[i].style.display = '';
+
+    } else {
+
+        // si no ha encontrado ninguna coincidencia, esconde la
+
+        // fila de la tabla
+
+        tableReg.rows[i].style.display = 'none';
+
+    }
+
+}
+
+
+
+// mostramos las coincidencias
+
+const lastTR=tableReg.rows[tableReg.rows.length-1];
+
+const td=document.querySelector("#search");
+
+lastTR.classList.remove("hide", "red");
+
+if (searchText == "") {
+
+    lastTR.classList.add("hide");
+
+} else if (total) {
+
+    td.innerHTML="Se ha encontrado "+total+" coincidencia"+((total>1)?"s":"");
+
+} else {
+
+    lastTR.classList.add("red");
+
+    td.innerHTML="No se han encontrado coincidencias";
+
+}
+
+}
+</script>
 @endsection

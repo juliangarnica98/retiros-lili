@@ -85,7 +85,15 @@
                         <!-- One "tab" for each step in the form: -->
                         {{-- <div class="tab">Name: --}}
                         @csrf  
-                          
+                        @if(Session::has('message'))
+                        <script>
+                            Swal.fire(
+                            '¡Bien hecho!',
+                            "{{Session::get('message')}}",
+                            'success'
+                            )
+                        </script>
+                          @endif
                           
                           <div class="tab">
                             <div class="row">
@@ -93,7 +101,7 @@
                                 <input type="text" id="id_co" name="collaborator_id" hidden>
                                 <div class="form-group"> <!-- Full Name -->
                                     <label for="full_name_id" class="control-label">Identificación del colaborador</label>
-                                    <input type="text" class="form-control" id="document" name="document_collaborator" placeholder="">
+                                    <input type="number" class="form-control" id="document" name="document_collaborator" placeholder="">
                                 </div>    
                             
                                 <div class="form-group"> <!-- Street 1 -->
@@ -193,63 +201,69 @@
                               </div>
                             </div>
                           </div>
-                          <div class="tab">
-                            <div class="row">
-                              <div class="col-12">
-                                <label for="full_name_id" class="control-label">Novedades Compensatorio
-                                  Indique las fechas de los días que se le deben al colaborador por términos de compensatorio.</label>
+                          {{-- @foreach ($positions as $position) --}}
+                          
+                            <div class="tab" >
+                              <div class="row">
+                                <div class="col-12" id="fechas1">
+                                  <label for="full_name_id" class="control-label">Novedades Compensatorio
+                                    Indique las fechas de los días que se le deben al colaborador por términos de compensatorio.</label>
+                                  
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                      <label for="full_name_id" class="control-label">Fecha Novedad 1</label>
+                                      <input type="date" class="form-control fecha_n" id="date_1" name="date_1" value="2000-01-01">
+                                  </div> 
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha Novedad 2</label>
+                                    <input type="date" class="form-control fecha_n" id="date_2" name="date_2" value="2000-01-01">
+                                  </div> 
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha Novedad 3</label>
+                                    <input type="date" class="form-control fecha_n" id="date_3" name="date_3" value="2000-01-01">
+                                  </div>
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha Novedad 4</label>
+                                    <input type="date" class="form-control fecha_n" id="date_4" name="date_4" value="2000-01-01">
+                                  </div>
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha Novedad 5</label>
+                                    <input type="date" class="form-control fecha_n" id="date_5" name="date_5" value="2000-01-01">
+                                  </div>                       
+                                </div>
+                              </div>
+                            </div>
+                            <div class="tab" >
+                              <div class="row">
+                                <div class="col-12" id="fechas2">
+                                  <label for="full_name_id" class="control-label"> Dominicales/Festivo A Liquidar</label>
                                 
-                                <div class="form-group"> <!-- Full Name -->
-                                    <label for="full_name_id" class="control-label">Fecha Novedad 1</label>
-                                    <input type="date" class="form-control fecha_n" id="date_1" name="date_1" value="2000-01-01">
-                                </div> 
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha Novedad 2</label>
-                                  <input type="date" class="form-control fecha_n" id="date_2" name="date_2" value="2000-01-01">
-                                </div> 
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha Novedad 3</label>
-                                  <input type="date" class="form-control fecha_n" id="date_3" name="date_4" value="2000-01-01">
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                      <label for="full_name_id" class="control-label">Fecha dominical 1</label>
+                                      <input type="date" class="form-control" id="date_d_1" name="date_d_1" value="2000-01-01">
+                                  </div> 
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha dominical 2</label>
+                                    <input type="date" class="form-control" id="date_d_2" name="date_d_2" value="2000-01-01">
+                                  </div> 
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha dominical 3</label>
+                                    <input type="date" class="form-control" id="date_d_3" name="date_d_3" value="2000-01-01">
+                                  </div>
+                                  <div class="form-group" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha dominical 4</label>
+                                    <input type="date" class="form-control" id="date_d_4" name="date_d_4" value="2000-01-01">
+                                  </div>
+                                  <div class="form-group fechas" id="fechas"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">Fecha dominical 5</label>
+                                    <input type="date" class="form-control" id="date_d_5" name="date_d_5" value="2000-01-01">
+                                  </div>                       
                                 </div>
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha Novedad 4</label>
-                                  <input type="date" class="form-control fecha_n" id="date_4" name="date_4" value="2000-01-01">
-                                </div>
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha Novedad 5</label>
-                                  <input type="date" class="form-control fecha_n" id="date_5" name="date_5" value="2000-01-01">
-                                </div>                       
                               </div>
                             </div>
-                          </div>
-                          <div class="tab">
-                            <div class="row">
-                              <div class="col-12">
-                                <label for="full_name_id" class="control-label"> Dominicales/Festivo A Liquidar</label>
-                               
-                                <div class="form-group"> <!-- Full Name -->
-                                    <label for="full_name_id" class="control-label">Fecha dominical 1</label>
-                                    <input type="date" class="form-control" id="date_d_1" name="date_d_1" value="2000-01-01">
-                                </div> 
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha dominical 2</label>
-                                  <input type="date" class="form-control" id="date_d_2" name="date_d_2" value="2000-01-01">
-                                </div> 
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha dominical 3</label>
-                                  <input type="date" class="form-control" id="date_d_3" name="date_d_3" value="2000-01-01">
-                                </div>
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha dominical 4</label>
-                                  <input type="date" class="form-control" id="date_d_4" name="date_d_4" value="2000-01-01">
-                                </div>
-                                <div class="form-group"> <!-- Full Name -->
-                                  <label for="full_name_id" class="control-label">Fecha dominical 5</label>
-                                  <input type="date" class="form-control" id="date_d_5" name="date_d_5" value="2000-01-01">
-                                </div>                       
-                              </div>
-                            </div>
-                          </div>
+                          
+                          {{-- @endforeach --}}
+                          
+                          
                           {{-- <div class="tab">
                             <div class="row">
                               <div class="col-12">
@@ -403,8 +417,10 @@
                           <span class="step"></span>
                           <span class="step"></span>
                           <span class="step"></span>
-                          <span class="step"></span>
-                          <span class="step"></span>
+                          
+                          <span class="step" id="fecha1"></span>
+                          <span class="step" id="fecha2"></span>
+                          
                           <span class="step"></span>
                           <span class="step"></span>
                           <span class="step"></span>
@@ -421,7 +437,12 @@
 <script>
   var currentTab = 0; // Current tab is set to be the first tab (0)
 
-  let documento = document.querySelector('#document');  
+  let documento = document.querySelector('#document');
+  let fechas = document.querySelector('#fechas');    
+  let fechas1 = document.querySelector('#fechas1');  
+  let fechas2 = document.querySelector('#fechas2');  
+  let fecha1 = document.querySelector('#fecha1');  
+  let fecha2 = document.querySelector('#fecha2');  
   let name = document.querySelector('#name'); 
   let id_co = document.querySelector('#id_co'); 
   let dinero_si = document.querySelector('#dinero_si'); 
@@ -526,12 +547,24 @@
     })
     .then(response => response.json())
     .then(function(result){
-      console.log(result)
       name.value = result.name; 
       id_co.value = result.id; 
+      if(name.value==""){
+          Swal.fire({
+          title: 'Error!',
+          text: 'No se ha encontrado el documento en nuestras bases',
+          icon: 'warning',
+          confirmButtonText: 'Continuar'
+        })
+      }
+      if(result.position == 1){
+        fecha1.style.display = 'none';
+         fechas1.style.display = 'none';
+        fecha2.style.display = 'none';
+         fechas2.style.display = 'none';
+      }
     })
     .catch(function(error){
-      console.log(error)
       name.value = "";
       id_co.value = ""; 
     });
