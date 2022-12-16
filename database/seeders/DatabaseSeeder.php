@@ -16,15 +16,18 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\Boss::factory(5)->create();
         // \App\Models\User::factory(10)->create();
+        // $this->call(AreaSeeder::class);
+
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(TypeRetirementSeeder::class);
-        // $this->call(AreaSeeder::class);
         $this->call(RegionalSeeder::class);
         $this->call(GerenciaSeeder::class);
         $this->call(AreasTableSeeder::class);
-        $this->call(BossSeeder::class);
         $this->call(PositionsTableSeeder::class);
+        $this->call(CdcsTableSeeder::class);
+        // $this->call(BossSeeder::class);
+
         // $this->call(BossSeeder::class);
         
         

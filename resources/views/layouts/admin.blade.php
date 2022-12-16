@@ -123,12 +123,20 @@
                         <span >Todos los retiros</span></a>
                 </li>
                 <!-- Divider -->
+                
                 <hr class="sidebar-divider">
                 <li class="nav-item">
                     <a class="nav-link text-center" href="{{route('admin.importar')}}">
                         {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                         <i class="fas fa-solid fa-user"></i>
                         <span>Importar Jefes</span></a>
+                </li>
+                <hr class="sidebar-divider">
+                <li class="nav-item">
+                    <a class="nav-link text-center" href="{{route('admin.importar')}}">
+                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+                        <i class="fas fa-store fa-solid"></i>
+                        <span>Asignacion de tiendas</span></a>
                 </li>
                 <hr class="sidebar-divider">
                 <li class="nav-item">

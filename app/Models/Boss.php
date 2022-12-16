@@ -12,8 +12,9 @@ class Boss extends Model
     protected $fillable = [
         'name',
         'email',
+        'cargo',
         'regional_id',
-        'cdc_id'
+        // 'cdc_id'
     ];
     public function regional()
     {
@@ -23,4 +24,8 @@ class Boss extends Model
     {
         return $this->hasMany('App\Cdc');
     }
+    // public function cdcs()
+    // {
+    //     return $this->hasMany('App\Cdc');
+    // }
 }

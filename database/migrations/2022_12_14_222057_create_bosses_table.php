@@ -18,12 +18,13 @@ class CreateBossesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('email');
+            $table->string('cargo');
 
             $table->unsignedBigInteger('regional_id');
             $table->foreign('regional_id')->references('id')->on('regionals');
 
-            $table->unsignedBigInteger('cdc_id');
-            $table->foreign('cdc_id')->references('id')->on('cdcs');
+            // $table->unsignedBigInteger('cdc_id');
+            // $table->foreign('cdc_id')->references('id')->on('cdcs');
         });
     }
 

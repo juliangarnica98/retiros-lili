@@ -20,10 +20,10 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
 
     */
 
-    public function  __construct($jefe)
-    {
-        $this->jefe = $jefe;
-    }
+    // public function  __construct($jefe)
+    // {
+    //     $this->jefe = $jefe;
+    // }
 
     public function model(array $row)
     {

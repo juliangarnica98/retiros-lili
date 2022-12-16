@@ -10,7 +10,8 @@ class Cdc extends Model
     use HasFactory;
     protected $fillable = [
         'description',
-        'regional_id'
+        'regional_id',
+        'boss_id'
     ];
     public function regional()
     {

@@ -22,10 +22,10 @@ class BossFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
-            'regional_id'=> Regional::all()->random()->id,
-            'cdc_id'=> Cdc::all()->random()->id
-            // 'regional_id'=>$this->faker->randomElement([1, 2, 3]),
-            // 'cdc_id'=>$this->faker->randomElement([1, 2, 3])
+            // 'regional_id'=> Regional::all()->random()->id,
+            // 'cdc_id'=> Cdc::all()->random()->id
+            'regional_id'=>$this->faker->randomElement([1, 2, 3]),
+            'cdc_id'=>$this->faker->randomElement([1, 2, 3])
         ];
     }
 }

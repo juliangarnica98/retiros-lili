@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\Paginator;
 
 use App\Imports\UsersImport;
+use App\Imports\BossImport;
 use App\Imports\CollabolatorsImport;
+use App\Models\Boss;
+use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
@@ -35,6 +38,13 @@ class AdminController extends Controller
         Paginator::useBootstrap();
         $retiros = Retirement::paginate(7);
         return view('admin.tableretiros',compact('retiros'));
+    }
+    public function tiendas()
+    {
+        Paginator::useBootstrap();
+        $jefes = Boss::all();
+        $tiendas = Cdc::all();
+        return view('admin.tiendas',compact('jefes','tiendas'));
     }
     public function importar()
     {
@@ -63,37 +73,6 @@ class AdminController extends Controller
         return view('admin.tiporetiro',compact('tiporetiros'));
     }
 
-
-    // public function creararea(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'description' => 'required|unique:areas'
-    //     ]);
-        
-    //     if($validator->fails()){
-    //         return back();
-    //     }
-    //     $area = new Area();
-    //     $area->description = $request->description;
-    //     $area->save();
-    //     return back();
-    // }
-
-    // public function crearcargo(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'area_id'=>'required',
-    //         'description' => 'required|unique:positions'
-    //     ]);
-        
-    //     if($validator->fails()){
-    //         return back();
-    //     }
-    //     $position = new Position();
-    //     $position->description = $request->description;
-    //     $position->area_id = $request->area_id;
-    //     $position->save();
-    //     return back();
-    // }
-
     // public function creartiporetiro(Request $request){
     //     $validator = Validator::make($request->all(), [
     //         'description' => 'required|unique:type_retirements'
@@ -121,8 +100,9 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
-       
+        Excel::import(new BossImport, $file);
         Excel::import(new UsersImport, $file);
+        
 
         return back()->with('message','importancion de usuarios completa');
     }
