@@ -93,6 +93,27 @@
         background: rgb(232,81,153);
         background: linear-gradient(90deg, rgba(232,81,153,1) 47%, rgba(3,168,162,1) 100%);
     } */
+    /* .mycheck2 {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: #fff;
+        color: #fff;
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        width: 24px;
+        height: 24px;
+        appearance: none;
+        border: 2px solid #888;
+        background-position: 0 -2rem;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        transition: all 0.3s ease-in-out;
+        }
+        .mycheck2:checked {
+        background-color: rgb(75, 156, 13);
+        color: rgb(75, 156, 13);
+        background-position: 0 0;
+        }  */
 
    
     
@@ -133,7 +154,7 @@
                 </li>
                 <hr class="sidebar-divider">
                 <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.importar')}}">
+                    <a class="nav-link text-center" href="{{route('tiendas.index')}}">
                         {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                         <i class="fas fa-store fa-solid"></i>
                         <span>Asignacion de tiendas</span></a>

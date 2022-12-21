@@ -17,8 +17,8 @@ class Cdc extends Model
     {
         return $this->belongsTo('App\Regional');
     }
-    public function boss()
-    {
-        return $this->belongsTo('App\Boss');
-    }
+    // public function boss()
+    // {
+    //     return $this->belongsTo('App\Boss');
+    // }
 }

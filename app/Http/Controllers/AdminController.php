@@ -18,6 +18,7 @@ use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpParser\Node\Stmt\Foreach_;
 
 class AdminController extends Controller
 {
@@ -43,8 +44,10 @@ class AdminController extends Controller
     {
         Paginator::useBootstrap();
         $jefes = Boss::all();
+        $jefe = Boss::where('id',1)->first();
         $tiendas = Cdc::all();
-        return view('admin.tiendas',compact('jefes','tiendas'));
+        // dd($jefes);
+        return view('admin.tiendas',compact('jefes','tiendas','jefe'));
     }
     public function importar()
     {
@@ -87,6 +90,42 @@ class AdminController extends Controller
     //     return back();
     // }
 
+    public function busqueda(Request $request){
+        // dd($request->jefe);
+        $boss = Boss::where('id',$request->jefe)->first();
+        if($boss){
+            $tiendas = Cdc::where('regional_id',$boss->regional_id)
+            ->Where('boss_id', $boss->id)
+            // ->Where('boss_id',"")
+            ->get();
+        }   
+        
+        if($request->jefe==""){
+            return 1;
+        }
+        return json_encode($tiendas);
+    }
+
+    public function asignarCdc(Request $request){
+        $cdcs=$request->options;
+        $cdds = Cdc::where('boss_id',$request->jefe)->get();
+        if($cdds){
+            foreach ($cdds as $c) {
+                $c->boss_id = "";
+                $c->save();
+            }
+        }
+        if($cdcs){
+            foreach ($cdcs as $cdc ) {
+                $cdd = Cdc::where('id',$cdc)->first();         
+                $cdd->boss_id =  $request->jefe;
+                $cdd->save();
+            }
+        }
+        
+        
+        return back()->with('message','Jefes asigandos correctamente');
+    }
     public function importExcel(Request $request)
     {
         $file = $request->file('file');
@@ -100,12 +139,14 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
-        Excel::import(new BossImport, $file);
         Excel::import(new UsersImport, $file);
+        Excel::import(new BossImport, $file);
+        
         
 
         return back()->with('message','importancion de usuarios completa');
     }
+
     public function importCollaborator(Request $request)
     {
         $file = $request->file('file');
@@ -115,7 +156,6 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'file*' => 'required|mimes:xlsx'
         ]);
-        
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }

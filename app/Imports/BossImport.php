@@ -13,8 +13,10 @@ class BossImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    
     public function model(array $row)
     {
+        // dd($row);
         return Boss::create(
             [
                 'name' => $row['nombre'],

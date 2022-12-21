@@ -2,6 +2,8 @@
 
 namespace App\Imports;
 
+use App\Models\Boss;
+use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\Gerencia;
 use App\Models\Position;
@@ -34,7 +36,10 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
         $positions = Position::where("description", "like", "%".$row['Cargo']."%")->first();
         $regional = Regional::where("description", "like", "%".$row['REGIONAL']."%")->first();
         $gerencia = Gerencia::where("description", "like", "%".$row['GERENCIA']."%")->first();
-    
+        // $cdc = Gerencia::where("description", "like", "%".$row['Centro Costo']."%")->first();
+        $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['Centro Costo'])->first();
+        $jefe_id = $cdc->boss_id;
+        // $jefe = Boss::where();
         return new Collaborator(
             [
                 'name' => $row['Nombre'],
@@ -43,7 +48,7 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
                 'position_id'=>$positions->id ,
                 'gerencia_id'=>$gerencia->id ,
                 'regional_id'=>$regional->id ,
-                'user_id'=> $this->jefe
+                'user_id'=> $jefe_id,
             ]);
     }
 }

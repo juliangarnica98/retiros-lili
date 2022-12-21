@@ -23,8 +23,7 @@ class CreateBossesTable extends Migration
             $table->unsignedBigInteger('regional_id');
             $table->foreign('regional_id')->references('id')->on('regionals');
 
-            // $table->unsignedBigInteger('cdc_id');
-            // $table->foreign('cdc_id')->references('id')->on('cdcs');
+        
         });
     }
 
