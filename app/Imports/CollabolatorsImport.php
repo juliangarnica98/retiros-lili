@@ -32,19 +32,19 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
         // return new Collaborator([
         //     //
         // ]);
-        
-        $positions = Position::where("description", "like", "%".$row['Cargo']."%")->first();
-        $regional = Regional::where("description", "like", "%".$row['REGIONAL']."%")->first();
-        $gerencia = Gerencia::where("description", "like", "%".$row['GERENCIA']."%")->first();
+            // dd($row);
+        $positions = Position::where("description", "like", "%".$row['cargo']."%")->first();
+        $regional = Regional::where("description", "like", "%".$row['regional']."%")->first();
+        $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();
         // $cdc = Gerencia::where("description", "like", "%".$row['Centro Costo']."%")->first();
-        $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['Centro Costo'])->first();
+        $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['centro_costo'])->first();
         $jefe_id = $cdc->boss_id;
         // $jefe = Boss::where();
         return new Collaborator(
             [
-                'name' => $row['Nombre'],
+                'name' => $row['nombre'],
                 'state'=>1, 
-                'document' => $row['Documento'],
+                'document' => $row['documento'],
                 'position_id'=>$positions->id ,
                 'gerencia_id'=>$gerencia->id ,
                 'regional_id'=>$regional->id ,

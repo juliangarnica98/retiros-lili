@@ -40,7 +40,9 @@ class BossController extends Controller
     {
         $positions = Position::all();
         Paginator::useBootstrap();
-        $collaborators = Collaborator::where('state','1')->where('user_id',Auth::user()->id)->paginate(6);
+        $user = Auth::user()->id -1;
+        $collaborators = Collaborator::where('state','1')->where('user_id',$user)->paginate(6);
+    
         return view('boss.collaborator',compact('collaborators','positions'));
     }
 

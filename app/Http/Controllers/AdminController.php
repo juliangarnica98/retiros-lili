@@ -91,13 +91,14 @@ class AdminController extends Controller
     // }
 
     public function busqueda(Request $request){
-        // dd($request->jefe);
+        
         $boss = Boss::where('id',$request->jefe)->first();
         if($boss){
             $tiendas = Cdc::where('regional_id',$boss->regional_id)
-            ->Where('boss_id', $boss->id)
-            // ->Where('boss_id',"")
+            ->whereIn('boss_id',["",$request->jefe])
             ->get();
+
+            
         }   
         
         if($request->jefe==""){
