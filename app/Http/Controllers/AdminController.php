@@ -40,15 +40,16 @@ class AdminController extends Controller
         $retiros = Retirement::paginate(7);
         return view('admin.tableretiros',compact('retiros'));
     }
-    public function tiendas()
-    {
-        Paginator::useBootstrap();
-        $jefes = Boss::all();
-        $jefe = Boss::where('id',1)->first();
-        $tiendas = Cdc::all();
-        // dd($jefes);
-        return view('admin.tiendas',compact('jefes','tiendas','jefe'));
-    }
+    // public function tiendas()
+    // {
+    //     Paginator::useBootstrap();
+    //     $jefes = Boss::all();
+    //     $jefe = Boss::where('id','!=',null)->first();
+    //     // dd($jefe);
+    //     $tiendas = Cdc::all();
+    //     // dd($jefes);
+    //     return view('admin.tiendas',compact('jefes','tiendas','jefe'));
+    // }
     public function importar()
     {
         return view('admin.importar');
@@ -56,6 +57,7 @@ class AdminController extends Controller
     public function importar2()
     {
         $jefes = User::role('Jefe')->get();
+        // $cdc = Cdc::where('boss_id',"")->first();
         // dd($jefes);
         return view('admin.import',compact('jefes'));
     }
@@ -93,6 +95,7 @@ class AdminController extends Controller
     public function busqueda(Request $request){
         
         $boss = Boss::where('id',$request->jefe)->first();
+        
         if($boss){
             $tiendas = Cdc::where('regional_id',$boss->regional_id)
             ->whereIn('boss_id',["",$request->jefe])
@@ -108,11 +111,21 @@ class AdminController extends Controller
     }
 
     public function asignarCdc(Request $request){
+        
         $cdcs=$request->options;
         $cdds = Cdc::where('boss_id',$request->jefe)->get();
+        
         if($cdds){
             foreach ($cdds as $c) {
+                
                 $c->boss_id = "";
+                $colaborator = Collaborator::where('user_id',$request->jefe)->get();
+                foreach($colaborator as $col){
+
+                    $col->user_id="";
+                    $col->save();
+
+                }
                 $c->save();
             }
         }
@@ -120,9 +133,16 @@ class AdminController extends Controller
             foreach ($cdcs as $cdc ) {
                 $cdd = Cdc::where('id',$cdc)->first();         
                 $cdd->boss_id =  $request->jefe;
+                $colaborator = Collaborator::where('regional_id',$cdd->regional_id)->where('centro_d',$cdd->description)->get();
+                foreach ($colaborator as $col ) {
+                    $col->user_id = $request->jefe;
+                    $col->save();
+                }
                 $cdd->save();
+               
             }
         }
+        
         
         
         return back()->with('message','Jefes asigandos correctamente');
@@ -130,6 +150,11 @@ class AdminController extends Controller
     public function importExcel(Request $request)
     {
         $file = $request->file('file');
+        if(!empty($request->file('file'))){
+            $file->store('importJefe');;
+        
+        }
+        
         if($file == null){
             return back()->with('error','Seleccione un archivo');
         } 
@@ -140,11 +165,21 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
-        Excel::import(new UsersImport, $file);
-        Excel::import(new BossImport, $file);
+        try {
+            Excel::import(new UsersImport, $file);
+            Excel::import(new BossImport, $file);
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
         
+            $failures = $e->failures();
         
-
+            foreach ($failures as $failure) {
+                $failure->row(); // row that went wrong
+                $failure->attribute(); // either heading key (if using heading row concern) or column index
+                $failure->errors(); // Actual error messages from Laravel validator
+                $failure->values(); // The values of the row that has failed.
+            }
+            return back()->withFailures('error',$failures);
+        }
         return back()->with('message','importancion de usuarios completa');
     }
 
@@ -154,6 +189,7 @@ class AdminController extends Controller
         if($file == null){
             return back()->with('error','Seleccione un archivo');
         } 
+        $file->store('import');
         $validator = Validator::make($request->all(), [
             'file*' => 'required|mimes:xlsx'
         ]);

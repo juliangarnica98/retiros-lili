@@ -4,6 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
+            
+            {{-- @if ($cdc)
+            <p class="text-center h5" style="color: #e85199">Hay centros de distribucion sin asignacion</p>
+            @else --}}
             <h1 class="text-center">Importa mis colaboradores</h1>
             <div class="card">
                 <div class="card-header">Seleccione un archivo excel</div>
@@ -14,8 +18,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }} --}}
+                    
                     <form action="{{route('admin.import.collaborator')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('error'))
@@ -51,6 +55,7 @@
                     </form>
                 </div>
             </div>
+            {{-- @endif --}}
         </div>
         
     </div>

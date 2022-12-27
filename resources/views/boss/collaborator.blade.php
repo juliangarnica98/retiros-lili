@@ -26,6 +26,7 @@
                     </form>
                 </div>
             </div> --}}
+          
             <h1 class="text-center">Colaboradores activos</h1>
             
             {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i

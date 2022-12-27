@@ -40,10 +40,11 @@ class BossController extends Controller
     {
         $positions = Position::all();
         Paginator::useBootstrap();
-        $user = Auth::user()->id -1;
-        $collaborators = Collaborator::where('state','1')->where('user_id',$user)->paginate(6);
-    
-        return view('boss.collaborator',compact('collaborators','positions'));
+        $user = Auth::user()->id-1;
+        // dd($user);
+        $collaborators = Collaborator::where('state','1')->where('user_id',$user)->paginate(20);
+        
+        return view('boss.collaborator',compact('collaborators','positions','user'));
     }
 
     public function edit($id)
@@ -52,7 +53,7 @@ class BossController extends Controller
     }
     public function busqueda(Request $request){
         
-        $collaborator = Collaborator::where('document',$request->document)->first(); 
+        $collaborator = Collaborator::where('document',$request->document)->where('state',1)->first(); 
         
         if($collaborator){
             $id = $collaborator->id;

@@ -15,12 +15,14 @@ class Collaborator extends Model
         'state',
         'position_id',
         'gerencia_id',
-        'regional_id'
+        'regional_id',
+        'state_e',
+        // 'centro_d'
     ];
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User');
+    // }
 
     public function position() 
     {

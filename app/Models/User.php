@@ -48,10 +48,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Retirement');
     }
-    public function collaborator()
-    {
-        return $this->belongsTo('App\Collaborator');
-    }
+    // public function collaborator()
+    // {
+    //     return $this->belongsTo('App\Collaborator');
+    // }
 
 
   

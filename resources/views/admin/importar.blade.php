@@ -35,7 +35,14 @@
                     <form action="{{route('admin.import.excel')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('message'))
-                            <p>{{Session::get('message')}}</p>
+                        <script>
+                            Swal.fire(
+                            '¡Bien hecho!',
+                            "{{Session::get('message')}}",
+                            'success'
+                            )
+                        </script>
+                            {{-- <p>{{Session::get('message')}}</p> --}}
                         @endif
                         <div class="input-group">
                             <div class="input-group-prepend">

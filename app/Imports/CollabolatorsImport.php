@@ -29,17 +29,21 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        // return new Collaborator([
-        //     //
-        // ]);
-            // dd($row);
+
         $positions = Position::where("description", "like", "%".$row['cargo']."%")->first();
         $regional = Regional::where("description", "like", "%".$row['regional']."%")->first();
         $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();
         // $cdc = Gerencia::where("description", "like", "%".$row['Centro Costo']."%")->first();
         $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['centro_costo'])->first();
-        $jefe_id = $cdc->boss_id;
-        // $jefe = Boss::where();
+      
+        if($cdc->boss_id != null){
+            $jefe_id = $cdc->boss_id+1;
+        }else{
+            $jefe_id = "";
+        }
+        
+
+        
         return new Collaborator(
             [
                 'name' => $row['nombre'],
@@ -49,6 +53,8 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
                 'gerencia_id'=>$gerencia->id ,
                 'regional_id'=>$regional->id ,
                 'user_id'=> $jefe_id,
+                'state_e'=> '1',
+                // 'centro_d'=>$row['centro_costo']
             ]);
     }
 }

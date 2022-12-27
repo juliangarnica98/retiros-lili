@@ -5,6 +5,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-7">
+          {{-- {{$jefe}} --}}
           @if (empty($jefe))
             
           <p class="text-center h5" style="color: #e85199">Primero debes importar los jefes</p>
@@ -25,6 +26,7 @@
                     {{ __('You are logged in!') }} --}}
                     <form action="{{route('admin.asignar')}}" method="post" enctype="multipart/form-data">
                         @csrf
+                       
                         @if(Session::has('message'))
                         <script>
                             Swal.fire(

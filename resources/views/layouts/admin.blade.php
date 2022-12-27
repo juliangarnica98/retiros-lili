@@ -153,13 +153,13 @@
                         <span>Importar Jefes</span></a>
                 </li>
                 <hr class="sidebar-divider">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-center" href="{{route('tiendas.index')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+                        
                         <i class="fas fa-store fa-solid"></i>
                         <span>Asignacion de tiendas</span></a>
                 </li>
-                <hr class="sidebar-divider">
+                <hr class="sidebar-divider"> --}}
                 <li class="nav-item">
                     <a class="nav-link text-center" href="{{route('admin.importar2')}}">
                       {{-- <i class="fas fa-fw fa-tachometer-alt"></i>  --}}

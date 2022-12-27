@@ -18,11 +18,13 @@ class CreateCollaboratorsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('state');
-            $table->string('document')->unique();
-            
+            $table->string('document');
+            $table->string('user_id')->nullable();
+            $table->string('state_e');
+            // $table->string('centro_d');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
             
             $table->unsignedBigInteger('position_id');
             $table->foreign('position_id')->references('id')->on('positions');
