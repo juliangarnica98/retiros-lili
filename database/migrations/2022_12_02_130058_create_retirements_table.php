@@ -20,6 +20,7 @@ class CreateRetirementsTable extends Migration
             $table->string('document_collaborator');
             $table->string('name_collaborator');
             $table->string('performance');
+            $table->text('reason');
             $table->string('last_day');
             $table->string('money_pend');
             $table->string('money_conc');

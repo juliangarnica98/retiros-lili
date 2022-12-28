@@ -43,12 +43,18 @@ Route::group(['prefix' => 'administrador'], function() {
     Route::post('creartiporetiro', [App\Http\Controllers\AdminController::class, 'creartiporetiro'])->name('admin.creartiporetiro');
     Route::post('admin-import-colaborator', [App\Http\Controllers\AdminController::class, 'importCollaborator'])->name('admin.import.collaborator');
     Route::post('admin-import-excel', [App\Http\Controllers\AdminController::class, 'importExcel'])->name('admin.import.excel');
+    
     Route::post('busqueda-cdc', [App\Http\Controllers\AdminController::class, 'busqueda'])->name('admin.search');
     Route::post('asignar-cdc', [App\Http\Controllers\AdminController::class, 'asignarCdc'])->name('admin.asignar');
+
+    Route::get('exporttable', [App\Http\Controllers\AdminController::class, 'export'])->name('admin.export.excel');
 
 });
 
 Route::group(['prefix' => 'jefe'], function() {
+
+    Route::get('exporttable/{id}', [App\Http\Controllers\BossController::class, 'export'])->name('boss.export.excel');
+
     Route::get('index', [App\Http\Controllers\BossController::class,'index'])->name('boss.index');
     Route::get('colaboradores', [App\Http\Controllers\BossController::class,'show'])->name('boss.show');
     Route::get('retiros', [App\Http\Controllers\RetirementController::class, 'index'])->name('retirement.index');

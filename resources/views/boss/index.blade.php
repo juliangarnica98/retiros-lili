@@ -27,7 +27,7 @@
             </div> --}}
            
             
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
+            <a href= "{{ url('jefe/exporttable/'.$usuario)}}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
                 class="fas fa-download fa-sm "></i> Generar reporte</a>
                 <div class="d-flex justify-content-center">
                     <input id="searchTerm" class=" text-center col-md-6" type="text" onkeyup="doSearch()" placeholder="Buscar ..."/>
@@ -78,7 +78,13 @@
                                     <th colspan="5" >{{$retiro->name_collaborator}}</th>
                                     <td>{{$retiro->document_collaborator}}</td>
                                     <td>{{$retiro->performance}}</td>
-                                    <td>{{$retiro->type_retirement_id}}</td>
+
+                                    @foreach ($tipo_retiro as $typo )
+                                        @if ($retiro->type_retirement_id == $typo->id)
+                                            <td>{{$typo->description}}</td>
+                                        @endif
+                                    @endforeach
+                                    
                                     <td>{{$retiro->last_day}}</td>
                                     <th>{{$retiro->money_pend}}</th>
                                     <td>{{$retiro->money_amou}}</td>

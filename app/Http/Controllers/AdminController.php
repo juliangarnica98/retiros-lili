@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RetirementExport;
+use App\Exports\RetirementsExport;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Position;
@@ -9,6 +11,8 @@ use App\Models\Retirement;
 use App\Models\TypeRetirement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\Paginator;
+
+
 
 use App\Imports\UsersImport;
 use App\Imports\BossImport;
@@ -38,7 +42,8 @@ class AdminController extends Controller
     {
         Paginator::useBootstrap();
         $retiros = Retirement::paginate(7);
-        return view('admin.tableretiros',compact('retiros'));
+        $users = User::paginate();
+        return view('admin.tableretiros',compact('retiros','users'));
     }
     // public function tiendas()
     // {
@@ -197,7 +202,11 @@ class AdminController extends Controller
             return back()->with('error','Seleccione un archivo valido');
         }
         Excel::import(new CollabolatorsImport($request->jefe), $file);
-
         return back()->with('message','Importancion de usuarios completa');
     }
+    public function export() 
+    {   
+        return Excel::download(new RetirementsExport, 'retirements.xlsx');
+    }
+    
 }

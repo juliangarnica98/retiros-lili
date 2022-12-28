@@ -47,7 +47,8 @@ class Retirement extends Model
         'delivery_certificate',
         
         'admin_ent',
-        'store_ent'
+        'store_ent',
+        'reason'
 
     ];
 

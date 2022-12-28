@@ -30,6 +30,7 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
 
+        
         $positions = Position::where("description", "like", "%".$row['cargo']."%")->first();
         $regional = Regional::where("description", "like", "%".$row['regional']."%")->first();
         $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();

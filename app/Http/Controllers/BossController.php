@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RetirementExport;
+use App\Models\Boss;
 use Illuminate\Http\Request;
 use App\Models\Collaborator;
 use App\Models\Position;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Retirement;
+use App\Models\TypeRetirement;
 use Illuminate\Pagination\Paginator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 class BossController extends Controller
 {
@@ -20,9 +25,10 @@ class BossController extends Controller
     public function index()
     {
         Paginator::useBootstrap();
-        
+        $tipo_retiro= TypeRetirement::all();
         $retiros = Retirement::where('user_id',auth()->id())->paginate(7);
-        return view('boss.index',compact('retiros'));
+        $usuario = auth()->id();
+        return view('boss.index',compact('retiros','tipo_retiro','usuario'));
     }
    
     public function create()
@@ -40,11 +46,12 @@ class BossController extends Controller
     {
         $positions = Position::all();
         Paginator::useBootstrap();
-        $user = Auth::user()->id-1;
+        $user = Auth::user()->name;
+        $boss = Boss::where('name',$user)->first();
         // dd($user);
-        $collaborators = Collaborator::where('state','1')->where('user_id',$user)->paginate(20);
+        $collaborators = Collaborator::where('state','1')->where('regional_id',$boss->regional_id)->paginate(20);
         
-        return view('boss.collaborator',compact('collaborators','positions','user'));
+        return view('boss.collaborator',compact('collaborators','positions'));
     }
 
     public function edit($id)
@@ -62,19 +69,20 @@ class BossController extends Controller
             return response()->json(['name' => $name,'id'=>$id,'position'=>$position]);
         }
         return response()->json(['name' => "",'id'=>"",'position'=>""]);
-        
-       
     }
-
-
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
 
     public function destroy($id)
     {
-        //
+        
+    }
+
+    public function export(Request $request) 
+    {   
+        return Excel::download(new RetirementExport($request->id), 'retirement.xlsx');
     }
 }

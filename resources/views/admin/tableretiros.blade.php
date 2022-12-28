@@ -27,7 +27,7 @@
             </div> --}}
             {{-- <h1 class="text-center">Todos los retiros</h1> --}}
             
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
+            <a href="{{ url('administrador/exporttable/')}}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
                 class="fas fa-download fa-sm "></i> Generar reporte</a>
                 <div class="d-flex justify-content-center">
                     <input id="searchTerm" class=" text-center col-md-6" type="text" onkeyup="doSearch()" placeholder="Buscar ..."/>
@@ -44,6 +44,7 @@
                                 <tr class="miTablaPersonalizada">
                                     <th >Fecha de retiro</th>
                                     <th colspan="5" style=" width: 25vw;">Nombre del colaborador</th>
+                                    <th >Encargada del retiro</th>
                                     <th >documento del colaborador</th>
                                     <th >Desempeño</th>
                                     <th >Tipo de retiro</th>
@@ -77,6 +78,12 @@
                                     
                                     <th>{{date('d-m-Y',strtotime($retiro->created_at))}}</th>
                                     <th colspan="5" >{{$retiro->name_collaborator}}</th>
+
+                                    @foreach ($users as $user)
+                                        @if ($retiro->user_id ==  $user->id)
+                                            <td>{{$user->name}}</td>    
+                                        @endif
+                                    @endforeach
                                     <td>{{$retiro->document_collaborator}}</td>
                                     <td>{{$retiro->performance}}</td>
                                     <td>{{$retiro->type_retirement_id}}</td>

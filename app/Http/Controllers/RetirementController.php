@@ -48,6 +48,8 @@ class RetirementController extends Controller
         $retiro->type_retirement_id=$request->type_retirement_id;
         $retiro->last_day=$request->last_day;
 
+        $retiro->reason=$request->reason;
+
         $retiro->money_pend=$request->money_pend;
         $retiro->money_amou=$request->money_amou;
         $retiro->money_conc=$request->money_conc;
@@ -64,7 +66,7 @@ class RetirementController extends Controller
         $retiro->date_d_4= $request->date_d_4 == '2000-01-01' ? '':$request->date_d_4 ;
         $retiro->date_d_5= $request->date_d_5 == '2000-01-01' ? '':$request->date_d_5 ;
     
-
+        
         // $retiro->cum_bonus=$request->cum_bonus;
         // $retiro->cat_bonus=$request->cat_bonus;
         // $retiro->ext_bonus=$request->ext_bonus;

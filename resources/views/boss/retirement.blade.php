@@ -163,6 +163,17 @@
                             <div class="row">
                               <div class="col-12">
                                 <div class="form-group"> <!-- Full Name -->
+                                    <label for="full_name_id" class="control-label">INDIQUE LA RAZON DEL RETIRO
+                                    </label>
+                                    <input type="text" class="form-control" id="reason" name="reason" placeholder="">
+                                </div>                       
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab">
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="form-group"> <!-- Full Name -->
                                     <label for="full_name_id" class="control-label">Ultimo día laborado</label>
                                     <input type="date" class="form-control" id="last_day" name="last_day" placeholder="">
                                 </div>                       
@@ -421,6 +432,7 @@
                           <span class="step" id="fecha1"></span>
                           <span class="step" id="fecha2"></span>
                           
+                          <span class="step"></span>
                           <span class="step"></span>
                           <span class="step"></span>
                           <span class="step"></span>
