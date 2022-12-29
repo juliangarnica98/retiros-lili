@@ -376,6 +376,70 @@
                                       </label>
                                     </div>
                                 </div> 
+                                <div class="form-group"> <!-- Full Name -->
+                                  <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo entrega de</label>
+                                    <label for="full_name_id" class="control-label"><strong>Cedi</strong></label>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="carnet" name="cedi_jean" id="cedi_jean">
+                                      <label class="form-check-label" for="carnet">
+                                        Jean
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="tokens" name="cedi_camisa" id="cedi_camisa" >
+                                      <label class="form-check-label" for="tokens">
+                                        Camisa
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_botas" name="cedi_botas">
+                                      <label class="form-check-label" for="pc">
+                                        Botas
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_terminal" name="cedi_terminal">
+                                      <label class="form-check-label" for="pc">
+                                        Terminal
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_token" name="cedi_token">
+                                      <label class="form-check-label" for="pc">
+                                        Token
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_carnet" name="cedi_carnet">
+                                      <label class="form-check-label" for="pc">
+                                        Carnet
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_chaqueta" name="cedi_chaqueta">
+                                      <label class="form-check-label" for="pc">
+                                        Chaqueta
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_canguro" name="cedi_canguro">
+                                      <label class="form-check-label" for="pc">
+                                        Canguro
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="pc" id="cedi_cofia" name="cedi_cofia">
+                                      <label class="form-check-label" for="pc">
+                                        Cofia
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="ad_ninguno" id="cedi_ninguno" name="cedi_ninguno">
+                                      <label class="form-check-label" for="ad_ninguno">
+                                        No hace entrega de ninguno de los anteriores
+                                      </label>
+                                    </div>
+                                </div> 
                                                
                               </div>
                             </div>
@@ -569,7 +633,7 @@
           confirmButtonText: 'Continuar'
         })
       }
-      if(result.position == 1){
+      if(result.position == 1 or result.position == 2 or result.position == 14 ){
         fecha1.style.display = 'none';
          fechas1.style.display = 'none';
         fecha2.style.display = 'none';

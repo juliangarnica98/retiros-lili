@@ -48,6 +48,7 @@ class Retirement extends Model
         
         'admin_ent',
         'store_ent',
+        'cedi_ent',
         'reason'
 
     ];

@@ -15,10 +15,12 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {  
-    return redirect('/login');
+// Route::get('/', function () {  
+//     return redirect('/login');
 
-});
+// });
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 Route::get('/home', function () {  
     if(Auth::user()->id==1){

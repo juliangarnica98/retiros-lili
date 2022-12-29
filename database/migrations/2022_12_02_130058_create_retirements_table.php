@@ -43,6 +43,8 @@ class CreateRetirementsTable extends Migration
             $table->string('delivery_certificate');
             $table->text('admin_ent');
             $table->text('store_ent');
+            $table->text('cedi_ent');
+            
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

@@ -29,85 +29,85 @@
             
             <a href= "{{ url('jefe/exporttable/'.$usuario)}}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
                 class="fas fa-download fa-sm "></i> Generar reporte</a>
-                <div class="d-flex justify-content-center">
+                {{-- <div class="d-flex justify-content-center">
                     <input id="searchTerm" class=" text-center col-md-6" type="text" onkeyup="doSearch()" placeholder="Buscar ..."/>
-                </div>
+                </div> --}}
                 <p id="search"></p>
                 <hr class="sidebar-divider">
                 <div class="card mt-3">
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <div class="table-responsive table-sm ">
-                                <table class="table " id="datos-jefe">
-                                <thead>
-                                <tr class="miTablaPersonalizada">
-                                    <th >Fecha de retiro</th>
-                                    <th colspan="5" style=" width: 25vw;">Nombre del colaborador</th>
-                                    <th >documento del colaborador</th>
-                                    <th >Desempeño</th>
-                                    <th >Tipo de retiro</th>
-                                    <th >Ultimo dia laborado</th>
-                                    <th >dinero pendiente</th>
-                                    <th >cantidad dinero pendiente</th>
-                                    <th >concepto de dinero pendiente</th>
-                                    <th >fecha novedad 1</th>
-                                    <th >fecha novedad 2</th>
-                                    <th >fecha novedad 3</th>
-                                    <th >fecha novedad 4</th>
-                                    <th >fecha novedad 5</th>
-                                    <th >fecha dominical 1</th>
-                                    <th >fecha dominical 2</th>
-                                    <th >fecha dominical 3</th>
-                                    <th >fecha dominical 4</th>
-                                    <th >fecha dominical 5</th>
+                            <div class="table-responsive">
+                                <table class="table table-responsive stacktable" id="tablaretiros datos-jefe">
+                                    <thead>
+                                        <tr class="d-flex">
+                                            <th class="col-1">Fecha de retiro</th> 
+                                            <th class="col-1">Nombre del colaborador</th>
+                                            
+                                            <th  class="col-1">documento del colaborador</th>
+                                            <th  class="col-1">Desempeño</th>
+                                            <th  class="col-1">Tipo de retiro</th>
+                                            <th  class="col-1">Ultimo dia laborado</th>
+                                            <th  class="col-1">dinero pendiente</th>
+                                            <th  class="col-1">cantidad dinero pendiente</th>
+                                            <th  class="col-1">concepto de dinero pendiente</th>
+                                            <th  class="col-1">fecha novedad 1</th>
+                                            <th  class="col-1">fecha novedad 2</th>
+                                            <th  class="col-1">fecha novedad 3</th>
+                                            <th  class="col-1">fecha novedad 4</th>
+                                            <th  class="col-1">fecha novedad 5</th>
+                                            <th  class="col-1">fecha dominical 1</th>
+                                            <th  class="col-1">fecha dominical 2</th>
+                                            <th  class="col-1">fecha dominical 3</th>
+                                            <th  class="col-1">fecha dominical 4</th>
+                                            <th  class="col-1">fecha dominical 5</th>
+                                            <th style=" width: 25vw;" class="col-1">Entrega <strong>Perfil de tienda</strong></th>
+                                            <th style=" width: 25vw;" class="col-1">Entrega <strong>Administrador</strong></th>
+                                            <th style=" width: 25vw;" class="col-1">Entrega <strong>Cedi</strong></th>
+                                            <th  class="col-1">Equipo celular</th>
+                                            <th  class="col-1">Acta de entrega</th>
+                                            <th  class="col-1">Carta de renuncia</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                     
-                                    <th style=" width: 25vw;">Entrega <strong>Perfil de tienda</strong></th>
-                                    <th style=" width: 25vw;" >Entrega <strong>Administrador</strong></th>
-                                    <th >Equipo celular</th>
-                                    <th >Acta de entrega</th>
-                                    <th >Carta de renuncia</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                @foreach ($retiros as $retiro)
-                                {{-- {{dd($retiro)}} --}}
-                                <tr class="headt">
-                                    
-                                    <th>{{date('d-m-Y',strtotime($retiro->created_at))}}</th>
-                                    <th colspan="5" >{{$retiro->name_collaborator}}</th>
-                                    <td>{{$retiro->document_collaborator}}</td>
-                                    <td>{{$retiro->performance}}</td>
-
-                                    @foreach ($tipo_retiro as $typo )
-                                        @if ($retiro->type_retirement_id == $typo->id)
-                                            <td>{{$typo->description}}</td>
-                                        @endif
-                                    @endforeach
-                                    
-                                    <td>{{$retiro->last_day}}</td>
-                                    <th>{{$retiro->money_pend}}</th>
-                                    <td>{{$retiro->money_amou}}</td>
-                                    <td>{{$retiro->money_conc}}</td>
-                                    <td>{{$retiro->date_1}}</td>
-                                    <td>{{$retiro->date_2}}</td>
-                                    <th>{{$retiro->date_3}}</th>
-                                    <td>{{$retiro->date_4}}</td>
-                                    <td>{{$retiro->date_5}}</td>
-                                    <td>{{$retiro->date_d_1}}</td>
-                                    <td>{{$retiro->date_d_2}}</td>
-                                    <th>{{$retiro->date_d_3}}</th>
-                                    <td>{{$retiro->date_d_4}}</td>
-                                    <td>{{$retiro->date_d_5}}</td>
-                                    
-                                    <td>{{$retiro->store_ent}}</td>
-                                    <td>{{$retiro->admin_ent}}</td>
-                                    <td>{{$retiro->cell}}</td>
-                                    <td>{{$retiro->delivery_certificate}}</td>
-                                    <td>{{$retiro->letter}}</td>
-                                </tr>
-                                @endforeach
-                                </tbody>
+                                        @foreach ($retiros as $retiro)
+                                            <tr class="d-flex"> 
+                                                <td class="col-1">{{date('d-m-Y',strtotime($retiro->created_at))}}</td>
+                                                <td   class="col-1">{{$retiro->name_collaborator}}</td>
+            
+                                              
+                                                <td class="col-1">{{$retiro->document_collaborator}}</td>
+                                                <td class="col-1">{{$retiro->performance}}</td>
+                                                @foreach ($tipo_retiro as $typo )
+                                                    @if ($retiro->type_retirement_id == $typo->id)
+                                                        <td class="col-1">{{$typo->description}}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td class="col-1">{{$retiro->last_day}}</td>
+                                                <th class="col-1">{{$retiro->money_pend}}</th>
+                                                <td class="col-1">{{$retiro->money_amou}}</td>
+                                                <td class="col-1">{{$retiro->money_conc}}</td>
+                                                <td class="col-1">{{$retiro->date_1}}</td>
+                                                <td class="col-1">{{$retiro->date_2}}</td>
+                                                <th class="col-1">{{$retiro->date_3}}</th>
+                                                <td class="col-1">{{$retiro->date_4}}</td>
+                                                <td class="col-1">{{$retiro->date_5}}</td>
+                                                <td class="col-1">{{$retiro->date_d_1}}</td>
+                                                <td class="col-1">{{$retiro->date_d_2}}</td>
+                                                <th class="col-1">{{$retiro->date_d_3}}</th>
+                                                <td class="col-1">{{$retiro->date_d_4}}</td>
+                                                <td class="col-1">{{$retiro->date_d_5}}</td>
+                                            
+                                                <td class="col-1">{{$retiro->store_ent}}</td>
+                                                <td class="col-1">{{$retiro->admin_ent}}</td>
+                                                <td class="col-1">{{$retiro->cedi_ent}}</td>
+                                                <td class="col-1">{{$retiro->cell}}</td>
+                                                <td class="col-1">{{$retiro->delivery_certificate}}</td>
+                                                <td class="col-1">{{$retiro->letter}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -27,16 +27,11 @@
         color: rgb(252,0,126)
     }
     .background-barnav{
-        /* background: rgb(3,168,162);
-        background: linear-gradient(90deg, rgba(3,168,162,1) 0%, rgba(234,81,153,1) 100%); */
         background-color:#000000;
     }
     .background-barnav2{
         background: rgb(232,81,153);
         background: linear-gradient(90deg, rgba(232,81,153,1) 47%, rgba(3,168,162,1) 100%);
-        /* background-color:#e85199; */
-        
-        
     }
     .pad-50{
         padding-top: 20% ;
@@ -44,17 +39,14 @@
     .scroll {
         max-height: 60vh;
         overflow-y: auto;
-        
     }
     *::-webkit-scrollbar {
         width: 6px;
         height: 6px;
     }
-
     *::-webkit-scrollbar-track {
         background: #e85199;
     }
-
     *::-webkit-scrollbar-thumb {
         background-color: #0aa5a2;
         border-radius: 20px;
@@ -70,7 +62,6 @@
         table-layout: fixed;
         font-size: 1rem;
     }
-
     .miTablaPersonalizada th{
         width: 10vw;
         overflow: auto;
@@ -81,40 +72,13 @@
     }
     input {
         color: #000000;
-        /* background-color:hsl(240, 8%, 3%); */
         border:none;
         
         border-bottom:3px solid rgb(232,81,153);
     }
-    /* .swal2-styled.swal2-confirm.swalBtnColor {
-        color: #FFC900
+    .active {
+    background-color: green;
     }
-    button.swal2-confirm {
-        background: rgb(232,81,153);
-        background: linear-gradient(90deg, rgba(232,81,153,1) 47%, rgba(3,168,162,1) 100%);
-    } */
-    /* .mycheck2 {
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-        background-color: #fff;
-        color: #fff;
-        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-        width: 24px;
-        height: 24px;
-        appearance: none;
-        border: 2px solid #888;
-        background-position: 0 -2rem;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        transition: all 0.3s ease-in-out;
-        }
-        .mycheck2:checked {
-        background-color: rgb(75, 156, 13);
-        color: rgb(75, 156, 13);
-        background-position: 0 0;
-        }  */
-
    
     
 </style>
@@ -209,7 +173,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light topbar mb-0 static-top shadow background-barnav2" >
+                <nav class="navbar navbar-expand navbar-light mb-0 static-top shadow background-barnav2" >
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -412,7 +376,7 @@
 
                 <!-- Begin Page Content -->
 
-                <main class="py-0">
+                <main class="py-0" style="">
                     @yield('content')
                 </main>
                 {{-- <div class="container-fluid">
@@ -804,7 +768,15 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
+    <script src="{{asset('libs/stacktable.js/stacktable.js')}}"></script>
 
 </body>
-
+{{-- <script>
+    
+    $(".nav .nav-link").on("click", function(){
+        console.log("hola");
+        $(".nav").find(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+</script> --}}
 </html>

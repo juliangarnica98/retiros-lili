@@ -41,9 +41,10 @@ class AdminController extends Controller
     public function index()
     {
         Paginator::useBootstrap();
+        $tipo_retiro= TypeRetirement::all();
         $retiros = Retirement::paginate(7);
         $users = User::paginate();
-        return view('admin.tableretiros',compact('retiros','users'));
+        return view('admin.tableretiros',compact('retiros','users','tipo_retiro'));
     }
     // public function tiendas()
     // {

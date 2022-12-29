@@ -65,21 +65,21 @@ class BossController extends Controller
         if($collaborator){
             $id = $collaborator->id;
             $name = $collaborator->name;
-            $position = $collaborator->position_id;
-            return response()->json(['name' => $name,'id'=>$id,'position'=>$position]);
+            $regional = $collaborator->regional_id;
+            return response()->json(['name' => $name,'id'=>$id,'position'=>$regional]);
         }
         return response()->json(['name' => "",'id'=>"",'position'=>""]);
     }
-    public function update(Request $request, $id)
-    {
+    // public function update(Request $request, $id)
+    // {
         
-    }
+    // }
 
 
-    public function destroy($id)
-    {
+    // public function destroy($id)
+    // {
         
-    }
+    // }
 
     public function export(Request $request) 
     {   
