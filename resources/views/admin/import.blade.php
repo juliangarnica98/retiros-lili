@@ -32,6 +32,16 @@
                             
                         </script>
                         @endif
+                        @if(Session::has('message'))
+                        <script>
+                            Swal.fire(
+                            '¡Bien hecho!',
+                            "{{Session::get('message')}}",
+                            'success'
+                            )
+                        </script>
+                            {{-- <p>{{Session::get('message')}}</p> --}}
+                        @endif
                         {{-- <select class="form-select form-select-lg form-control" aria-label=".form-select-lg example" name="jefe">
                            @foreach ($jefes as $jefe)
                            <option value="{{$jefe->id}}">{{$jefe->name}}</option>
