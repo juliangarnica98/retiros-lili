@@ -21,9 +21,9 @@ class CreatePositionsTable extends Migration
             // $table->text('connection');
 
             $table->unsignedBigInteger('area_id');
-            $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');;
             $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals');
+            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
         });
     }
 

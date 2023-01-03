@@ -21,7 +21,7 @@ class CreateCdcsTable extends Migration
             
 
             $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals');
+            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
 
             // $table->unsignedBigInteger('boss_id')->nullable();
             // $table->foreign('boss_id')->references('id')->on('boss_id');

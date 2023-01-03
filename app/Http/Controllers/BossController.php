@@ -26,7 +26,7 @@ class BossController extends Controller
     {
         Paginator::useBootstrap();
         $tipo_retiro= TypeRetirement::all();
-        $retiros = Retirement::where('user_id',auth()->id())->paginate(7);
+        $retiros = Retirement::where('user_id',auth()->user()->name)->paginate(7);
         $usuario = auth()->id();
         return view('boss.index',compact('retiros','tipo_retiro','usuario'));
     }
@@ -61,6 +61,10 @@ class BossController extends Controller
     public function busqueda(Request $request){
         
         $collaborator = Collaborator::where('document',$request->document)->where('state',1)->first(); 
+        $collaborator2 = Collaborator::where('document',$request->document)->where('state',0)->first(); 
+        if($collaborator2){
+            return response()->json(['name' => "",'id'=>"",'position'=>""]);
+        }
         
         if($collaborator){
             $id = $collaborator->id;

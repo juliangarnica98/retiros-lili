@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Models\Boss;
 use App\Models\Regional;
+use App\Models\Retirement;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Maatwebsite\Excel\Concerns\SkipsOnError;
@@ -33,6 +35,12 @@ class BossImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidatio
     public function model(array $row)
     {
         // dd($row);
+        $user2= User::where('name',$row['nombre'])->first();
+        $id_user = $user2->id;
+        $retirement_asoc = Retirement::where('user_id',$id_user)->first();
+        if($retirement_asoc){
+            $retirement_asoc->user_id=$user2->name;
+        }
         $user = Boss::where('email',$row['correo'])->first();
         if($user){
             $user->delete(); 

@@ -77,11 +77,12 @@
                                                 <td class="col-1">{{date('d-m-Y',strtotime($retiro->created_at))}}</td>
                                                 <td   class="col-1">{{$retiro->name_collaborator}}</td>
             
-                                                @foreach ($users as $user)
+                                                {{-- @foreach ($users as $user)
                                                     @if ($retiro->user_id ==  $user->id)
                                                         <td class="col-1">{{$user->name}}</td>    
                                                     @endif
-                                                @endforeach
+                                                @endforeach --}}
+                                                <td class="col-1">{{$retiro->user_id}}</td>  
                                                 <td class="col-1">{{$retiro->document_collaborator}}</td>
                                                 <td class="col-1">{{$retiro->performance}}</td>
                                                 @foreach ($tipo_retiro as $typo )

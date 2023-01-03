@@ -22,28 +22,18 @@ class UsersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidati
 
     public function rules(): array
     {
-        return [
-            //  'email' => ['required'],
-            // 'email' => [
-            //     'required',
-            //     'string',
-            // ],
-            
+        return [        
         ];
     }
     public function model(array $row)
 
     {
         
+        
         $user = User::where('email',$row['correo'])->first();
         if($user){
             $user->delete(); 
         }
-        // return new User([
-        //     'name'     => $row[0],
-        //     'email'    => $row[1], 
-        //     'password' => Hash::make($row[2]),
-        //  ]);
         User::create(
             [
                 'name' =>$row['nombre'],

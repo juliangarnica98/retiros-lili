@@ -45,15 +45,16 @@ class CreateRetirementsTable extends Migration
             $table->text('store_ent');
             $table->text('cedi_ent');
             
+            $table->string('user_id')->nullable();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->unsignedBigInteger('collaborator_id');
-            $table->foreign('collaborator_id')->references('id')->on('collaborators');
+            $table->foreign('collaborator_id')->references('id')->on('collaborators')->onDelete('cascade');;
 
             $table->unsignedBigInteger('type_retirement_id');
-            $table->foreign('type_retirement_id')->references('id')->on('type_retirements');
+            $table->foreign('type_retirement_id')->references('id')->on('type_retirements')->onDelete('cascade');;
         });
     }
 

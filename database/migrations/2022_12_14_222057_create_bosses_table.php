@@ -21,7 +21,7 @@ class CreateBossesTable extends Migration
             $table->string('cargo');
 
             $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals');
+            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
 
         
         });

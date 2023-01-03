@@ -53,10 +53,10 @@ class Retirement extends Model
 
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User');
+    // }
     public function collaborator() 
     {
         return $this->hasOne('App\Position');

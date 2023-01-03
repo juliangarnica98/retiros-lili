@@ -27,13 +27,13 @@ class CreateCollaboratorsTable extends Migration
             // $table->foreign('user_id')->references('id')->on('users');
             
             $table->unsignedBigInteger('position_id');
-            $table->foreign('position_id')->references('id')->on('positions');
+            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');;
 
             $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals');
+            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
 
             $table->unsignedBigInteger('gerencia_id');
-            $table->foreign('gerencia_id')->references('id')->on('gerencias');
+            $table->foreign('gerencia_id')->references('id')->on('gerencias')->onDelete('cascade');;
         });
     }
 

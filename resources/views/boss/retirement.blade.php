@@ -633,7 +633,7 @@
           confirmButtonText: 'Continuar'
         })
       }
-      if(result.position == 1 or result.position == 2 or result.position == 14 ){
+      if(result.position == 1 || result.position == 2 || result.position == 14 ){
         fecha1.style.display = 'none';
          fechas1.style.display = 'none';
         fecha2.style.display = 'none';

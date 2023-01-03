@@ -15,12 +15,12 @@ use App\Models\User;
 |
 */
 
-Route::get('/', function () {  
-    return redirect('/login');
+// Route::get('/', function () {  
+//     return redirect('/login');
+// });
 
-});
-
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/vacantes', [App\Http\Controllers\HomeController::class, 'vacantes'])->name('vacantes.index');
 
 Route::get('/home', function () {  
     if(Auth::user()->id==1){
@@ -34,7 +34,6 @@ Auth::routes(["register" => false]);
 
 Route::group(['prefix' => 'administrador'], function() {
     Route::get('index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-    // Route::get('tiendas', [App\Http\Controllers\AdminController::class, 'tiendas'])->name('tiendas.index');
     Route::get('importar', [App\Http\Controllers\AdminController::class, 'importar'])->name('admin.importar');
     Route::get('importar-colaboradores', [App\Http\Controllers\AdminController::class, 'importar2'])->name('admin.importar2');
     Route::get('areas', [App\Http\Controllers\AdminController::class, 'areas'])->name('admin.areas');
@@ -51,8 +50,8 @@ Route::group(['prefix' => 'administrador'], function() {
 
 });
 
-Route::group(['prefix' => 'jefe'], function() {
-
+Route::group(['prefix' => 'jefe'], function() 
+{
     Route::get('exporttable/{id}', [App\Http\Controllers\BossController::class, 'export'])->name('boss.export.excel');
     Route::get('index', [App\Http\Controllers\BossController::class,'index'])->name('boss.index');
     Route::get('colaboradores', [App\Http\Controllers\BossController::class,'show'])->name('boss.show');

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\RetirementExport;
 use App\Exports\RetirementsExport;
 use Illuminate\Http\Request;
 use App\Models\Area;
@@ -12,8 +11,6 @@ use App\Models\TypeRetirement;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Pagination\Paginator;
 
-
-
 use App\Imports\UsersImport;
 use App\Imports\BossImport;
 use App\Imports\CollabolatorsImport;
@@ -22,7 +19,7 @@ use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpParser\Node\Stmt\Foreach_;
+
 
 class AdminController extends Controller
 {
@@ -46,16 +43,7 @@ class AdminController extends Controller
         $users = User::paginate();
         return view('admin.tableretiros',compact('retiros','users','tipo_retiro'));
     }
-    // public function tiendas()
-    // {
-    //     Paginator::useBootstrap();
-    //     $jefes = Boss::all();
-    //     $jefe = Boss::where('id','!=',null)->first();
-    //     // dd($jefe);
-    //     $tiendas = Cdc::all();
-    //     // dd($jefes);
-    //     return view('admin.tiendas',compact('jefes','tiendas','jefe'));
-    // }
+
     public function importar()
     {
         return view('admin.importar');
@@ -63,8 +51,7 @@ class AdminController extends Controller
     public function importar2()
     {
         $jefes = User::role('Jefe')->get();
-        // $cdc = Cdc::where('boss_id',"")->first();
-        // dd($jefes);
+
         return view('admin.import',compact('jefes'));
     }
     public function areas()
@@ -84,20 +71,6 @@ class AdminController extends Controller
         return view('admin.tiporetiro',compact('tiporetiros'));
     }
 
-    // public function creartiporetiro(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'description' => 'required|unique:type_retirements'
-    //     ]);
-        
-    //     if($validator->fails()){
-    //         return back();
-    //     }
-    //     $tiporetiro = new TypeRetirement();
-    //     $tiporetiro->description = $request->description;
-    //     $tiporetiro->save();
-    //     return back();
-    // }
-
     public function busqueda(Request $request){
         
         $boss = Boss::where('id',$request->jefe)->first();
@@ -105,32 +78,23 @@ class AdminController extends Controller
         if($boss){
             $tiendas = Cdc::where('regional_id',$boss->regional_id)
             ->whereIn('boss_id',["",$request->jefe])
-            ->get();
-
-            
+            ->get(); 
         }   
-        
         if($request->jefe==""){
             return 1;
         }
         return json_encode($tiendas);
     }
-
-    public function asignarCdc(Request $request){
-        
+    public function asignarCdc(Request $request){   
         $cdcs=$request->options;
         $cdds = Cdc::where('boss_id',$request->jefe)->get();
-        
         if($cdds){
             foreach ($cdds as $c) {
-                
                 $c->boss_id = "";
                 $colaborator = Collaborator::where('user_id',$request->jefe)->get();
                 foreach($colaborator as $col){
-
                     $col->user_id="";
                     $col->save();
-
                 }
                 $c->save();
             }
@@ -145,12 +109,8 @@ class AdminController extends Controller
                     $col->save();
                 }
                 $cdd->save();
-               
             }
-        }
-        
-        
-        
+        }        
         return back()->with('message','Jefes asigandos correctamente');
     }
     public function importExcel(Request $request)

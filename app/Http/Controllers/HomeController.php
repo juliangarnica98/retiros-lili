@@ -16,22 +16,14 @@ class HomeController extends Controller
         return view('principal.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function vacantes()
+    {
+        return view('principal.vacantes');
+    }
     public function create()
     {
-        //
+        
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //

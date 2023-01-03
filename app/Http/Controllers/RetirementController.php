@@ -34,7 +34,7 @@ class RetirementController extends Controller
     public function create(Request $request){
         // dd($request->all());
         $retiro = new Retirement();
-        $retiro->user_id=Auth::user()->id;
+        $retiro->user_id=Auth::user()->name;
 
          $colaborador = Collaborator::where('id',$request->collaborator_id)->first();
          $colaborador->state = "0";
