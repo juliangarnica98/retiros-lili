@@ -34,7 +34,7 @@ class UsersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidati
     public function model(array $row)
 
     {
-        dd($row);
+        
         $user = User::where('email',$row['correo'])->first();
         if($user){
             $user->delete(); 
