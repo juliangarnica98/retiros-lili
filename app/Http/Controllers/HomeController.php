@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacant;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,7 +19,8 @@ class HomeController extends Controller
 
     public function vacantes()
     {
-        return view('principal.vacantes');
+        $vacants = Vacant::paginate(10);
+        return view('principal.vacantes',compact('vacants'));
     }
     public function create()
     {

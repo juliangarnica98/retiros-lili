@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AreasTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
         $this->call(CdcsTableSeeder::class);
+        $this->call(StateSeeder::class);
+        $this->call(TypeCvSeeder::class);
         // $this->call(BossSeeder::class);
 
         // $this->call(BossSeeder::class);

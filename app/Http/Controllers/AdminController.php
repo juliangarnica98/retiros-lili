@@ -17,6 +17,7 @@ use App\Imports\CollabolatorsImport;
 use App\Models\Boss;
 use App\Models\Cdc;
 use App\Models\Collaborator;
+use App\Models\Cv;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -42,6 +43,15 @@ class AdminController extends Controller
         $retiros = Retirement::paginate(7);
         $users = User::paginate();
         return view('admin.tableretiros',compact('retiros','users','tipo_retiro'));
+    }
+
+    public function postulaciones(){
+        Paginator::useBootstrap();
+        $cvs = Cv::paginate();
+        return view('admin.postulaciones',compact('cvs'));
+    }
+    public function vacantes(){
+        return view('admin.vacantes');
     }
 
     public function importar()
@@ -165,6 +175,7 @@ class AdminController extends Controller
         Excel::import(new CollabolatorsImport($request->jefe), $file);
         return back()->with('message','Importancion de usuarios completa');
     }
+    
     public function export() 
     {   
         return Excel::download(new RetirementsExport, 'retirements.xlsx');

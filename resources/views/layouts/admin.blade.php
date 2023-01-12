@@ -13,155 +13,178 @@
 
     <!-- Custom fonts for this template-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="{{asset('libs/fontawesome/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('libs/sbadmin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 <style>
     .fa-user {
-        color: rgb(252,0,126)
+        color: rgb(252, 0, 126)
     }
-    .background-barnav{
-        background-color:#000000;
+
+    .background-barnav {
+        background-color: #000000;
     }
-    .background-barnav2{
-        background: rgb(232,81,153);
-        background: linear-gradient(90deg, rgba(232,81,153,1) 47%, rgba(3,168,162,1) 100%);
+
+    .background-barnav2 {
+        background: rgb(232, 81, 153);
+        background: linear-gradient(90deg, rgba(232, 81, 153, 1) 47%, rgba(3, 168, 162, 1) 100%);
     }
-    .pad-50{
-        padding-top: 20% ;
+
+    .pad-50 {
+        padding-top: 20%;
     }
+
     .scroll {
         max-height: 60vh;
         overflow-y: auto;
     }
+
     *::-webkit-scrollbar {
         width: 6px;
         height: 6px;
     }
+
     *::-webkit-scrollbar-track {
         background: #e85199;
     }
+
     *::-webkit-scrollbar-thumb {
         background-color: #0aa5a2;
         border-radius: 20px;
         border: 3px solid transparent;
     }
-    #content{
+
+    #content {
         background-color: #fff;
     }
-    .container{
+
+    .container {
         padding-top: 5%;
     }
-    table{
+
+    table {
         table-layout: fixed;
         font-size: 1rem;
     }
-    .miTablaPersonalizada th{
+
+    .miTablaPersonalizada th {
         width: 10vw;
         overflow: auto;
         font-size: 1rem;
     }
+
     .headt td {
-        height:2rem;
+        height: 2rem;
     }
+
     input {
         color: #000000;
-        border:none;
-        
-        border-bottom:3px solid rgb(232,81,153);
+        border: none;
+
+        border-bottom: 3px solid rgb(232, 81, 153);
     }
+
     .active {
-    background-color: green;
+        background-color: green;
     }
-   
-    
 </style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav  sidebar sidebar-dark accordion background-barnav" id="accordionSidebar" >
+        <ul class="navbar-nav  sidebar sidebar-dark accordion background-barnav" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3"><img src="{{asset('imgs/logo.png')}}" alt="Logo" class="img-fluid"><sup></sup></div>
+                <div class="sidebar-brand-text mx-3"><img src="{{ asset('imgs/logo.png') }}" alt="Logo"
+                        class="img-fluid"><sup></sup></div>
             </a>
 
             <!-- Divider -->
             @can('admin.index')
-            <div class="pad-50">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.index')}}">
-                        
-                        <i class="fas fa-external-link-alt"></i>
-                        <span >Todos los retiros</span></a>
-                </li>
-                <!-- Divider -->
-                
-                <hr class="sidebar-divider">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.importar')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Importar Jefes</span></a>
-                </li>
-                <hr class="sidebar-divider">
-                {{-- <li class="nav-item">
+                <div class="pad-50">
+
+                    <!-- Divider -->
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                            <span>Todas las postulaciones</span></a>
+                        <a class="nav-link text-center" href="{{ route('admin.vacantes') }}">
+                            <i class="fa fa-address-book" aria-hidden="true"></i>
+                            <span>Crear vacantes</span></a>
+                        <a class="nav-link text-center" href="{{ route('admin.vacantes2') }}">
+                            <i class="fa fa-folder-open" aria-hidden="true"></i>
+                            <span>Todas vacantes</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.index') }}">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Todos los retiros</span></a>
+                        <a class="nav-link text-center" href="{{ route('admin.importar') }}">
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Importar Jefes</span></a>
+                        <a class="nav-link text-center" href="{{ route('admin.importar2') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Importar colaboradores</span></a>
+                    </li>
+
+                    {{-- <li class="nav-item">
                     <a class="nav-link text-center" href="{{route('tiendas.index')}}">
                         
                         <i class="fas fa-store fa-solid"></i>
                         <span>Asignacion de tiendas</span></a>
                 </li>
                 <hr class="sidebar-divider"> --}}
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('admin.importar2')}}">
-                      {{-- <i class="fas fa-fw fa-tachometer-alt"></i>  --}}
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Importar colaboradores</span></a>
-                <hr class="sidebar-divider">
-              
-            </div>
-         
+                    <li class="nav-item">
+
+                        <hr class="sidebar-divider">
+
+                </div>
             @endcan
             @can('boss.index')
-            <div class="pad-50">
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('boss.index')}}">
-                        
-                        <i class="fas fa-external-link-alt"></i>
-                        <span >Retiros realizados</span></a>
-                </li>
-                <!-- Divider -->
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('retirement.index')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-solid fa-user"></i>
-                        <span>Realizar retiro directo</span></a>
-                </li>
-               
-                <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('boss.show')}}">
-                        {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
-                        <i class="fas fa-layer-group"></i>
-                        <span>Colaboradores activos</span></a>
-                </li>
-               
-            </div>
-                
+                <div class="pad-50">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('boss.index') }}">
+
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Retiros realizados</span></a>
+                    </li>
+                    <!-- Divider -->
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('retirement.index') }}">
+                            {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+                            <i class="fas fa-solid fa-user"></i>
+                            <span>Realizar retiro directo</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('boss.show') }}">
+                            {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
+                            <i class="fas fa-layer-group"></i>
+                            <span>Colaboradores activos</span></a>
+                    </li>
+
+                </div>
             @endcan
 
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -173,7 +196,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light mb-0 static-top shadow background-barnav2" >
+                <nav class="navbar navbar-expand navbar-light mb-0 static-top shadow background-barnav2">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -338,10 +361,10 @@
                             </div>
                         </li> --}}
 
-                        
+
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow" >
+                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{-- <span class="mr-5 d-none d-lg-inline" >{{ Auth::user()->name[0] }} </span> --}}
@@ -349,23 +372,24 @@
                                 {{-- {{ Auth::user()->name }} --}}
                                 {{-- <img class="img-profile rounded-circle"
                                     src="">  --}}
-                                    {{-- <div class="topbar-divider d-none d-sm-block"></div>
+                                {{-- <div class="topbar-divider d-none d-sm-block"></div>
                                     <i class="fas fa-ellipsis-h"></i> --}}
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu shadow animated--grow-in"
-                                aria-labelledby="userDropdown" style="background-color: #fff">
+                            <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="userDropdown"
+                                style="background-color: #fff">
                                 <a class="dropdown-item" href="#" style="color: rgb(252,0,126)">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 " ></i>
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
                                     Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" style="color: rgb(252,0,126)">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"
+                                    style="color: rgb(252,0,126)">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                                     {{-- <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> --}}
                                     Salir
                                 </a>
-                                
+
                             </div>
                         </li>
 
@@ -745,11 +769,14 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su
+                    sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary"  href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"> Salir</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        Salir</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -763,12 +790,12 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('libs/sbadmin/js/sb-admin-2.min.js')}}"></script>
-    <script src="{{asset('libs/stacktable.js/stacktable.js')}}"></script>
+    <script src="{{ asset('libs/sbadmin/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('libs/stacktable.js/stacktable.js') }}"></script>
 
 </body>
 {{-- <script>
@@ -779,4 +806,5 @@
         $(this).addClass("active");
     });
 </script> --}}
+
 </html>

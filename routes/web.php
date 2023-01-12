@@ -21,6 +21,8 @@ use App\Models\User;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/vacantes', [App\Http\Controllers\HomeController::class, 'vacantes'])->name('vacantes.index');
+Route::get('/hoja-vida', [App\Http\Controllers\CvController::class, 'index'])->name('cv.index');
+Route::get('/hoja-vida/registrar', [App\Http\Controllers\CvController::class, 'store'])->name('cv.store');
 
 Route::get('/home', function () {  
     if(Auth::user()->id==1){
@@ -47,7 +49,13 @@ Route::group(['prefix' => 'administrador'], function() {
     Route::post('busqueda-cdc', [App\Http\Controllers\AdminController::class, 'busqueda'])->name('admin.search');
     Route::post('asignar-cdc', [App\Http\Controllers\AdminController::class, 'asignarCdc'])->name('admin.asignar');
     Route::get('exporttable', [App\Http\Controllers\AdminController::class, 'export'])->name('admin.export.excel');
-
+    Route::get('postulaciones', [App\Http\Controllers\AdminController::class, 'postulaciones'])->name('admin.postulaciones');
+    Route::get('vacantes', [App\Http\Controllers\AdminController::class, 'vacantes'])->name('admin.vacantes');
+    Route::get('nuevasvacantes', [App\Http\Controllers\VacantController::class, 'index'])->name('admin.vacantes2');
+    Route::post('registrarvacantes', [App\Http\Controllers\VacantController::class, 'store'])->name('admin.crearvacante');
+    Route::put('editvacant/{id}', [App\Http\Controllers\VacantController::class, 'edit'])->name('admin.edit.vacant');
+    Route::post('buscarcv/{id}', [App\Http\Controllers\CvController::class, 'search'])->name('admin.search.cv');
+    
 });
 
 Route::group(['prefix' => 'jefe'], function() 

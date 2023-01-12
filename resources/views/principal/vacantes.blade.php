@@ -65,7 +65,7 @@
     }
 
     .container {
-        padding-top: 5%;
+        padding-top: 0%;
     }
 
     table {
@@ -91,7 +91,7 @@
     }
 
     .imagen_portada {
-        padding-top: 30rem;
+        padding-top: 5rem;
         padding-bottom: calc(10rem - 4.5rem);
         background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("{{ asset('imgs/work.jpg') }}");
         background-position: center;
@@ -108,7 +108,7 @@
         .imagen_portada {
             height: 100vh;
             min-height: 40rem;
-            padding-top: 15rem;
+            padding-top: 5rem;
             padding-bottom: 0;
         }
 
@@ -151,47 +151,124 @@
             </div>
         </nav>
     </div>
+    @if (Session::has('error'))
+        <script>
+            Swal.fire(
+                'Error al importar archivo',
+                "{{ Session::get('error') }}",
+                'error'
+            )
+        </script>
+    @endif
+    @if (Session::has('message'))
+        <script>
+            Swal.fire(
+                '¡Bien hecho!',
+                "{{ Session::get('message') }}",
+                'success'
+            )
+        </script>
+    @endif
     <div class="div">
         <div class="imagen_portada">
-            <div class="container" style="background-color: #000000">
-                <div class="row">
-                    <select class="form-select form-control col-md-4 ">
-                        <option selected>Centros de distribución</option>
-                        <option value="1">Auxiliar de centro de distribución (Bogotá cll 196 con auto norte)
-                        </option>
-                        <option value="2">Auxiliar de centro de distribución (Siberia parque siemens)</option>
-                    </select>
-                    <select class="form-select form-control col-md-4 ">
-                        <option selected>Tiendas</option>
-                        <option value="1">Asesor de ventas ( Tiendas a nivel nacional)</option>
-                        <option value="2">Mercaderista (Canal tradicional y grandes superficial a nivel nal)</option>
-                        <option value="3">Auxiliar integral (Bodegas de nuestras tiendas a nivel nacional)</option>
-                        <option value="4">Lider de tienda  (Tiendas a nivel nacional)</option>
-                    </select>
-                    <select class="form-select form-control col-md-4 ">
-                        <option selected>Administrativos</option>
-                        <option value="1">Jefe de selección (Bogotá)</option>
-                        <option value="2">Analista de selección (Bogotá)</option>
+            <div class="container">
+                <div class="card mt-0">
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="" style="color: #fff">
+                                <table class="table table-responsive " id="">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Fecha de creación</th>
+                                            <th class="text-center">Titulo</th>
+                                            <th class="text-center">Ciudad</th>
+                                            <th class="text-center">Descripción</th>
+                                            <th class="text-center">Salario</th>
+                                            <th class="text-center">Experiencia reqierida</th>
+                                            <th class="text-center">Número de vacantes</th>
+                                            <th class="text-center">Estado</th>
+                                            <th class="text-center col-1">Accion</th>
 
-                        <option value="3">Especialista de comunicaciones (Bogotá)</option>
-                        <option value="4">Analista de contabilidad (Bogota)</option>
-                        <option value="5">Analista de finanzas (Bogotá)</option>
-                        <option value="6">Auxiliar Administrativo (Bogotá)</option>
-                        <option value="7">Auxiliar de inventario (Bogotá)</option>
-                        <option value="8">Manager comercial (Bogotá)</option>
-                        <option value="9">Coordinador de CRM</option>
-                        <option value="10">Desarrollador de aplicaciones</option>
-                        <option value="11">Auxiliar de Visual Merchandising (Ibagué- Santamarta)</option>
-                        <option value="12">Coordinador de planeación (Bogotá)</option>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                        <option value="13">Analista de selección y formación (Siberia)</option>
-                        <option value="14">Fotógrafo (Bogotá)</option>
-                        <option value="15">Auxiliar de contabilidad (Bogotá)</option>
-                    </select>
+                                        @foreach ($vacants as $vacant)
+                                            <tr>
+                                                <td class="">{{ date('d-m-Y', strtotime($vacant->created_at)) }}
+                                                </td>
+                                                <td class="">{{ $vacant->title }}</td>
+                                                <td class="">{{ $vacant->city }}</td>
+                                                <td class="">{{ $vacant->description }}</td>
+                                                <td class="">${{ $vacant->salary }}</td>
+                                                <th class="">{{ $vacant->experience }}</th>
+                                                <td class="">{{ $vacant->num_vacants }}</td>
+                                                @if ($vacant->state == 1)
+                                                    <td class="">Abierta</td>
+                                                @else
+                                                    <td class="">Cerrada</td>
+                                                @endif
+
+                                                <td class="col-2">
+
+                                                    <button class="btn btn-info" data-target="#exampleModal"
+                                                        data-toggle="modal">Aplicar</button>
+
+                                                </td>
+                                            </tr>
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-dark" id="exampleModalLabel">
+                                                                Ingrese su número de documento</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="POST"
+                                                            action="{{ route('admin.search.cv', $vacant->id) }}">
+                                                            @csrf
+                                                            <div class="modal-body">
+
+                                                                <div class="form-group">
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col-10">
+
+                                                                            <div class="form-outline">
+
+                                                                                <input type="text" id="form8Example1"
+                                                                                    class="form-control"
+                                                                                    name="documento" value="" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button class="btn btn-primary">Aplicar oferta</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="footer">
         <footer class="text-center text-white" style="background-color: #212529">
             <!-- Grid container -->
