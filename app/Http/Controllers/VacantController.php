@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Cv;
 use App\Models\Type_cv;
 use App\Models\Vacant;
+
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class VacantController extends Controller
 {
    
     public function index(){
-        $vacants = Vacant::paginate(10);
+        Paginator::useBootstrap();
+        $vacants = Vacant::paginate(4);
         $cvs = Cv::all();
         return view('admin.vacant.indexvacantes',compact('vacants','cvs'));
     }

@@ -19,6 +19,7 @@ use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\Cv;
 use App\Models\User;
+use App\Models\Vacant;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -41,7 +42,8 @@ class AdminController extends Controller
     {
         Paginator::useBootstrap();
         $cvs = Cv::paginate();
-        return view('admin.candidate.indexcandidatos',compact('cvs'));
+        $vacants = Vacant::paginate();
+        return view('admin.candidate.indexcandidatos',compact('cvs','vacants'));
     }
     public function importar()
     {

@@ -209,6 +209,58 @@
 
     <div class="page-content page-container" id="page-content">
         <div class="">
+            <div class="row pl-3 pr-3 pt-3">
+            
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total vacantes
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes abiertas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes cerradas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
             <div class="row pl-3 pr-3 pt-3 justify-content-center">
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card" style="background-color: #ebebeb;">
@@ -230,6 +282,8 @@
                                         <th class="col-1 text-center">Edad</th>
                                         <th class="col-1 text-center">Correo</th>
                                         <th class="col-1 text-center">Dirección</th>
+                                        <th class="col-1 text-center">Vacante</th>
+
                                         <th class="col-1 text-center">Ciudad de residencia</th>
                                         <th class="col-1 text-center">Perfil academico culminado</th>
                                         <th class="col-1 text-center">Nombre ultima empresa</th>
@@ -265,6 +319,12 @@
                                             <td class="col-1 text-center">{{ $cv->age }}</td>
                                             <td class="col-1 text-center">{{ $cv->email }}</td>
                                             <th class="col-1 text-center">{{ $cv->address }}</th>
+                                            @foreach ($vacants as $vacant )
+                                                @if ($cv->vacant_id === $vacant->id)
+                                                    <th class="col-1 text-center">{{ $vacant->description }}</th>
+                                                @endif
+                                            @endforeach
+
                                             <td class="col-1 text-center">{{ $cv->city_address }}</td>
                                             <td class="col-1 text-center">{{ $cv->academic_profile }}</td>
 

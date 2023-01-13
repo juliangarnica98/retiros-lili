@@ -129,15 +129,67 @@
 
     <div class="page-content page-container" id="page-content">
         <div class="">
+            <div class="row pl-3 pr-3 pt-3">
+            
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total vacantes
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes abiertas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes cerradas
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
             <div class="row pl-3 pr-3 pt-3 justify-content-center">
                 <div class="col-md-12 grid-margin stretch-card">
-                    <a href="{{ url('administrador/exporttable/') }}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
-                    style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i> Generar reporte</a>
+                    
                     <div class="card" style="background-color: #ebebeb;">
                         <div class="card-body">
                             <h1 class="card-title">Nuevos Aspirantes</h1>
                             <p class="card-description">
-                                Especificación de aspirantes
+                                <a href="{{ url('administrador/exporttable/') }}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
+                                style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i> Generar reporte</a>
                             </p>
 
                             <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">

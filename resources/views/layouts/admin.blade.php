@@ -102,16 +102,24 @@
             
             <!-- Divider -->
             @can('admin.index')
-                <div class="pad-50">
+                <div class="">
+                   
+                    
                     <hr class="sidebar-divider">
                     <!-- Divider -->
 
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}"">
+                        <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}">
                             <i class="fa fa-id-card" aria-hidden="true"></i>
                             <span>Aspirantes</span></a>
                     </li>
-                    <li class="nav-item dropdown no-arrow">
+                    <hr class="sidebar-divider">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.vacantes2') }}">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                            <span>Vacantes</span></a>
+                    </li>
+                    {{-- <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle text-center" href="#" id="userDropdown1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
@@ -133,39 +141,8 @@
                             </a>
 
                         </div>
-                    </li>
-
-
-                    {{-- <li class="nav-item">
-                        <a class="nav-link text-center collapsed" href="#" data-target="#collapseTwo" aria-controls="collapseTwo" aria-expanded="false">
-                            <i class="fa fa-id-card" aria-hidden="true"></i>
-                            <span>Vacantes y postulaciones</span>
-                        </a>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar" aria-labelledby="headingTwo">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Vacantes y postulaciones:</h6>
-                                <a class="collapse-item" href="{{ route('admin.postulaciones') }}">Todas las postulaciones</a>
-                                <a class="collapse-item" href="{{ route('admin.vacantes') }}">Crear vacantes</a>
-                                <a class="collapse-item" href="{{ route('admin.vacantes2') }}">Todas vacantes</a>
-                            </div>
-                        </div>
                     </li> --}}
-                    {{-- <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}"">
-                            <i class="fa fa-id-card" aria-hidden="true"></i>
-                            <span>Todas las postulaciones</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.vacantes') }}">
-                            <i class="fa fa-address-book" aria-hidden="true"></i>
-                            <span>Crear vacantes</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.vacantes2') }}">
-                            <i class="fa fa-folder-open" aria-hidden="true"></i>
-                            <span>Todas vacantes</span></a>
-                    </li> --}}
-
+                    <hr class="sidebar-divider">
                  
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('admin.index') }}">
@@ -178,7 +155,7 @@
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <span>Importar colaboradores</span></a> --}}
                     </li>
-
+                    <hr class="sidebar-divider">
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle text-center" href="#" id="userDropdown1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -217,7 +194,7 @@
                 </div>
             @endcan
             @can('boss.index')
-                <div class="pad-50">
+                <div class="">
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('boss.index') }}">
 
@@ -255,6 +232,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light mb-0 static-top shadow background-barnav2">
+                    
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
