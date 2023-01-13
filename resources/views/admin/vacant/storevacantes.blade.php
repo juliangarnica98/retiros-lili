@@ -24,9 +24,6 @@
             <div class="col-md-12">
 
 
-                {{-- <a href="{{ url('administrador/exporttable/')}}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm" style="background-color:  #17a0a1; color:#fff"><i
-                class="fas fa-download fa-sm "></i> Generar reporte</a> --}}
-
                 <h1 class="text-center"> Crear vancate</h1>
                 <div class="container">
                     <div class="card">

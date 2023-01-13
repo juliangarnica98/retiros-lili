@@ -38,26 +38,21 @@ Route::group(['prefix' => 'administrador'], function() {
     Route::get('index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('importar', [App\Http\Controllers\AdminController::class, 'importar'])->name('admin.importar');
     Route::get('importar-colaboradores', [App\Http\Controllers\AdminController::class, 'importar2'])->name('admin.importar2');
-    Route::get('areas', [App\Http\Controllers\AdminController::class, 'areas'])->name('admin.areas');
-    Route::get('cargos', [App\Http\Controllers\AdminController::class, 'cargos'])->name('admin.cargos');
-    Route::get('tiporetiro', [App\Http\Controllers\AdminController::class, 'tiporetiro'])->name('admin.tiporetiro');
-    Route::post('creararea', [App\Http\Controllers\AdminController::class, 'creararea'])->name('admin.creararea');
-    Route::post('crearcargo', [App\Http\Controllers\AdminController::class, 'crearcargo'])->name('admin.crearcargo');
-    Route::post('creartiporetiro', [App\Http\Controllers\AdminController::class, 'creartiporetiro'])->name('admin.creartiporetiro');
     Route::post('admin-import-colaborator', [App\Http\Controllers\AdminController::class, 'importCollaborator'])->name('admin.import.collaborator');
     Route::post('admin-import-excel', [App\Http\Controllers\AdminController::class, 'importExcel'])->name('admin.import.excel');
     Route::post('busqueda-cdc', [App\Http\Controllers\AdminController::class, 'busqueda'])->name('admin.search');
     Route::post('asignar-cdc', [App\Http\Controllers\AdminController::class, 'asignarCdc'])->name('admin.asignar');
     Route::get('exporttable', [App\Http\Controllers\AdminController::class, 'export'])->name('admin.export.excel');
     Route::get('postulaciones', [App\Http\Controllers\AdminController::class, 'postulaciones'])->name('admin.postulaciones');
-    Route::get('vacantes', [App\Http\Controllers\AdminController::class, 'vacantes'])->name('admin.vacantes');
+    Route::get('vacantes', [App\Http\Controllers\VacantController::class, 'vacantes'])->name('admin.vacantes');
     Route::get('nuevasvacantes', [App\Http\Controllers\VacantController::class, 'index'])->name('admin.vacantes2');
     Route::post('registrarvacantes', [App\Http\Controllers\VacantController::class, 'store'])->name('admin.crearvacante');
     Route::put('editvacant/{id}', [App\Http\Controllers\VacantController::class, 'edit'])->name('admin.edit.vacant');
     Route::post('buscarcv/{id}', [App\Http\Controllers\CvController::class, 'search'])->name('admin.search.cv');
-    
+    Route::post('cerrarvacante/{id}', [App\Http\Controllers\VacantController::class, 'close'])->name('cerrarvacante');
 });
 
+  
 Route::group(['prefix' => 'jefe'], function() 
 {
     Route::get('exporttable/{id}', [App\Http\Controllers\BossController::class, 'export'])->name('boss.export.excel');
@@ -67,6 +62,12 @@ Route::group(['prefix' => 'jefe'], function()
     Route::post('create', [App\Http\Controllers\RetirementController::class, 'create'])->name('boss.create');
     Route::post('busqueda', [App\Http\Controllers\BossController::class, 'busqueda'])->name('boss.search');
 });
+// Route::get('areas', [App\Http\Controllers\AdminController::class, 'areas'])->name('admin.areas');
+// Route::get('cargos', [App\Http\Controllers\AdminController::class, 'cargos'])->name('admin.cargos');
+// Route::get('tiporetiro', [App\Http\Controllers\AdminController::class, 'tiporetiro'])->name('admin.tiporetiro');
+// Route::post('creararea', [App\Http\Controllers\AdminController::class, 'creararea'])->name('admin.creararea');
+// Route::post('crearcargo', [App\Http\Controllers\AdminController::class, 'crearcargo'])->name('admin.crearcargo');
+// Route::post('creartiporetiro', [App\Http\Controllers\AdminController::class, 'creartiporetiro'])->name('admin.creartiporetiro');
 
 
 // Route::get('/retiro', [App\Http\Controllers\RetiroController::class, 'index'])->name('retiro');

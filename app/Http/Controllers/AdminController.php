@@ -27,61 +27,51 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:admin.index');
-        
+        $this->middleware('can:admin.index');    
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         Paginator::useBootstrap();
         $tipo_retiro= TypeRetirement::all();
         $retiros = Retirement::paginate(7);
         $users = User::paginate();
-        return view('admin.tableretiros',compact('retiros','users','tipo_retiro'));
+        return view('admin.retirement.indexretiros',compact('retiros','users','tipo_retiro'));
     }
-
-    public function postulaciones(){
+    public function postulaciones()
+    {
         Paginator::useBootstrap();
         $cvs = Cv::paginate();
-        return view('admin.postulaciones',compact('cvs'));
+        return view('admin.candidate.indexcandidatos',compact('cvs'));
     }
-    public function vacantes(){
-        return view('admin.vacantes');
-    }
-
     public function importar()
     {
-        return view('admin.importar');
+        return view('admin.import.importJefe');
     }
     public function importar2()
     {
         $jefes = User::role('Jefe')->get();
 
-        return view('admin.import',compact('jefes'));
+        return view('admin.import.importJefe',compact('jefes'));
     }
-    public function areas()
-    {
-        $areas = Area::paginate();
-        return view('admin.area',compact('areas'));
-    }
-    public function cargos()
-    {
-        $areas = Area::paginate();
-        $cargos = Position::paginate();
-        return view('admin.cargo',compact('areas','cargos'));
-    }
-    public function tiporetiro()
-    {   
-        $tiporetiros = TypeRetirement::paginate();
-        return view('admin.tiporetiro',compact('tiporetiros'));
-    }
+    // public function areas()
+    // {
+    //     $areas = Area::paginate();
+    //     return view('admin.area',compact('areas'));
+    // }
+    // public function cargos()
+    // {
+    //     $areas = Area::paginate();
+    //     $cargos = Position::paginate();
+    //     return view('admin.cargo',compact('areas','cargos'));
+    // }
+    // public function tiporetiro()
+    // {   
+    //     $tiporetiros = TypeRetirement::paginate();
+    //     return view('admin.tiporetiro',compact('tiporetiros'));
+    // }
 
-    public function busqueda(Request $request){
+    public function busqueda(Request $request)
+    {
         
         $boss = Boss::where('id',$request->jefe)->first();
         
@@ -95,7 +85,8 @@ class AdminController extends Controller
         }
         return json_encode($tiendas);
     }
-    public function asignarCdc(Request $request){   
+    public function asignarCdc(Request $request)
+    {   
         $cdcs=$request->options;
         $cdds = Cdc::where('boss_id',$request->jefe)->get();
         if($cdds){
@@ -179,6 +170,7 @@ class AdminController extends Controller
     public function export() 
     {   
         return Excel::download(new RetirementsExport, 'retirements.xlsx');
+        return back()->with('message','Exportación completa');
     }
     
 }

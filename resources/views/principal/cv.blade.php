@@ -400,7 +400,7 @@
                         <span>Fecha inicio de contrato</span>
                         <input type="date" placeholder="Fecha de inicio" name="date_init_company"
                             class="col ml-2">
-                        <span>Fecha inicio de contrato</span>
+                        <span>Fecha fin de contrato</span>
                         <input type="date" placeholder="fecha de fin" name="date_finally_company"
                             class="col ml-2">
                     </div>

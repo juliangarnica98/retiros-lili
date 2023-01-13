@@ -16,11 +16,16 @@ class Vacant extends Model
         'salary',
         'experience',
         'num_vacants',
-        'num_aplic'
+        'num_aplic',
+        'type_cv_id'
     ];
 
     public function cvs()
     {
         return $this->hasMany('App\Cv');
+    }
+    public function typecv()
+    {
+        return $this->belongsTo('App\Models\Type_cv');
     }
 }

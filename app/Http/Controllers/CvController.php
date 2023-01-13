@@ -30,7 +30,7 @@ class CvController extends Controller
 
         ]);
         if($validator->fails()){
-            return back()->with('error','Seleccione un archivo valido');
+            return back()->with('error','¡Hay errores en los campos!');
         }
         $cv = new  Cv();
         $cv->name = $request->name;
@@ -67,8 +67,8 @@ class CvController extends Controller
         $vacante->num_aplic += 1;
         $vacante->save();
 
-        return redirect('/vacantes')->with('status', 'Profile updated!');
-
+        return redirect('/vacantes')->with('message','Se ha registrado exitosamente la hoja de vida');
+   
     }
 
     public function show($id)
@@ -95,5 +95,6 @@ class CvController extends Controller
             return view('principal.cv',compact('id'));
         }
     }
+    
     
 }

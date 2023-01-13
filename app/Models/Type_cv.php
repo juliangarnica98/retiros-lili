@@ -9,5 +9,10 @@ class Type_cv extends Model
 {
     protected $fillable = [
         'description',
+    
     ];
+    public function vacant()
+    {
+        return $this->hasOne('App\Models\Vacant');
+    }
 }

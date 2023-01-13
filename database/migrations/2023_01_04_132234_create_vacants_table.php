@@ -26,7 +26,8 @@ class CreateVacantsTable extends Migration
             $table->string('num_aplic');
 
             
-            
+            $table->unsignedBigInteger('type_cv_id');
+            $table->foreign('type_cv_id')->references('id')->on('type_cvs')->onDelete('cascade');
     
         });
     }

@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function vacantes()
     {
-        $vacants = Vacant::paginate(10);
+        $vacants = Vacant::where('state',1)->paginate(10);
         return view('principal.vacantes',compact('vacants'));
     }
     public function create()

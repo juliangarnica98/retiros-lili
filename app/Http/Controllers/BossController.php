@@ -33,14 +33,11 @@ class BossController extends Controller
    
     public function create()
     {
-     }
-
+    }
 
     public function store(Request $request)
     {
-        //
     }
-
 
     public function show()
     {
@@ -74,19 +71,11 @@ class BossController extends Controller
         }
         return response()->json(['name' => "",'id'=>"",'position'=>""]);
     }
-    // public function update(Request $request, $id)
-    // {
-        
-    // }
 
-
-    // public function destroy($id)
-    // {
-        
-    // }
 
     public function export(Request $request) 
     {   
         return Excel::download(new RetirementExport($request->id), 'retirement.xlsx');
+        return back()->with('message','Exportación completa');
     }
 }

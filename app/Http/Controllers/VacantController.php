@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cv;
+use App\Models\Type_cv;
 use App\Models\Vacant;
 use Illuminate\Http\Request;
 
@@ -12,13 +13,14 @@ class VacantController extends Controller
     public function index(){
         $vacants = Vacant::paginate(10);
         $cvs = Cv::all();
-        return view('admin.vacants',compact('vacants','cvs'));
+        return view('admin.vacant.indexvacantes',compact('vacants','cvs'));
     }
-    public function index2(){
-        $vacants = Vacant::paginate(10);
-        return view('admin.vacants',compact('vacants'));
+    
+    public function vacantes(){
+        return view('admin.vacant.storevacantes');
     }
     public function store(Request $request){
+        $typecv = Type_cv::find(2);
         $vacant = new Vacant();
         $vacant->title = $request->title;
         $vacant->city = $request->city;
@@ -28,7 +30,7 @@ class VacantController extends Controller
         $vacant->num_vacants = $request->num_vacants;
         $vacant->state = 1;   
         $vacant-> num_aplic=0;
-        $vacant->save();
+        $typecv->vacant()->save($vacant);
         return back()->with('message','Se ha creado la vacante correctamente');
     }
     public function edit($id, Request $request){
@@ -42,6 +44,13 @@ class VacantController extends Controller
         $vacant->state = 1;   
         $vacant->save();
         return back()->with('message','Se ha editado la vacante correctamente');
+    }
+    public function close($id)
+    {   
+        $vacant = Vacant::where('id',$id)->first();
+        $vacant->state = 0;
+        $vacant->save();
+        return back()->with('message','Se ha cerrado la oferta exitosamente');
     }
     
 }
