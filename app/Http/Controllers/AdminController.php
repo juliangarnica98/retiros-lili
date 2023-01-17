@@ -47,13 +47,13 @@ class AdminController extends Controller
     }
     public function importar()
     {
-        return view('admin.import.importJefe');
+        return view('admin.import.indeximport');
     }
     public function importar2()
     {
         $jefes = User::role('Jefe')->get();
 
-        return view('admin.import.importJefe',compact('jefes'));
+        return view('admin.import.importColaborador',compact('jefes'));
     }
     // public function areas()
     // {

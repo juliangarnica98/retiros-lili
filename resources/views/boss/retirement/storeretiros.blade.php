@@ -94,8 +94,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-11">
-                <h1 class="text-center">Registra un nuevo retiro</h1>
-                <div class="card">
+                {{-- <h1 class="text-center">Registra un nuevo retiro</h1> --}}
+                <div class="card mt-5 border-info|">
                     {{-- <div class="card-header">Registra un nuevo retiro</div> --}}
 
 
@@ -167,6 +167,20 @@
                                                 3
                                             </label>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <!-- Full Name -->
+
+                                        <label for="full_name_id" class="control-label">Razón de desempeño</label>
+                                        {{-- <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder=""> --}}
+                                        <input type="text" class="form-control" id="reason_performance" name="reason_performance"
+                                            placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -391,6 +405,13 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="celular"
+                                                id="ti_celular" name="ti_celular">
+                                            <label class="form-check-label" for="canguro">
+                                                Celular
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
                                                 value="No hace entrega de ninguno de los anteriores" id="ti_ninguno"
                                                 name="ti_ninguno">
@@ -427,6 +448,13 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="celular"
+                                                id="ad_celular" name="ad_celular">
+                                            <label class="form-check-label" for="pc">
+                                                Celular
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="ad_ninguno"
                                                 id="ad_ninguno" name="ad_ninguno">
                                             <label class="form-check-label" for="ad_ninguno">
@@ -453,52 +481,59 @@
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="botas"
                                                 id="cedi_botas" name="cedi_botas">
                                             <label class="form-check-label" for="pc">
                                                 Botas
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="terminal"
                                                 id="cedi_terminal" name="cedi_terminal">
                                             <label class="form-check-label" for="pc">
                                                 Terminal
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="token"
                                                 id="cedi_token" name="cedi_token">
                                             <label class="form-check-label" for="pc">
                                                 Token
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="carnet"
                                                 id="cedi_carnet" name="cedi_carnet">
                                             <label class="form-check-label" for="pc">
                                                 Carnet
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="chaqueta"
                                                 id="cedi_chaqueta" name="cedi_chaqueta">
                                             <label class="form-check-label" for="pc">
                                                 Chaqueta
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="canguro"
                                                 id="cedi_canguro" name="cedi_canguro">
                                             <label class="form-check-label" for="pc">
                                                 Canguro
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
+                                            <input class="form-check-input" type="checkbox" value="cofia"
                                                 id="cedi_cofia" name="cedi_cofia">
                                             <label class="form-check-label" for="pc">
                                                 Cofia
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="celular"
+                                                id="cedi_celular" name="cedi_celular">
+                                            <label class="form-check-label" for="pc">
+                                                Celular
                                             </label>
                                         </div>
                                         <div class="form-check">
@@ -516,7 +551,7 @@
                         <div class="tab">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <!-- Full Name -->
                                         <label for="full_name_id" class="control-label">Entrega de quipo celular de la
                                             empresa</label>
@@ -526,7 +561,7 @@
                                             <option value="si">Si</option>
                                             <option value="no"> No</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <!-- Full Name -->
                                         <label for="full_name_id" class="control-label">Acta De Entrega</label>
@@ -574,6 +609,7 @@
                             <span class="step" id="fecha1"></span>
                             <span class="step" id="fecha2"></span>
 
+                            <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>

@@ -25,7 +25,7 @@ class RetirementController extends Controller
     {
         $positions = Position::paginate();
         $type_retirements = TypeRetirement::paginate();
-        return view('boss.retirement',compact('type_retirements','positions'));
+        return view('boss.retirement.storeretiros',compact('type_retirements','positions'));
     }
     
 
@@ -49,6 +49,8 @@ class RetirementController extends Controller
         $retiro->last_day=$request->last_day;
 
         $retiro->reason=$request->reason;
+        $retiro->reason_performance=$request->reason_performance;
+        
 
         $retiro->money_pend=$request->money_pend;
         $retiro->money_amou=$request->money_amou;
@@ -77,7 +79,7 @@ class RetirementController extends Controller
         $retiro->cedi_ent=$request->cedi_jean." " .$request->cedi_camisa." " .$request->cedi_botas." " .$request->cedi_terminal." " .$request->cedi_token." " .$request->cedi_carnet." " .$request->cedi_chaqueta." " .$request->cedi_canguro." " .$request->cedi_cofia." " .$request->cedi_ninguno;
 
         // $retiro->pc=$request->pc;
-        $retiro->cell=$request->cell;
+        // $retiro->cell=$request->cell;
         $retiro->delivery_certificate=$request->delivery_certificate;
         $retiro->save();
         return back()->with('message','Se a realizado el retiro de '.$retiro->name_collaborator.' satisfactoriamente');

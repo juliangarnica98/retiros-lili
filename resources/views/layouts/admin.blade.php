@@ -27,9 +27,9 @@
 
 </head>
 <style>
-    .fa-user {
+    /* .fa-user {
         color: rgb(252, 0, 126)
-    }
+    } */
 
     .background-barnav {
         background-color: #000000;
@@ -79,7 +79,10 @@
     }
 
     .active {
-        background-color: green;
+        background-color: rgb(27,159,161);
+    }
+    .pt-50{
+        padding-top: 50%;
     }
 </style>
 
@@ -102,12 +105,15 @@
             
             <!-- Divider -->
             @can('admin.index')
-                <div class="">
+                <div class="pt-50">
                    
                     
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.index') }}">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Retiros</span></a>
+                    </li>
                     <hr class="sidebar-divider">
-                    <!-- Divider -->
-
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}">
                             <i class="fa fa-id-card" aria-hidden="true"></i>
@@ -119,101 +125,38 @@
                             <i class="fa fa-id-card" aria-hidden="true"></i>
                             <span>Vacantes</span></a>
                     </li>
-                    {{-- <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle text-center" href="#" id="userDropdown1" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
-                            <span class="">Vacantes</span>
-                           
-                        </a>
-                        
-                        <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="userDropdown1"
-                            style="background-color: #fff">
-                           
-                            <a class="dropdown-item" href="{{ route('admin.vacantes') }}"  style="color: rgb(252,0,126)">
-                                <i class="fa fa-id-card" aria-hidden="true"></i>
-                                Crear vacantes
-                            </a>
-                            <hr>
-                            <a class="dropdown-item" href="{{ route('admin.vacantes2') }}"  style="color: rgb(252,0,126)">
-                                <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                Todas vacantes
-                            </a>
-
-                        </div>
-                    </li> --}}
+                    
                     <hr class="sidebar-divider">
-                 
                     <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.index') }}">
-                            <i class="fas fa-external-link-alt"></i>
-                            <span>Retiros</span></a>
-                        {{-- <a class="nav-link text-center" href="{{ route('admin.importar') }}">
-                            <i class="fas fa-solid fa-user"></i>
-                            <span>Importar Jefes</span></a>
-                        <a class="nav-link text-center" href="{{ route('admin.importar2') }}">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <span>Importar colaboradores</span></a> --}}
+                        <a class="nav-link text-center" href="{{ route('admin.importar') }}">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                            <span>Importar</span></a>
                     </li>
-                    <hr class="sidebar-divider">
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle text-center" href="#" id="userDropdown1" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                            <span class="">Importar</span>
-                           
-                        </a>
-                        
-                        <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="userDropdown1"
-                            style="background-color: #fff">
-                           
-                            <a class="dropdown-item" href="{{ route('admin.importar') }}"  style="color: rgb(252,0,126)">
-                                <i class="fas fa-solid fa-user"></i>
-                                Jefes
-                            </a>
-                            <hr>
-                            <a class="dropdown-item" href="{{ route('admin.importar2') }}"  style="color: rgb(252,0,126)">
-                                <i class="fa fa-users" aria-hidden="true"></i>
-                                Colaboradores
-                            </a>
-
-                        </div>
-                    </li>
-
-                    {{-- <li class="nav-item">
-                    <a class="nav-link text-center" href="{{route('tiendas.index')}}">
-                        
-                        <i class="fas fa-store fa-solid"></i>
-                        <span>Asignacion de tiendas</span></a>
-                </li>
-                <hr class="sidebar-divider"> --}}
-                    <li class="nav-item">
-
-                        <hr class="sidebar-divider">
 
                 </div>
             @endcan
             @can('boss.index')
-                <div class="">
+                <div class="pt-50">
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('boss.index') }}">
 
                             <i class="fas fa-external-link-alt"></i>
-                            <span>Retiros realizados</span></a>
+                            <span>Retiros</span></a>
                     </li>
                     <!-- Divider -->
+                    <hr class="sidebar-divider">
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('retirement.index') }}">
                             {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                             <i class="fas fa-solid fa-user"></i>
-                            <span>Realizar retiro directo</span></a>
+                            <span>Retiro directo</span></a>
                     </li>
-
+                    <hr class="sidebar-divider">
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('boss.show') }}">
                             {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                             <i class="fas fa-layer-group"></i>
-                            <span>Colaboradores activos</span></a>
+                            <span>Colaboradores</span></a>
                     </li>
 
                 </div>
@@ -257,7 +200,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{-- <span class="mr-5 d-none d-lg-inline" >{{ Auth::user()->name[0] }} </span> --}}
-                                <span class="mr-5 pr-5">{{ Auth::user()->name }}</span>
+                                <span class="mr-5 pr-5 text-light">{{ Auth::user()->name }}</span>
                                 {{-- {{ Auth::user()->name }} --}}
                                 {{-- <img class="img-profile rounded-circle"
                                     src="">  --}}
@@ -267,13 +210,13 @@
 
                             <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="userDropdown"
                                 style="background-color: #fff">
-                                <a class="dropdown-item" href="#" style="color: rgb(252,0,126)">
+                                <a class="dropdown-item" href="#" style="color: rgb(124, 124, 124)">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
                                     Perfil
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal" style="color: rgb(252,0,126)">
+                                    data-target="#logoutModal" style="color: rgb(124, 124, 124)">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                                     {{-- <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> --}}
                                     Salir

@@ -15,8 +15,11 @@ class VacantController extends Controller
     public function index(){
         Paginator::useBootstrap();
         $vacants = Vacant::paginate(4);
+        $vacants_t = Vacant::all()->count();
+        $vacants_c = Vacant::where('state',0)->count();
+        $vacants_a = Vacant::where('state',1)->count();
         $cvs = Cv::all();
-        return view('admin.vacant.indexvacantes',compact('vacants','cvs'));
+        return view('admin.vacant.indexvacantes',compact('vacants','cvs','vacants_t','vacants_c','vacants_a'));
     }
     
     public function vacantes(){

@@ -28,7 +28,7 @@ class BossController extends Controller
         $tipo_retiro= TypeRetirement::all();
         $retiros = Retirement::where('user_id',auth()->user()->name)->paginate(7);
         $usuario = auth()->id();
-        return view('boss.index',compact('retiros','tipo_retiro','usuario'));
+        return view('boss.retirement.indexretiros',compact('retiros','tipo_retiro','usuario'));
     }
    
     public function create()
@@ -48,7 +48,7 @@ class BossController extends Controller
         // dd($user);
         $collaborators = Collaborator::where('state','1')->where('regional_id',$boss->regional_id)->paginate(20);
         
-        return view('boss.collaborator',compact('collaborators','positions'));
+        return view('boss.collaborator.indexcolaboradores',compact('collaborators','positions'));
     }
 
     public function edit($id)

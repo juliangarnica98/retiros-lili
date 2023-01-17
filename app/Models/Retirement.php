@@ -41,15 +41,16 @@ class Retirement extends Model
         // 'cum_bonus',
         // 'cat_bonus',
         // 'ext_bonus',
+        //'cell',
 
-        'cell',
         'letter',
         'delivery_certificate',
         
         'admin_ent',
         'store_ent',
         'cedi_ent',
-        'reason'
+        'reason',
+        'reason_performance'
 
     ];
 

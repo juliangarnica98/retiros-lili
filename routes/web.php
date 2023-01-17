@@ -37,7 +37,7 @@ Auth::routes(["register" => false]);
 Route::group(['prefix' => 'administrador'], function() {
     Route::get('index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::get('importar', [App\Http\Controllers\AdminController::class, 'importar'])->name('admin.importar');
-    Route::get('importar-colaboradores', [App\Http\Controllers\AdminController::class, 'importar2'])->name('admin.importar2');
+    // Route::get('importar-colaboradores', [App\Http\Controllers\AdminController::class, 'importar2'])->name('admin.importar2');
     Route::post('admin-import-colaborator', [App\Http\Controllers\AdminController::class, 'importCollaborator'])->name('admin.import.collaborator');
     Route::post('admin-import-excel', [App\Http\Controllers\AdminController::class, 'importExcel'])->name('admin.import.excel');
     Route::post('busqueda-cdc', [App\Http\Controllers\AdminController::class, 'busqueda'])->name('admin.search');

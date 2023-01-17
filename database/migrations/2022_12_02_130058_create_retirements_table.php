@@ -20,6 +20,7 @@ class CreateRetirementsTable extends Migration
             $table->string('document_collaborator');
             $table->string('name_collaborator');
             $table->string('performance');
+            $table->string('reason_performance');
             $table->text('reason');
             $table->string('last_day');
             $table->string('money_pend');
@@ -38,7 +39,7 @@ class CreateRetirementsTable extends Migration
             // $table->string('cum_bonus');
             // $table->string('cat_bonus');
             // $table->string('ext_bonus');
-            $table->string('cell');
+            // $table->string('cell');
             $table->string('letter');
             $table->string('delivery_certificate');
             $table->text('admin_ent');

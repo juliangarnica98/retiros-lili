@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 <style>
-
-
     body {
         background-color: #f9f9fa
     }
@@ -102,8 +100,6 @@
         font-size: 1rem;
         line-height: 1;
     }
-
-
 </style>
 @section('content')
     @if (Session::has('error'))
@@ -129,8 +125,8 @@
 
     <div class="page-content page-container" id="page-content">
         <div class="">
-            <div class="row pl-3 pr-3 pt-3">
-            
+            {{-- <div class="row pl-3 pr-3 pt-3">
+
                 <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card border-left-danger shadow h-100 py-2">
                         <div class="card-body">
@@ -179,92 +175,69 @@
                         </div>
                     </div>
                 </div>
-        
-        </div>
+
+            </div> --}}
             <div class="row pl-3 pr-3 pt-3 justify-content-center">
                 <div class="col-md-12 grid-margin stretch-card">
-                    
+
                     <div class="card" style="background-color: #ebebeb;">
                         <div class="card-body">
-                            <h1 class="card-title">Nuevos Aspirantes</h1>
+                            <h1 class="card-title">Retiros</h1>
                             <p class="card-description">
-                                <a href="{{ url('administrador/exporttable/') }}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
-                                style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i> Generar reporte</a>
+                                <a href="{{ url('administrador/exporttable/') }}"
+                                    class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
+                                    style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i>
+                                    Generar reporte</a>
                             </p>
-
+                            {{-- @if (is_null($retiros))
+                                <p class="text-center">No hay retiros registrados</p>
+                            @else --}}
                             <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
                                 <thead>
                                     <tr class="d-flex">
-                                        <th class="col-1 text-center">Fecha de retiro</th>
-                                        <th class="col-1 text-center">Nombre del colaborador</th>
-                                        <th class="col-1 text-center">Encargado del retiro</th>
-                                        <th class="col-1 text-center">documento del colaborador</th>
-                                        <th class="col-1 text-center">Desempeño</th>
-                                        <th class="col-1 text-center">Tipo de retiro</th>
-                                        <th class="col-1 text-center">Ultimo dia laborado</th>
-                                        <th class="col-1 text-center">dinero pendiente</th>
-                                        <th class="col-1 text-center">cantidad dinero pendiente</th>
-                                        <th class="col-1 text-center">concepto de dinero pendiente</th>
-                                        <th class="col-1 text-center">fecha novedad 1</th>
-                                        <th class="col-1 text-center">fecha novedad 2</th>
-                                        <th class="col-1 text-center">fecha novedad 3</th>
-                                        <th class="col-1 text-center">fecha novedad 4</th>
-                                        <th class="col-1 text-center">fecha novedad 5</th>
-                                        <th class="col-1 text-center">fecha dominical 1</th>
-                                        <th class="col-1 text-center">fecha dominical 2</th>
-                                        <th class="col-1 text-center">fecha dominical 3</th>
-                                        <th class="col-1 text-center">fecha dominical 4</th>
-                                        <th class="col-1 text-center">fecha dominical 5</th>
-                                        <th style=" width: 25vw;" class="col-1 text-center">Entrega <strong>Perfil de
-                                                tienda</strong></th>
-                                        <th style=" width: 25vw;" class="col-1 text-center">Entrega <strong>Administrador</strong>
-                                        </th>
-                                        <th style=" width: 25vw;" class="col-1 text-center">Entrega <strong>Cedi</strong></th>
-                                        <th class="col-1 text-center">Equipo celular</th>
-                                        <th class="col-1 text-center">Acta de entrega</th>
-                                        <th class="col-1 text-center">Carta de renuncia</th>
+                                        <th class="col text-center">Fecha </th>
+                                        <th class="col text-center">Nombre </th>
+                                        <th class="col text-center">Encargado </th>
+                                        <th class="col text-center">Documento </th>
+                                        <th class="col text-center">Tipo de retiro</th>
+                                        <th class="col text-center">Ultimo dia</th>
+                                        <th class="col text-center">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
+
                                     @foreach ($retiros as $retiro)
                                         <tr class="d-flex" style="padding-bottom: 10px;">
-                                            <td class="col-1 text-center">{{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->name_collaborator }}</td>
+                                            <td class="col text-center">
+                                                {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
+                                            <td class="col text-center">{{ $retiro->name_collaborator }}</td>
+                                            <td class="col text-center">{{ $retiro->user_id }}</td>
+                                            <td class="col text-center">{{ $retiro->document_collaborator }}</td>
 
-                                            <td class="col-1 text-center">{{ $retiro->user_id }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->document_collaborator }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->performance }}</td>
                                             @foreach ($tipo_retiro as $typo)
                                                 @if ($retiro->type_retirement_id == $typo->id)
-                                                    <td class="col-1">{{ $typo->description }}</td>
+                                                    <td class="col text-center">{{ $typo->description }}</td>
                                                 @endif
                                             @endforeach
-                                            <td class="col-1 text-center">{{ $retiro->last_day }}</td>
-                                            <th class="col-1 text-center">{{ $retiro->money_pend }}</th>
-                                            <td class="col-1 text-center">{{ $retiro->money_amou }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->money_conc }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_1 }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_2 }}</td>
-                                            <th class="col-1 text-center">{{ $retiro->date_3 }}</th>
-                                            <td class="col-1 text-center">{{ $retiro->date_4 }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_5 }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_d_1 }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_d_2 }}</td>
-                                            <th class="col-1 text-center">{{ $retiro->date_d_3 }}</th>
-                                            <td class="col-1 text-center">{{ $retiro->date_d_4 }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->date_d_5 }}</td>
+                                            <td class="col text-center">{{ $retiro->last_day }}</td>
+                                            <td class="col text-center">
+                                                <div style="display: flex" class="text-center justify-content-center">
+                                                    <div class="pl-1">
+                                                        <button class="btn btn-warning"
+                                                            data-target="#Modalver{{ $retiro->id }}"
+                                                            data-toggle="modal"><i class="fas fa-eye"></i></button>
+                                                        
+                                                    </div>
+                                                </div>
+                                                @include('admin.retirement.showretiros')
+                                            </td>
 
-                                            <td class="col-1 text-center">{{ $retiro->store_ent }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->admin_ent }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->cedi_ent }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->cell }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->delivery_certificate }}</td>
-                                            <td class="col-1 text-center">{{ $retiro->letter }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{-- @endif --}}
 
                         </div>
                     </div>
