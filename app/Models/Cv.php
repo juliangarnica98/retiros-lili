@@ -39,11 +39,16 @@ class Cv extends Model
         'should_choose',
         'shirt_size',
         'pant_size',
-        'vacant_id'
+        'vacant_id',
+        'state_id'
     ];
 
     public function vacant()
     {
         return $this->belongsTo('App\Vacant');
+    }
+    public function state()
+    {
+        return $this->belongsTo('App\Models\State');
     }
 }

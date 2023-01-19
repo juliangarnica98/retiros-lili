@@ -20,8 +20,17 @@ class HomeController extends Controller
     public function vacantes()
     {
         $vacants = Vacant::where('state',1)->paginate(10);
-        return view('principal.vacantes',compact('vacants'));
+        $num_vacants=Vacant::where('state',1)->count();
+        return view('principal.vacantes',compact('vacants','num_vacants'));
     }
+    public function buscar($id)
+    {
+        $vacant_found = Vacant::where('state',1)->where('id',$id)->first();
+        $vacants = Vacant::where('state',1)->paginate(10);
+        $num_vacants=Vacant::where('state',1)->count();
+        return view('principal.vacantes',compact('vacants','num_vacants','vacant_found'));
+    }
+
     public function create()
     {
         

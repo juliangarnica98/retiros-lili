@@ -17,8 +17,7 @@
                 <label class="text-center">{{ date('d-m-Y', strtotime($retiro->created_at)) }}</label><br>
                 <span>Nombre:</span>
                 <label class="text-center">{{ $retiro->name_collaborator  }}</label><br>
-                <span>Encargado:</span>
-                <label class="text-center">{{ $retiro->user_id }}</label><br>
+             
                 <span>Documento:</span>
                 <label class="text-center">{{  $retiro->document_collaborator }}</label><br>
                 <span>Tipo de retiro:</span>

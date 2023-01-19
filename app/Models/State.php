@@ -11,4 +11,8 @@ class State extends Model
     protected $fillable = [
         'description',
     ];
+    public function cv()
+    {
+        return $this->hasOne('App\Models\Cv');
+    }
 }

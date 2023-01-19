@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cv;
+use App\Models\State;
 use App\Models\Vacant;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class CvController extends Controller
             return back()->with('error','¡Hay errores en los campos!');
         }
         $cv = new  Cv();
+        $state = State::find(1);
         $cv->name = $request->name;
         $cv->type_id = $request->type_id;
         $cv->num_id = $request->num_id;
@@ -61,7 +63,8 @@ class CvController extends Controller
         $cv->shirt_size = $request->shirt_size;
         $cv->pant_size = $request->pant_size;
         $cv->vacant_id = $request->vacant_id;
-        $cv->save();     
+        $state->cv()->save($cv);
+        // $cv->save();     
 
         $vacante = Vacant::where('id',$cv->vacant_id)->first();
         $vacante->num_aplic += 1;

@@ -84,6 +84,29 @@
     .pt-50{
         padding-top: 50%;
     }
+    
+    .pagination li {
+        margin-left: .25rem;
+        margin-right: .25rem;
+    }
+
+    .pagination li .page-link {
+        border-radius: .25rem;
+        border: none;
+        min-width: 2.25rem;
+        text-align: center;
+        color: #4f5464;
+    }
+
+    .pagination li.active .page-link,
+    .pagination li .page-link:hover {
+        background-color: #e85199;
+        color: #fff;
+        font-weight: bold;
+        box-shadow: none;
+        
+      
+    }
 </style>
 
 <body id="page-top">

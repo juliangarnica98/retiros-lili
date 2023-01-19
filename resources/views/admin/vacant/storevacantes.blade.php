@@ -58,13 +58,61 @@
                                     </div>
                                 </div>
                                 <div class="col-5">
-    
+                                    
                                     <div class="form-outline">
-                                        <input type="text"
-                                            id="form8Example2"
-                                            class="form-control"
-                                            name="city"
-                                            />
+                                      
+                                        <select class="form-select form-control" name="city">
+                                            <option selected value=""></option>
+                                            <option value="CC">Bogotá</option>
+                                            <option value="CC">Medellín</option>
+                                            <option value="CC">Cali</option>
+                                            <option value="CC">Barranquilla</option>
+                                            <option value="CC">Cartagena de Indias</option>
+                                            <option value="CC">Soacha</option>
+                                            <option value="CC">Tunja</option>
+                                            <option value="CC">Cúcuta</option>
+                                            <option value="CC">Soledad</option>
+                                            <option value="CC">Bucaramanga</option>
+                                            <option value="CC">Bello</option>
+                                            <option value="CC">Villavicencio</option>
+                                            <option value="CC">Ibagué</option>
+                                            <option value="CC">Santa Marta</option>
+                                            <option value="CC">Valledupar</option>
+                                            <option value="CC">Manizales</option>
+                                            <option value="CC">Pereira</option>
+                                            <option value="CC">Montería</option>
+                                            <option value="CC">Neiva</option>
+                                            <option value="CC">Pasto</option>
+                                            <option value="CC">Armenia</option>
+                                            <option value="CC">Rioacha</option>
+                                            <option value="CC">Sincelejo</option>
+                                            <option value="CC">Barrancabermeja</option>
+                                            <option value="CC">Popayan</option>
+                                            <option value="CC">Dos quebradas</option>
+                                            <option value="CC">Jamundi</option>
+                                            <option value="CC">Palmira</option>
+                                            <option value="CC">Ipiales</option>
+                                            <option value="CC">Yumbo</option>
+                                            <option value="CC">Cartago</option>
+                                            <option value="CC">Tulua</option>
+                                            <option value="CC">Girardot</option>
+                                            <option value="CC">Pitalito</option>
+                                            <option value="CC">Florencia</option>
+                                            <option value="CC">Cajica</option>
+                                            <option value="CC">Yopal</option>
+                                            <option value="CC">Duitama</option>
+                                            <option value="CC">Villeta</option>
+                                            <option value="CC">Sogamoso</option>
+                                            <option value="CC">Fusagasuga</option>
+                                            <option value="CC">Sopo</option>
+                                            <option value="CC">Tocancipa</option>
+                                            <option value="CC">Chia</option>
+                                            <option value="CC">Apartado</option>
+                                            <option value="CC">Zipaquira</option>
+                                            <option value="CC">Mosquera</option>
+                                            <option value="CC">Madrid</option>
+                                            <option value="CC">Funza</option>
+                                        </select>
                                         <label
                                             class="form-label text-dark"
                                             for="form8Example2">Ciudad</label>
@@ -79,7 +127,7 @@
                                 <div class="col-5">
     
                                     <div class="form-outline">
-                                        <input type="text"
+                                        <input type="number"
                                             id=""
                                             class="form-control"
                                             name="salary"
@@ -92,7 +140,7 @@
                                 <div class="col-5">
     
                                     <div class="form-outline">
-                                        <input type="text"
+                                        <input type="number"
                                             id=""
                                             class="form-control"
                                             name="num_vacants"

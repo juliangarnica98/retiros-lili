@@ -15,14 +15,16 @@ use App\Models\User;
 |
 */
 
-// Route::get('/', function () {  
-//     return redirect('/login');
-// });
+Route::get('/', function () {  
+    return redirect('/login');
+});
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/vacantes', [App\Http\Controllers\HomeController::class, 'vacantes'])->name('vacantes.index');
 Route::get('/hoja-vida', [App\Http\Controllers\CvController::class, 'index'])->name('cv.index');
 Route::get('/hoja-vida/registrar', [App\Http\Controllers\CvController::class, 'store'])->name('cv.store');
+Route::get('/buscarvacante/{id} ', [App\Http\Controllers\HomeController::class, 'buscar'])->name('buscarvacante');
+
 
 Route::get('/home', function () {  
     if(Auth::user()->id==1){
@@ -58,6 +60,7 @@ Route::group(['prefix' => 'jefe'], function()
     Route::get('exporttable/{id}', [App\Http\Controllers\BossController::class, 'export'])->name('boss.export.excel');
     Route::get('index', [App\Http\Controllers\BossController::class,'index'])->name('boss.index');
     Route::get('colaboradores', [App\Http\Controllers\BossController::class,'show'])->name('boss.show');
+    Route::get('colaborador', [App\Http\Controllers\BossController::class,'search'])->name('boss.busqueda');
     Route::get('retiros', [App\Http\Controllers\RetirementController::class, 'index'])->name('retirement.index');
     Route::post('create', [App\Http\Controllers\RetirementController::class, 'create'])->name('boss.create');
     Route::post('busqueda', [App\Http\Controllers\BossController::class, 'busqueda'])->name('boss.search');

@@ -137,13 +137,15 @@
                         @else --}}
                         <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
                             <thead>
-                                <tr class="d-flex">
+                                <tr class="d-flex ">
                                     <th class="col text-center">Fecha </th>
-                                    <th class="col text-center">Nombre </th>
-                                    <th class="col text-center">Encargado </th>
+                                    <th class="col-4 text-center">Nombre </th>
+                                  
                                     <th class="col text-center">Documento </th>
                                     <th class="col text-center">Tipo de retiro</th>
-                                    <th class="col-1 text-center">Ultimo dia</th>
+                                    <th class="col text-center">Ultimo dia</th>
+                                    <th class="col text-center">Desempeño</th>
+                                   
                                     <th class="col text-center">Acción</th>
                                 </tr>
                             </thead>
@@ -154,8 +156,8 @@
                                     <tr class="d-flex" style="padding-bottom: 10px;">
                                         <td class="col text-center">
                                             {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
-                                        <td class="col text-center">{{ $retiro->name_collaborator }}</td>
-                                        <td class="col text-center">{{ $retiro->user_id }}</td>
+                                        <td class="col-4 text-center">{{ $retiro->name_collaborator }}</td>
+                                      
                                         <td class="col text-center">{{ $retiro->document_collaborator }}</td>
 
                                         @foreach ($tipo_retiro as $typo)
@@ -164,6 +166,8 @@
                                             @endif
                                         @endforeach
                                         <td class="col text-center">{{ $retiro->last_day }}</td>
+                                        <td class="col text-center">{{ $retiro->performance }}</td>
+                                        
                                         <td class="col text-center">
                                             <div style="display: flex" class="text-center justify-content-center">
                                                 <div class="pl-1">
@@ -184,7 +188,7 @@
 
                     </div>
                     <div class="container pt-3">
-                        <div class="row d-flex justify-content-center">
+                        <div class="row d-flex justify-content-center ">
                             <div class="col-12 text-xs-center">
                                 {{ $retiros->links() }}
                             </div>

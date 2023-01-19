@@ -131,6 +131,10 @@
                                         <input type="text" class="form-control" id="name" name="name_collaborator"
                                             placeholder="" readonly>
                                     </div>
+                                    <input type="hidden" class="form-control" id="region" name="region"
+                                            placeholder="" readonly>
+                                    <input type="hidden" class="form-control" id="region_jefe" name="region_jefe"
+                                        placeholder="" readonly value="{{$regional}}">
 
 
                                 </div>
@@ -275,8 +279,8 @@
                         {{-- @foreach ($positions as $position) --}}
 
                         <div class="tab">
-                            <div class="row">
-                                <div class="col-12" id="fechas1">
+                            <div class="row" id="fechas1">
+                                <div class="col-12" >
                                     <label for="full_name_id" class="control-label">Novedades Compensatorio
                                         Indique las fechas de los días que se le deben al colaborador por términos de
                                         compensatorio.</label>
@@ -315,8 +319,8 @@
                             </div>
                         </div>
                         <div class="tab">
-                            <div class="row">
-                                <div class="col-12" id="fechas2">
+                            <div class="row" id="fechas2">
+                                <div class="col-12" >
                                     <label for="full_name_id" class="control-label"> Dominicales/Festivo A
                                         Liquidar</label>
 
@@ -356,7 +360,7 @@
                         <div class="tab">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="form-group">
+                                    <div class="form-group" id="entrega_tienda">
                                         <!-- Full Name -->
                                         <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
                                             entrega de</label>
@@ -420,7 +424,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" id="entrega_administrador">
                                         <!-- Full Name -->
                                         <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
                                             entrega de</label>
@@ -462,7 +466,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" id="entrega_cedi">
                                         <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
                                             entrega de</label>
                                         <label for="full_name_id" class="control-label"><strong>Cedi</strong></label>
@@ -638,7 +642,12 @@
         let dinero_si = document.querySelector('#dinero_si');
         let dinero_no = document.querySelector('#dinero_no');
         let dinero_pendiente = document.querySelector('#dinero_pendiente');
-
+        let entrega_tienda = document.querySelector('#entrega_tienda');
+        let entrega_administrador = document.querySelector('#entrega_administrador');
+        let entrega_cedi = document.querySelector('#entrega_cedi');
+        let region = document.querySelector('#region');
+        let region_jefe = document.querySelector('#region_jefe');
+        
         showTab(currentTab); // Display the current tab
         function showTab(n) {
             // This function will display the specified tab of the form...
@@ -729,6 +738,7 @@
 
             let data = {
                 'document': document.querySelector('#document').value,
+                'region_jefe':document.querySelector('#region_jefe').value,
             }
             fetch('busqueda', {
                     headers: {
@@ -743,6 +753,7 @@
                 .then(function(result) {
                     name.value = result.name;
                     id_co.value = result.id;
+                    region.value = result.position;
                     if (name.value == "") {
                         Swal.fire({
                             title: 'Error!',
@@ -751,11 +762,26 @@
                             confirmButtonText: 'Continuar'
                         })
                     }
-                    if (result.position == 1 || result.position == 2 || result.position == 14) {
+                   
+                    if (result.position == 1 || result.position == 2 || result.position == 14) 
+                    {
                         fecha1.style.display = 'none';
                         fechas1.style.display = 'none';
                         fecha2.style.display = 'none';
                         fechas2.style.display = 'none';
+
+                        entrega_tienda.style.display = 'none';
+                        entrega_administrador.style.display = 'block';
+                        entrega_cedi.style.display = 'none';
+                    }
+                    else if(result.position == 3 || result.position == 4) {
+                        entrega_tienda.style.display = 'none';
+                        entrega_administrador.style.display = 'none';
+                        entrega_cedi.style.display = 'block';
+                    }else{
+                        entrega_tienda.style.display = 'block';
+                        entrega_administrador.style.display = 'none';
+                        entrega_cedi.style.display = 'none';
                     }
                 })
                 .catch(function(error) {

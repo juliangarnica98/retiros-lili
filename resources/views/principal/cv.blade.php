@@ -442,10 +442,18 @@
                 <div class="step">
                     <p class="text-center mb-4">Información adicional</p>
                     <div class="mb-3 row">
-                        <input type="text" placeholder="¿Trabajaste anteriormente con nosotros?"
-                            name="previously_work" class="col">
-                        <input type="text" placeholder="¿Tienes algun familiar trabajando con nosotros?"
-                            name="family" class="col ml-2">
+                        <select class="form-select col-3 ml-2 form_control" name="previously_work">
+                            <option selected value="">¿Trabajaste anteriormente con nosotros?</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                        <select class="form-select col-3 ml-2 form_control" name="family">
+                            <option selected value="">¿Tienes algun familiar trabajando con nosotros?</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                      
+
                     </div>
                     {{-- <div class="mb-3">
                         
@@ -458,7 +466,7 @@
                     <div class="mb-3 row">
                         <input type="text" placeholder="¿Por que deberiamos escogerte?" name="should_choose"
                             class="col ">
-                        <input type="number" placeholder="Talla camisa" name="shirt_size" class="col ml-2">
+                        <input type="text" placeholder="Talla camisa" name="shirt_size" class="col ml-2">
                         <input type="numer" placeholder="Talla pantalon" name="pant_size" class="col ml-2">
                     </div>
                     {{-- <div class="mb-3">

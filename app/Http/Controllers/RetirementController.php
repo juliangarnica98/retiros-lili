@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Imports\UsersImport;
 use App\Imports\CollabolatorsImport;
+use App\Models\Boss;
 use App\Models\Collaborator;
 use App\Models\Position;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,18 +22,21 @@ class RetirementController extends Controller
         // $this->middleware('can:boss.index');
     }
 
-    public function index()
+    public function  index()
     {
+        $usuario =Auth::user()->email;
+        $jefe = Boss::where('email',$usuario)->first();
+        $regional = $jefe->regional_id;
         $positions = Position::paginate();
         $type_retirements = TypeRetirement::paginate();
-        return view('boss.retirement.storeretiros',compact('type_retirements','positions'));
+        return view('boss.retirement.storeretiros',compact('type_retirements','positions','regional'));
     }
     
 
     
 
     public function create(Request $request){
-        // dd($request->all());
+
         $retiro = new Retirement();
         $retiro->user_id=Auth::user()->name;
 

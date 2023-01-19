@@ -18,6 +18,7 @@ use App\Models\Boss;
 use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\Cv;
+use App\Models\State;
 use App\Models\User;
 use App\Models\Vacant;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,7 +44,8 @@ class AdminController extends Controller
         Paginator::useBootstrap();
         $cvs = Cv::paginate();
         $vacants = Vacant::paginate();
-        return view('admin.candidate.indexcandidatos',compact('cvs','vacants'));
+        $states = State::paginate();
+        return view('admin.candidate.indexcandidatos',compact('cvs','vacants','states'));
     }
     public function importar()
     {
@@ -87,6 +89,7 @@ class AdminController extends Controller
         }
         return json_encode($tiendas);
     }
+    
     public function asignarCdc(Request $request)
     {   
         $cdcs=$request->options;

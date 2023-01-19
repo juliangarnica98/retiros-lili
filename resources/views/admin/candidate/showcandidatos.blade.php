@@ -23,6 +23,14 @@
                 @endforeach</label><br>
                 <span>Nombre:</span>
                 <label class="text-center">{{ $cv->name }}</label><br>
+                <span>Estado del candidato:</span>
+                <label class="text-center badge-success">
+                @foreach ($states as $state)
+                    @if ($cv->state_id==$state->id)
+                        {{$state->description}}
+                    @endif 
+                @endforeach
+                </label><br>
                 <span>Tipo de documento:</span>
                 <label class="text-center">${{ $cv->type_id }}</label><br>
                 <span>Numero de documento:</span>
@@ -83,9 +91,7 @@
                 
                
                
-                
-               
-               
+                 
 
                
             </div>

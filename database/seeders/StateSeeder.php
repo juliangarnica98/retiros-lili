@@ -43,6 +43,9 @@ class StateSeeder extends Seeder
                 [
                 'description' => 'Contratado'
                 ],
+                [
+                'description' => 'Descartado'
+                ],
                                                                 
                 ];
                 foreach ($data as $regiones) {

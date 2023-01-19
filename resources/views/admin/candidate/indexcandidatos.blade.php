@@ -269,16 +269,16 @@
                             <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
                                 <thead>
                                     <tr class="d-flex">
-                                        <th class="col text-center">Fecha de postulación</th>
-                                        <th class="col text-center">Vacante</th>
-                                        <th class="col text-center">Nombre</th>
-                                        <th class="col text-center">Tipo de documento</th>
-                                        <th class="col text-center">Numero de documento</th>
-                                        <th class="col text-center">Número de celular</th>
-                                        <th class="col text-center ">Número de celular opcional</th>
-                                        <th class="col text-center">Edad</th>
-                                        <th class="col text-center">Correo</th>
-                                        <th class="col text-center">Ver</th>
+                                        <th class="col-1 text-center">Fecha</th>
+                                        <th class="col-2 text-center">Vacante</th>
+                                        <th class="col-1 text-center">Nombre</th>
+                                        <th class="col-1 text-center">Tipo de documento</th>
+                                        <th class="col-1 text-center">Documento</th>
+                                        <th class="col-1 text-center">Celular</th>
+                                        <th class="col-1 text-center ">Celular opcional</th>
+                                        <th class="col-1 text-center">Edad</th>
+                                        <th class="col-2 text-center">Correo</th>
+                                        <th class="col-1 text-center">Ver</th>
 
                                     </tr>
                                 </thead>
@@ -286,21 +286,21 @@
 
                                     @foreach ($cvs as $cv)
                                         <tr class="d-flex">
-                                            <td class="col text-center">{{ date('d-m-Y', strtotime($cv->created_at)) }}
+                                            <td class="col-1 text-center">{{ date('d-m-Y', strtotime($cv->created_at)) }}
                                             </td>
                                             @foreach ($vacants as $vacant)
                                                 @if ($cv->vacant_id === $vacant->id)
-                                                    <th class="col text-center">{{ $vacant->description }}</th>
+                                                    <th class="col-2 text-center">{{ $vacant->description }}</th>
                                                 @endif
                                             @endforeach
-                                            <td class="col text-center">{{ $cv->name }}</td>
-                                            <td class="col text-center">{{ $cv->type_id }}</td>
-                                            <th class="col text-center">{{ $cv->num_id }}</th>
-                                            <td class="col text-center">{{ $cv->num_cell }}</td>
-                                            <td class="col text-center">{{ $cv->num_cell2 }}</td>
-                                            <td class="col text-center">{{ $cv->age }}</td>
-                                            <td class="col text-center">{{ $cv->email }}</td>
-                                            <td class="col text-center">
+                                            <td class="col-1 text-center">{{ $cv->name }}</td>
+                                            <td class="col-1 text-center">{{ $cv->type_id }}</td>
+                                            <th class="col-1 text-center">{{ $cv->num_id }}</th>
+                                            <td class="col-1 text-center">{{ $cv->num_cell }}</td>
+                                            <td class="col-1 text-center">{{ $cv->num_cell2 }}</td>
+                                            <td class="col-1 text-center">{{ $cv->age }}</td>
+                                            <td class="col-2 text-center">{{ $cv->email }}</td>
+                                            <td class="col-1 text-center">
                                                 <div style="display: flex" class="text-center justify-content-center">
                                                     <div class="pl-1">
                                                         <button class="btn btn-warning"

@@ -64,9 +64,6 @@
         background-color: #fff;
     }
 
-    .container {
-        padding-top: 0%;
-    }
 
     table {
         table-layout: fixed;
@@ -91,7 +88,7 @@
     }
 
     .imagen_portada {
-        padding-top: 5rem;
+        padding-top: 1rem;
         padding-bottom: calc(10rem - 4.5rem);
         background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("{{ asset('imgs/work.jpg') }}");
         background-position: center;
@@ -108,7 +105,7 @@
         .imagen_portada {
             height: 100vh;
             min-height: 40rem;
-            padding-top: 5rem;
+
             padding-bottom: 0;
         }
 
@@ -171,7 +168,113 @@
     @endif
     <div class="div">
         <div class="imagen_portada">
+            {{-- <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Ingresa ciudad o vacante</span>
+                </div>
+                
+              </div> --}}
             <div class="container">
+                <div class="row justify-content-center pb-3">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Buscar..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" style="height: 85vh">
+                            <div class="card-body pt-2 pb-2 pl-0 pr-0">
+                                <div class="card mt-2 border-0">
+                                    <a href="#" class="card-block stretched-link text-decoration-none">
+                                        <div class="card-body pt-0 pb-0 ">
+                                            <h5 class="card-title text-dark text-center"><strong>
+                                                    {{ $num_vacants }} vacantes disponibles</strong> </h5>
+                                        </div>
+                                    </a>
+                                </div>
+                                @foreach ($vacants as $vacant)
+                                    <div class="border-top border-bottom mt-1">
+                                        <div class="card pl-0 pr-0 ml-0 mr-0 border-0">
+                                            {{-- border-right-0 border-left-0 --}}
+                                            <a href="{{ route('buscarvacante', ['id' => $vacant->id]) }}"
+                                                class="card-block stretched-link text-decoration-none">
+                                                <div class="card-body pt-1 pb-1 ml-0 mr-0">
+                                                    <h5 class="card-title text-dark">
+                                                        <strong>{{ $vacant->title }}</strong>
+                                                    </h5>
+                                                    <h6 class="card-subtitle mb-1 text-muted">{{ $vacant->city }} -
+                                                        ${{ $vacant->salary }} </h6>
+                                                    <p class="card-text text-dark">{{ $vacant->experience }}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="card" style="height: 85vh">
+                            @if (isset($vacant_found))
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ $vacant_found->title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ $vacant_found->created_at }}</h6>
+                                    <p class="card-text">Ciudad: {{ $vacant_found->city }}</p>
+                                    <p class="card-text">Salario: ${{ $vacant_found->salary }}</p>
+                                    <p class="card-text">Experiencia: {{ $vacant_found->experience }}</p>
+                                    <p class="card-text">Vacantes: {{ $vacant_found->num_vacants }}</p>
+                                    <p class="card-text">Description: {{ $vacant_found->description }}</p>
+                                    <button class="btn btn-info" data-target="#exampleModal"
+                                        data-toggle="modal">Aplicar</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">
+                                                        Ingrese su número de documento</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form method="POST"
+                                                    action="{{ route('admin.search.cv', $vacant->id) }}">
+                                                    @csrf
+                                                    <div class="modal-body">
+
+                                                        <div class="form-group">
+                                                            <div class="row justify-content-center">
+                                                                <div class="col-10">
+
+                                                                    <div class="form-outline">
+
+                                                                        <input type="text" id="form8Example1"
+                                                                            class="form-control" name="documento"
+                                                                            value="" />
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button class="btn btn-primary">Aplicar oferta</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- <div class="container">
                 <div class="card mt-0">
                     <div class="row text-center">
                         <div class="col-md-12">
@@ -265,7 +368,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

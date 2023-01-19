@@ -126,9 +126,20 @@
         <div class="row pl-3 pr-3 pt-0 justify-content-center">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card" style="background-color: #ebebeb;">
+                    
                     <div class="card-body">
                         <h1 class="card-title">Colaboradores activos</h1>
-                     
+
+                        <form action="{{route('boss.busqueda')}}" method="get">
+                            <div class="form-row">
+                                <div class="col-sm-4">
+                                    <input class="form-control" type="text" name="busqueda">
+                                </div>
+                                <div class="col-auto">
+                                    <input type="submit" class="btn btn-primary" value="buscar">
+                                </div>
+                            </div>
+                        </form>
                         
                         <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
                             <thead>
@@ -155,8 +166,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="container pt-3">
-                            <div class="row d-flex justify-content-center">
+                        <div class="container pt-3 d-flex justify-content-center">
+                            <div class="row  aling-items-center">
                                 <div class="col-12 text-xs-center">
                                     {{ $collaborators->links() }}
                                 </div>
