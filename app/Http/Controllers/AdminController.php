@@ -39,14 +39,7 @@ class AdminController extends Controller
         $users = User::paginate();
         return view('admin.retirement.indexretiros',compact('retiros','users','tipo_retiro'));
     }
-    public function postulaciones()
-    {
-        Paginator::useBootstrap();
-        $cvs = Cv::paginate();
-        $vacants = Vacant::paginate();
-        $states = State::paginate();
-        return view('admin.candidate.indexcandidatos',compact('cvs','vacants','states'));
-    }
+
     public function importar()
     {
         return view('admin.import.indeximport');
@@ -57,22 +50,6 @@ class AdminController extends Controller
 
         return view('admin.import.importColaborador',compact('jefes'));
     }
-    // public function areas()
-    // {
-    //     $areas = Area::paginate();
-    //     return view('admin.area',compact('areas'));
-    // }
-    // public function cargos()
-    // {
-    //     $areas = Area::paginate();
-    //     $cargos = Position::paginate();
-    //     return view('admin.cargo',compact('areas','cargos'));
-    // }
-    // public function tiporetiro()
-    // {   
-    //     $tiporetiros = TypeRetirement::paginate();
-    //     return view('admin.tiporetiro',compact('tiporetiros'));
-    // }
 
     public function busqueda(Request $request)
     {

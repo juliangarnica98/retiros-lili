@@ -15,11 +15,6 @@ class PositionSeeder extends Seeder
      */
     public function run()
     {
-        // $data=[
-        //     [
-        //         'description' => 'ESTABILIDAD LABORAL','area_id'=>'1',
-        //     ],
-        // ];
-        
+  
     }
 }

@@ -37,12 +37,19 @@ class RetirementController extends Controller
 
     public function create(Request $request){
 
+        if($request->dir_letter != null){
+            $request->file('dir_letter')->store('public');
+        }
+        if($request->dir_certificate != null){
+            $request->file('dir_certificate')->store('public');
+        }
+        
         $retiro = new Retirement();
         $retiro->user_id=Auth::user()->name;
 
-         $colaborador = Collaborator::where('id',$request->collaborator_id)->first();
-         $colaborador->state = "0";
-         $colaborador->save();
+        $colaborador = Collaborator::where('id',$request->collaborator_id)->first();
+        $colaborador->state = "0";
+        $colaborador->save();
 
         $retiro->collaborator_id=$request->collaborator_id;
         $retiro->document_collaborator=$request->document_collaborator;
@@ -72,18 +79,12 @@ class RetirementController extends Controller
         $retiro->date_d_4= $request->date_d_4 == '2000-01-01' ? '':$request->date_d_4 ;
         $retiro->date_d_5= $request->date_d_5 == '2000-01-01' ? '':$request->date_d_5 ;
     
-        
-        // $retiro->cum_bonus=$request->cum_bonus;
-        // $retiro->cat_bonus=$request->cat_bonus;
-        // $retiro->ext_bonus=$request->ext_bonus;
 
         $retiro->admin_ent=$request->ad_carnet." " .$request->ad_tokens." " .$request->ad_pc." " .$request->ad_ninguno;
         $retiro->store_ent=$request->ti_jean." " .$request->ti_camisa. " " .$request->ti_gafete." " .$request->ti_token." " . $request->ti_carnet." " . $request->ti_canguro. " " .$request->ti_ninguno;
         $retiro->letter=$request->letter;
         $retiro->cedi_ent=$request->cedi_jean." " .$request->cedi_camisa." " .$request->cedi_botas." " .$request->cedi_terminal." " .$request->cedi_token." " .$request->cedi_carnet." " .$request->cedi_chaqueta." " .$request->cedi_canguro." " .$request->cedi_cofia." " .$request->cedi_ninguno;
 
-        // $retiro->pc=$request->pc;
-        // $retiro->cell=$request->cell;
         $retiro->delivery_certificate=$request->delivery_certificate;
         $retiro->save();
         return back()->with('message','Se a realizado el retiro de '.$retiro->name_collaborator.' satisfactoriamente');

@@ -18,11 +18,16 @@
     /* h1 {
       text-align: center;
     } */
-    input {
+    /* input {
         padding: 10px;
         width: 100%;
         font-size: 17px;
         border: 1px solid #aaaaaa;
+    } */
+    input {
+        color: #000000;
+        border: none;
+        border-bottom: 3px solid rgb(232, 81, 153);
     }
 
     /* Mark input boxes that gets an error on validation: */
@@ -94,25 +99,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-11">
-                {{-- <h1 class="text-center">Registra un nuevo retiro</h1> --}}
-                <div class="card mt-5 border-info|">
-                    {{-- <div class="card-header">Registra un nuevo retiro</div> --}}
-
-
-                    {{-- @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }} --}}
-                    <form id="regForm" action="{{ route('boss.create') }}" method="post">
-                        {{-- <h1>Registra un nuevo retiro</h1> --}}
-                        <!-- One "tab" for each step in the form: -->
-                        {{-- <div class="tab">Name: --}}
+                <div class="card mt-5 border-info">
+                    <form id="regForm" action="{{ route('boss.create') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
-
                         <div class="tab">
                             <div class="row">
                                 <div class="col-12">
@@ -131,10 +120,10 @@
                                         <input type="text" class="form-control" id="name" name="name_collaborator"
                                             placeholder="" readonly>
                                     </div>
-                                    <input type="hidden" class="form-control" id="region" name="region"
-                                            placeholder="" readonly>
+                                    <input type="hidden" class="form-control" id="region" name="region" placeholder=""
+                                        readonly>
                                     <input type="hidden" class="form-control" id="region_jefe" name="region_jefe"
-                                        placeholder="" readonly value="{{$regional}}">
+                                        placeholder="" readonly value="{{ $regional }}">
 
 
                                 </div>
@@ -183,8 +172,8 @@
 
                                         <label for="full_name_id" class="control-label">Razón de desempeño</label>
                                         {{-- <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder=""> --}}
-                                        <input type="text" class="form-control" id="reason_performance" name="reason_performance"
-                                            placeholder="">
+                                        <input type="text" class="form-control" id="reason_performance"
+                                            name="reason_performance" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -270,17 +259,15 @@
                                             <label for="full_name_id" class="control-label">Concepto dinero
                                                 pendiente</label>
                                             <input type="text" class="form-control" id="money_conc" name="money_conc"
-                                                value="0">
+                                                value="-">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- @foreach ($positions as $position) --}}
-
-                        <div class="tab">
+                        <div class="tab" id="fecha_novedad">
                             <div class="row" id="fechas1">
-                                <div class="col-12" >
+                                <div class="col-12">
                                     <label for="full_name_id" class="control-label">Novedades Compensatorio
                                         Indique las fechas de los días que se le deben al colaborador por términos de
                                         compensatorio.</label>
@@ -318,9 +305,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab">
+                        <div class="tab" id="fecha_dominical">
                             <div class="row" id="fechas2">
-                                <div class="col-12" >
+                                <div class="col-12">
                                     <label for="full_name_id" class="control-label"> Dominicales/Festivo A
                                         Liquidar</label>
 
@@ -362,10 +349,9 @@
                                 <div class="col-12">
                                     <div class="form-group" id="entrega_tienda">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
+                                        <label for="full_name_id" class="control-label">Se realizo
                                             entrega de</label>
-                                        <label for="full_name_id" class="control-label"><strong>Perfil de
-                                                tienda</strong></label>
+
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="jean"
                                                 name="ti_jean" id="jean">
@@ -418,7 +404,7 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox"
                                                 value="No hace entrega de ninguno de los anteriores" id="ti_ninguno"
-                                                name="ti_ninguno">
+                                                name="ti_ninguno" checked>
                                             <label class="form-check-label" for="ti_ninguno">
                                                 No hace entrega de ninguno de los anteriores
                                             </label>
@@ -426,127 +412,124 @@
                                     </div>
                                     <div class="form-group" id="entrega_administrador">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
-                                            entrega de</label>
-                                        <label for="full_name_id"
-                                            class="control-label"><strong>Administrador</strong></label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="carnet"
-                                                name="ad_carnet" id="ad_carnet">
-                                            <label class="form-check-label" for="carnet">
-                                                Carnet
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="tokens"
-                                                name="ad_tokens" id="ad_tokens">
-                                            <label class="form-check-label" for="tokens">
-                                                Tokens
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="pc"
-                                                id="ad_pc" name="ad_pc">
-                                            <label class="form-check-label" for="pc">
-                                                Equipo de computo
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="celular"
-                                                id="ad_celular" name="ad_celular">
-                                            <label class="form-check-label" for="pc">
-                                                Celular
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ad_ninguno"
-                                                id="ad_ninguno" name="ad_ninguno">
-                                            <label class="form-check-label" for="ad_ninguno">
-                                                No hace entrega de ninguno de los anteriores
-                                            </label>
-                                        </div>
+                                        <label for="full_name_id" class="control-label">Se realizo
+                                            entrega de
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                    name="ad_carnet" id="ad_carnet">
+                                                <label class="form-check-label" for="carnet">
+                                                    Carnet
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="tokens"
+                                                    name="ad_tokens" id="ad_tokens">
+                                                <label class="form-check-label" for="tokens">
+                                                    Tokens
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="pc"
+                                                    id="ad_pc" name="ad_pc">
+                                                <label class="form-check-label" for="pc">
+                                                    Equipo de computo
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="celular"
+                                                    id="ad_celular" name="ad_celular">
+                                                <label class="form-check-label" for="pc">
+                                                    Celular
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="ad_ninguno"
+                                                    id="ad_ninguno" name="ad_ninguno" checked>
+                                                <label class="form-check-label" for="ad_ninguno">
+                                                    No hace entrega de ninguno de los anteriores
+                                                </label>
+                                            </div>
                                     </div>
                                     <div class="form-group" id="entrega_cedi">
-                                        <label for="full_name_id" class="control-label">De acuerdo a su rol, realizo
-                                            entrega de</label>
-                                        <label for="full_name_id" class="control-label"><strong>Cedi</strong></label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="carnet"
-                                                name="cedi_jean" id="cedi_jean">
-                                            <label class="form-check-label" for="carnet">
-                                                Jean
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="tokens"
-                                                name="cedi_camisa" id="cedi_camisa">
-                                            <label class="form-check-label" for="tokens">
-                                                Camisa
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="botas"
-                                                id="cedi_botas" name="cedi_botas">
-                                            <label class="form-check-label" for="pc">
-                                                Botas
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="terminal"
-                                                id="cedi_terminal" name="cedi_terminal">
-                                            <label class="form-check-label" for="pc">
-                                                Terminal
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="token"
-                                                id="cedi_token" name="cedi_token">
-                                            <label class="form-check-label" for="pc">
-                                                Token
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="carnet"
-                                                id="cedi_carnet" name="cedi_carnet">
-                                            <label class="form-check-label" for="pc">
-                                                Carnet
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="chaqueta"
-                                                id="cedi_chaqueta" name="cedi_chaqueta">
-                                            <label class="form-check-label" for="pc">
-                                                Chaqueta
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="canguro"
-                                                id="cedi_canguro" name="cedi_canguro">
-                                            <label class="form-check-label" for="pc">
-                                                Canguro
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="cofia"
-                                                id="cedi_cofia" name="cedi_cofia">
-                                            <label class="form-check-label" for="pc">
-                                                Cofia
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="celular"
-                                                id="cedi_celular" name="cedi_celular">
-                                            <label class="form-check-label" for="pc">
-                                                Celular
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="ad_ninguno"
-                                                id="cedi_ninguno" name="cedi_ninguno">
-                                            <label class="form-check-label" for="ad_ninguno">
-                                                No hace entrega de ninguno de los anteriores
-                                            </label>
-                                        </div>
+                                        <label for="full_name_id" class="control-label">Se realizo
+                                            entrega de
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                    name="cedi_jean" id="cedi_jean">
+                                                <label class="form-check-label" for="carnet">
+                                                    Jean
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="tokens"
+                                                    name="cedi_camisa" id="cedi_camisa">
+                                                <label class="form-check-label" for="tokens">
+                                                    Camisa
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="botas"
+                                                    id="cedi_botas" name="cedi_botas">
+                                                <label class="form-check-label" for="pc">
+                                                    Botas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="terminal"
+                                                    id="cedi_terminal" name="cedi_terminal">
+                                                <label class="form-check-label" for="pc">
+                                                    Terminal
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="token"
+                                                    id="cedi_token" name="cedi_token">
+                                                <label class="form-check-label" for="pc">
+                                                    Token
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                    id="cedi_carnet" name="cedi_carnet">
+                                                <label class="form-check-label" for="pc">
+                                                    Carnet
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="chaqueta"
+                                                    id="cedi_chaqueta" name="cedi_chaqueta">
+                                                <label class="form-check-label" for="pc">
+                                                    Chaqueta
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="canguro"
+                                                    id="cedi_canguro" name="cedi_canguro">
+                                                <label class="form-check-label" for="pc">
+                                                    Canguro
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="cofia"
+                                                    id="cedi_cofia" name="cedi_cofia">
+                                                <label class="form-check-label" for="pc">
+                                                    Cofia
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="celular"
+                                                    id="cedi_celular" name="cedi_celular">
+                                                <label class="form-check-label" for="pc">
+                                                    Celular
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="ad_ninguno"
+                                                    id="cedi_ninguno" name="cedi_ninguno" checked>
+                                                <label class="form-check-label" for="ad_ninguno">
+                                                    No hace entrega de ninguno de los anteriores
+                                                </label>
+                                            </div>
                                     </div>
 
                                 </div>
@@ -555,55 +538,45 @@
                         <div class="tab">
                             <div class="row">
                                 <div class="col-12">
-                                    {{-- <div class="form-group">
-                                        <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Entrega de quipo celular de la
-                                            empresa</label>
-                                        <select class="form-select form-control" aria-label="Default select example"
-                                            name="cell">
-                                            <option value="no aplica">No aplica</option>
-                                            <option value="si">Si</option>
-                                            <option value="no"> No</option>
-                                        </select>
-                                    </div> --}}
                                     <div class="form-group">
-                                        <!-- Full Name -->
+
                                         <label for="full_name_id" class="control-label">Acta De Entrega</label>
                                         <select class="form-select form-control" aria-label="Default select example"
-                                            name="delivery_certificate">
+                                            name="delivery_certificate" id="delivery_certificate">
                                             <option value="no aplica">No aplica</option>
                                             <option value="si">Si</option>
                                             <option value="no"> No</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <!-- Full Name -->
                                         <label for="full_name_id" class="control-label"> Carta De Renuncia</label>
                                         <select class="form-select form-control" aria-label="Default select example"
-                                            name="letter">
-                                            <option value="si">Si</option>
+                                            name="letter" id="letter">
                                             <option value="no"> No</option>
+                                            <option value="si">Si</option>
+                                            
                                         </select>
+                                    </div>
+                                    <div class="form-group" id="certificacion" style="display: none">
+                                        <label for="full_name_id" class="control-label">Adjunta certificación</label>
+                                        <input class="form-control" type="file" name="dir_certificate"
+                                            id="dir_certificate">
+                                    </div>
+                                    <div class="form-group" id="carta" style="display: none">
+                                        <label for="full_name_id" class="control-label">Adjunta carta</label>
+                                        <input class="form-control" type="file" name="dir_letter" id="dir_letter">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
                         <div style="overflow:auto;">
                             <div>
-                                {{-- <div style="float:right;"> --}}
                                 <button style="float:left;background-color:#03b4a1;color:#fff" class="col-md-4 btn "
                                     type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
                                 <button style="float:right;background-color:#fc007e;color:#fff" class="col-md-4 btn "
                                     type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                             </div>
                         </div>
-                        <!-- Circles which indicates the steps of the form: -->
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step"></span>
                             <span class="step"></span>
@@ -618,25 +591,22 @@
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
-                            {{-- <span class="step"></span>
-                          <span class="step"></span> --}}
                         </div>
                     </form>
-
                 </div>
             </div>
 
         </div>
     </div>
     <script>
-        var currentTab = 0; // Current tab is set to be the first tab (0)
+        var currentTab = 0;
 
         let documento = document.querySelector('#document');
         let fechas = document.querySelector('#fechas');
         let fechas1 = document.querySelector('#fechas1');
         let fechas2 = document.querySelector('#fechas2');
-        let fecha1 = document.querySelector('#fecha1');
-        let fecha2 = document.querySelector('#fecha2');
+        let fecha_dominical = document.querySelector('#fecha_dominical');
+        let fecha_novedad = document.querySelector('#fecha_novedad');
         let name = document.querySelector('#name');
         let id_co = document.querySelector('#id_co');
         let dinero_si = document.querySelector('#dinero_si');
@@ -647,13 +617,16 @@
         let entrega_cedi = document.querySelector('#entrega_cedi');
         let region = document.querySelector('#region');
         let region_jefe = document.querySelector('#region_jefe');
-        
-        showTab(currentTab); // Display the current tab
+
+        let carta = document.querySelector('#carta');
+        let certificacion = document.querySelector('#certificacion');
+
+        showTab(currentTab);
+
         function showTab(n) {
-            // This function will display the specified tab of the form...
+
             var x = document.getElementsByClassName("tab");
             x[n].style.display = "block";
-            //... and fix the Previous/Next buttons:
             if (n == 0) {
                 document.getElementById("prevBtn").style.display = "none";
             } else {
@@ -664,16 +637,13 @@
             } else {
                 document.getElementById("nextBtn").innerHTML = "Siguiente";
             }
-            //... and run a function that will display the correct step indicator:
             fixStepIndicator(n)
         }
 
         function nextPrev(n) {
-            // This function will figure out which tab to display
+
             var x = document.getElementsByClassName("tab");
-            // Exit the function if any field in the current tab is invalid:
             if (n == 1 && !validateForm()) return false;
-            // Hide the current tab:
             x[currentTab].style.display = "none";
             // Increase or decrease the current tab by 1:
             currentTab = currentTab + n;
@@ -695,7 +665,7 @@
             y = x[currentTab].getElementsByTagName("input");
 
             // A loop that checks every input field in the current tab:
-            for (i = 0; i < y.length; i++) {
+            for (i = 0; i < y.length-2; i++) {
 
                 // If a field is empty...
                 if (y[i].value == "") {
@@ -738,7 +708,7 @@
 
             let data = {
                 'document': document.querySelector('#document').value,
-                'region_jefe':document.querySelector('#region_jefe').value,
+                'region_jefe': document.querySelector('#region_jefe').value,
             }
             fetch('busqueda', {
                     headers: {
@@ -762,23 +732,25 @@
                             confirmButtonText: 'Continuar'
                         })
                     }
-                   
-                    if (result.position == 1 || result.position == 2 || result.position == 14) 
-                    {
+
+                    if (result.position == 1 || result.position == 2 || result.position == 14) {
                         fecha1.style.display = 'none';
                         fechas1.style.display = 'none';
                         fecha2.style.display = 'none';
                         fechas2.style.display = 'none';
+                        fecha1.classList.remove('step');
+                        fecha2.classList.remove('step');
+                        fecha_dominical.classList.remove('tab');
+                        fecha_novedad.classList.remove('tab');
 
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'block';
                         entrega_cedi.style.display = 'none';
-                    }
-                    else if(result.position == 3 || result.position == 4) {
+                    } else if (result.position == 3 || result.position == 4) {
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'none';
                         entrega_cedi.style.display = 'block';
-                    }else{
+                    } else {
                         entrega_tienda.style.display = 'block';
                         entrega_administrador.style.display = 'none';
                         entrega_cedi.style.display = 'none';
@@ -789,6 +761,31 @@
                     id_co.value = "";
                 });
 
+        });
+
+        const selectElement = document.querySelector('#letter');
+
+        selectElement.addEventListener('change', (event) => {
+            const carta = document.querySelector('#carta');
+            console.log(`${event.target.value}`);
+            if(`${event.target.value}`== 'si'){  
+                carta.style.display = 'block';
+            }
+            if(`${event.target.value}`== 'no'){
+                carta.style.display = 'none';
+            }
+        });
+        const selectElement2 = document.querySelector('#delivery_certificate');
+
+        selectElement2.addEventListener('change', (event) => {
+            const carta = document.querySelector('#certificacion');
+            console.log(`${event.target.value}`);
+            if(`${event.target.value}`== 'si'){  
+                carta.style.display = 'block';
+            }
+            if(`${event.target.value}`== 'no'||`${event.target.value}`== 'no aplica'){
+                carta.style.display = 'none';
+            }
         });
     </script>
 @endsection

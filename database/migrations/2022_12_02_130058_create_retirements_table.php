@@ -48,6 +48,9 @@ class CreateRetirementsTable extends Migration
             
             $table->string('user_id')->nullable();
 
+            $table->string('dir_letter')->nullable();
+            $table->string('dir_certificate')->nullable();
+            
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 

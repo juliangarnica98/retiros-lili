@@ -135,19 +135,7 @@
                         <a class="nav-link text-center" href="{{ route('admin.index') }}">
                             <i class="fas fa-external-link-alt"></i>
                             <span>Retiros</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.postulaciones') }}">
-                            <i class="fa fa-id-card" aria-hidden="true"></i>
-                            <span>Aspirantes</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="{{ route('admin.vacantes2') }}">
-                            <i class="fa fa-id-card" aria-hidden="true"></i>
-                            <span>Vacantes</span></a>
-                    </li>
+                        </li>
                     
                     <hr class="sidebar-divider">
                     <li class="nav-item">

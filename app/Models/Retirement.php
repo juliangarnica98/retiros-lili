@@ -50,7 +50,10 @@ class Retirement extends Model
         'store_ent',
         'cedi_ent',
         'reason',
-        'reason_performance'
+        'reason_performance',
+
+        'dir_certificate',
+        'dir_letter'
 
     ];
 
