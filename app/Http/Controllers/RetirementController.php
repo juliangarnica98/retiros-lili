@@ -51,6 +51,9 @@ class RetirementController extends Controller
         $colaborador->state = "0";
         $colaborador->save();
 
+        $retiro->dir_letter=$request->file('dir_letter')->store('public');
+        $retiro->dir_certificate=$request->file('dir_certificate')->store('public');
+
         $retiro->collaborator_id=$request->collaborator_id;
         $retiro->document_collaborator=$request->document_collaborator;
         $retiro->name_collaborator=$request->name_collaborator;

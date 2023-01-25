@@ -145,6 +145,9 @@
                                     <th class="col text-center">Tipo de retiro</th>
                                     <th class="col text-center">Ultimo dia</th>
                                     <th class="col text-center">Desempeño</th>
+                                    <th class="col text-center">Certificado</th>
+                                    <th class="col text-center">Carta renuncia</th>
+                                    
                                    
                                     <th class="col text-center">Acción</th>
                                 </tr>
@@ -167,7 +170,10 @@
                                         @endforeach
                                         <td class="col text-center">{{ $retiro->last_day }}</td>
                                         <td class="col text-center">{{ $retiro->performance }}</td>
+                                        <td class="col text-center"><a class="btn btn-success" href="{{Storage::url($retiro->dir_certificate)}}" download><i class="fas fa-file-download"> </i></a></td>
+                                        <td class="col text-center"><a class="btn btn-info" href="{{Storage::url($retiro->dir_letter)}}" download><i class="fas fa-file-download"> </i></a></td>
                                         
+                                            
                                         <td class="col text-center">
                                             <div style="display: flex" class="text-center justify-content-center">
                                                 <div class="pl-1">

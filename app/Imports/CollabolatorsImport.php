@@ -36,7 +36,8 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
         $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();
         // $cdc = Gerencia::where("description", "like", "%".$row['Centro Costo']."%")->first();
         $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['centro_costo'])->first();
-      
+        $jefe = Boss::where('email',$row['jefe'])->first();
+
         if($cdc->boss_id != null){
             $jefe_id = $cdc->boss_id+1;
         }else{
@@ -53,7 +54,7 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
                 'position_id'=>$positions->id ,
                 'gerencia_id'=>$gerencia->id ,
                 'regional_id'=>$regional->id ,
-                'user_id'=> $jefe_id,
+                'user_id'=> $jefe->id,
                 'state_e'=> '1',
                 // 'centro_d'=>$row['centro_costo']
             ]);

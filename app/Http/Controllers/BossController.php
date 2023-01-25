@@ -48,7 +48,7 @@ class BossController extends Controller
         $positions = Position::all();
         $user = Auth::user()->name;
         $boss = Boss::where('name',$user)->first();
-        $collaborators = Collaborator::where('state','1')->where('regional_id',$boss->regional_id)->paginate(20);
+        $collaborators = Collaborator::where('state','1')->where('user_id',$boss->id)->paginate(20);
         
         return view('boss.collaborator.indexcolaboradores',compact('collaborators','positions'));
     }

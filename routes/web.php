@@ -16,10 +16,8 @@ use App\Models\User;
 */
 
 Route::get('/', function () {  
-    return redirect('/login');
+    return redirect()->route('home.index');
 });
-
-
 
 Route::get('/home', function () {  
     if(Auth::user()->id==1){
@@ -30,6 +28,11 @@ Route::get('/home', function () {
 });
 
 Auth::routes(["register" => false]);
+
+Route::group(['prefix' => 'intranet'], function() {
+    Route::get('inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+    Route::get('nosotros', [App\Http\Controllers\HomeController::class, 'nosotros'])->name('home.nosotros');
+});
 
 Route::group(['prefix' => 'administrador'], function() {
     Route::get('index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
