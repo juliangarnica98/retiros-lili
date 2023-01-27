@@ -32,6 +32,17 @@ Auth::routes(["register" => false]);
 Route::group(['prefix' => 'intranet'], function() {
     Route::get('inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('nosotros', [App\Http\Controllers\HomeController::class, 'nosotros'])->name('home.nosotros');
+    Route::get('lili-te-enseña', [App\Http\Controllers\HomeController::class, 'enseña'])->name('home.teenseña');
+
+    Route::get('lili-enterate', [App\Http\Controllers\HomeController::class, 'enterate'])->name('home.enterate');
+    Route::get('lili-enterate/cumpleaños', [App\Http\Controllers\HomeController::class, 'cumpleanos'])->name('home.cumpleaños');
+    Route::get('lili-enterate/novedades', [App\Http\Controllers\HomeController::class, 'novedad'])->name('home.novedad');
+    Route::get('lili-enterate/nuevos-colaboradores', [App\Http\Controllers\HomeController::class, 'colaborador'])->name('home.colaborador');
+    Route::get('lili-enterate/convocatorias-internas', [App\Http\Controllers\HomeController::class, 'convocatoria'])->name('home.convocatoria');
+    Route::get('lili-enterate/identidad-corporativa', [App\Http\Controllers\HomeController::class, 'identidad'])->name('home.identidad');
+
+    Route::get('directorio/directorio-administrativo', [App\Http\Controllers\HomeController::class, 'administrativo'])->name('home.administrativo');
+    Route::get('directorio/directorio-comercial', [App\Http\Controllers\HomeController::class, 'comercial'])->name('home.comercial');
 });
 
 Route::group(['prefix' => 'administrador'], function() {

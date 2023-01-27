@@ -6,6 +6,36 @@
     </div>
     <div class="container pt-5">
         <h1 class="text-center" style="color: #53b6b2">NUESTROS <strong>GERENTES</strong></h1>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente1.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente2.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente3.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente4.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <div class="row pt-4">
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente5.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente6.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <div class="row justify-content-center pt-4">
+            <div class="col-md-6">
+                <img src="{{ asset('images/NOSOTROS/gerente7.jpeg') }}" class="d-block w-100" alt="...">
+            </div>
+            
+        </div>
     </div>
     <div class="container pt-5">
         <h1 class="text-center" style="color: #ed6fba">NUESTRA <strong>HISTORIA</strong></h1>

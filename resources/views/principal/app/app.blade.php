@@ -67,23 +67,24 @@
                     <a class="nav-link " href="{{ route('home.index') }}"><img
                             src="{{ asset('images/pageindex/logo.png') }}" style="width: 30vh" alt=""></a>
                 </li>
-                <li class="nav-item active ">
+                <li class="nav-item active ps-3">
                     <a class="nav-link" href="{{ route('home.index') }}">Inicio <span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ps-3">
+                <li class="nav-item ">
                     <a class="nav-link text-dark" href="{{route('home.nosotros')}}">Nosotros</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{{route('home.enterate')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Lili Entérate
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-dark" href="#">Cumpleaños</a>
-                        <a class="dropdown-item text-dark" href="#">NovedadesAnother action</a>
-                        <a class="dropdown-item text-dark" href="#">Nuevos colaboradores</a>
-                        <a class="dropdown-item text-dark" href="#">Convocatorias internas</a>
-                        <a class="dropdown-item text-dark" href="#">Identidad Corporativa</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.enterate')}}">Entérate</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.cumpleaños')}}">Cumpleaños</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.novedad')}}">Novedades</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.colaborador')}}">Nuevos colaboradores</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.convocatoria')}}">Convocatorias internas</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.identidad')}}">Identidad Corporativa</a>
                         
                         {{-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> --}}
@@ -95,7 +96,7 @@
 
                 </li>
                 <li class="nav-item ps-3">
-                    <a class="nav-link text-dark" href="#">Lili Te Enseña</a>
+                    <a class="nav-link text-dark" href="{{route('home.teenseña')}}">Lili Te Enseña</a>
                 </li>
 
                 <li class="nav-item dropdown ps-3">
@@ -103,8 +104,8 @@
                         Directorio
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-dark" href="#"> Directorio administrativo</a>
-                        <a class="dropdown-item text-dark" href="#">Directorio comercial</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.administrativo')}}"> Directorio administrativo</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.comercial')}}">Directorio comercial</a>
                         {{-- <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a> --}}
                     </div>

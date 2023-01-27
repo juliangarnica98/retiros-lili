@@ -19,6 +19,42 @@ class HomeController extends Controller
     {
         return view('principal.nosotrospage');
     }
+    public function enseña()
+    {
+        return view('principal.ensenapage');
+    }
+
+
+    public function enterate(){
+        return view('principal.enterate.indexenterate');
+    }
+    public function cumpleanos(){
+        return view('principal.enterate.cumpleañosenterate');
+    }
+    public function novedad(){
+        return view('principal.enterate.novedadesenterate');
+    }
+    public function colaborador(){
+        return view('principal.enterate.colaboradorenterate');
+    }
+    public function convocatoria(){
+        return view('principal.enterate.convocatoriasenterate');
+    }
+    public function identidad(){
+        return view('principal.enterate.identidadenterate');
+    }
+
+
+    public function administrativo(){
+        return view('principal.directorio.adminstrativodirectorio');    
+    }
+    public function comercial(){
+        return view('principal.directorio.comercialdirectorio');
+    }
+    
+    
+
+
 
 
     public function create()
