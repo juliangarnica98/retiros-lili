@@ -4,13 +4,15 @@
     <div class="container pt-5 mt-5 mb-5 pb-5">
         <h1 class="text-center" style="color: #e75199"><strong> NOVEDADES</strong></h1>
         <div class="row">
-            <div class="col-md-12">
-                <iframe src="{{ asset('images/LILI ENTÉRATE/CUMPLEAÑOS/2022/Cumpleaños FEBRERO 2022.pdf') }}" style="width:100%; height:700px;" frameborder="0" frameborder="0"></iframe>
-                {{-- <iframe
-                    src="https://docs.google.com/gview?url=
-http://www.educoas.org/portal/bdigital/contenido/valzacchi/ValzacchiCapitulo-2New.pdf
-&embedded=true"
-                    style="width:100%; height:700px;" frameborder="0"></iframe> --}}
+            <div class="col-md-6 pt-5">
+                <img width="100%" src="{{asset('images/LILI ENTÉRATE/novedad1.jpeg')}}" alt="">
+                
+
+            </div>
+            <div class="col-md-6 pt-5">
+                
+                <img width="100%" src="{{asset('images/LILI ENTÉRATE/novedad2.jpeg')}}" alt="">
+
             </div>
           
         </div>

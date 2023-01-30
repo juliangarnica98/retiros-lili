@@ -47,7 +47,7 @@
     <div class="container pt-5">
         <h1 class="text-center" style="color: #53b6b2">NUESTRAS <strong>MARCAS</strong></h1>
         <div class="col-md-12">
-            <img src="{{ asset('images/NOSOTROS/NOSOTROS_marcas.png') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/NOSOTROS/nuestras marcas.jpeg') }}" class="d-block w-100" alt="...">
         </div>
     </div>
     <div class="container pt-5">
@@ -70,7 +70,7 @@
     <div class="container pt-5">
         <h1 class="text-center" style="color: #53b6b2">COMPETENCIAS <strong>ORGANIZACIONALES</strong></h1>
         <div class="col-md-12">
-            <img src="{{ asset('images/NOSOTROS/NOSOTROS_marcas.png') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('images/NOSOTROS/competencia1.jpeg') }}" class="d-block w-100" alt="...">
         </div>
     </div>
     <div class="container pt-5">

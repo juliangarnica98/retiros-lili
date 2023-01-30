@@ -23,7 +23,9 @@ class HomeController extends Controller
     {
         return view('principal.ensenapage');
     }
-
+    public function fundacion(){
+        return view('principal.fundacion.indexfundacion');
+    }
 
     public function enterate(){
         return view('principal.enterate.indexenterate');
@@ -43,78 +45,37 @@ class HomeController extends Controller
     public function identidad(){
         return view('principal.enterate.identidadenterate');
     }
-
-
     public function administrativo(){
         return view('principal.directorio.adminstrativodirectorio');    
     }
     public function comercial(){
         return view('principal.directorio.comercialdirectorio');
     }
+
+
+
+
+    public function enyoiadministrativo(){
+        return view('principal.enyoiconlili.enyoiadministrativo');
+    }
+    public function enyoicedi(){
+        return view('principal.enyoiconlili.enyoicedi');
+    }
+    public function enyoicomercial(){
+        return view('principal.enyoiconlili.enyoicomercial');
+    }
+    public function enyoipermisos(){
+        return view('principal.enyoiconlili.enyoipermisos');
+    }
+    public function enyoiprestamos(){
+        return view('principal.enyoiconlili.enyoiprestamos');
+    }
+    public function enyoibienestar(){
+        return view('principal.enyoiconlili.enyoibienestar');
+    }
     
     
+    
 
-
-
-
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

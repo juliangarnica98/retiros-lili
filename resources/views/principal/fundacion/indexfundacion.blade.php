@@ -144,11 +144,26 @@
         </div>
     </nav>
 
-    @yield('contenido')
+    
 
+    <div class="col-md-12">
+        <img src="{{ asset('images/NOSOTROS/NOSOTROS_COMERCIAL copia.png') }}" class="d-block w-100" alt="...">
+    </div>
     <div class="container">
-        <img src="{{ asset('images/pageindex/RRSS_BANNER copia 26.png') }}" class="d-block w-100"
-                        alt="...">
+        <img src="{{ asset('images/fundacion/FUNDACIÓN_1 copia 2.png') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="container">
+        <img src="{{ asset('images/fundacion/2.png') }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="container">
+        <iframe width="100%" height="450vh" src="https://www.youtube.com/embed/9hwwkcu7g20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="container">
+        <img src="{{ asset('images/fundacion/3.png') }}" class="d-block w-100" alt="...">
+    </div>
+    
+    <div class="container" >
+        <img src="{{ asset('images/fundacion/4.png') }}" class="d-block w-100" alt="...">
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity=""

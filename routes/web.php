@@ -33,7 +33,7 @@ Route::group(['prefix' => 'intranet'], function() {
     Route::get('inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('nosotros', [App\Http\Controllers\HomeController::class, 'nosotros'])->name('home.nosotros');
     Route::get('lili-te-enseña', [App\Http\Controllers\HomeController::class, 'enseña'])->name('home.teenseña');
-
+    
     Route::get('lili-enterate', [App\Http\Controllers\HomeController::class, 'enterate'])->name('home.enterate');
     Route::get('lili-enterate/cumpleaños', [App\Http\Controllers\HomeController::class, 'cumpleanos'])->name('home.cumpleaños');
     Route::get('lili-enterate/novedades', [App\Http\Controllers\HomeController::class, 'novedad'])->name('home.novedad');
@@ -43,6 +43,15 @@ Route::group(['prefix' => 'intranet'], function() {
 
     Route::get('directorio/directorio-administrativo', [App\Http\Controllers\HomeController::class, 'administrativo'])->name('home.administrativo');
     Route::get('directorio/directorio-comercial', [App\Http\Controllers\HomeController::class, 'comercial'])->name('home.comercial');
+
+    Route::get('enyoi-con-lili/administrativo', [App\Http\Controllers\HomeController::class, 'enyoiadministrativo'])->name('home.enyoiadministrativo');
+    Route::get('enyoi-con-lili/cedi', [App\Http\Controllers\HomeController::class, 'enyoicedi'])->name('home.enyoicedi');
+    Route::get('enyoi-con-lili/comercial', [App\Http\Controllers\HomeController::class, 'enyoicomercial'])->name('home.enyoicomercial');
+    Route::get('enyoi-con-lili/solicitud-de-permisos', [App\Http\Controllers\HomeController::class, 'enyoipermisos'])->name('home.enyoipermisos');
+    Route::get('enyoi-con-lili/solicitud-de-préstamo', [App\Http\Controllers\HomeController::class, 'enyoiprestamos'])->name('home.enyoiprestamos');
+    Route::get('enyoi-con-lili/política-de-bienestar', [App\Http\Controllers\HomeController::class, 'enyoibienestar'])->name('home.enyoibienestar');
+
+    Route::get('fundación-los-sueños-de-lili', [App\Http\Controllers\HomeController::class, 'fundacion'])->name('home.fundacion');
 });
 
 Route::group(['prefix' => 'administrador'], function() {
