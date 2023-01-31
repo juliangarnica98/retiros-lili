@@ -73,8 +73,37 @@ class HomeController extends Controller
     public function enyoibienestar(){
         return view('principal.enyoiconlili.enyoibienestar');
     }
+
+
+    public function gestionhumana(){
+        return view('principal.directorio.administrativo.gerencia_gh');
+    }
+    public function gcomercial(){
+        return view('principal.directorio.administrativo.gerencia_c');
+    }
+    public function expansionyvisual(){
+        return view('principal.directorio.administrativo.gerencia_ex');
+    }
+    public function mercadeo(){
+        return view('principal.directorio.administrativo.gerencia_mer');
+    }
+    public function operaciones(){
+        return view('principal.directorio.administrativo.gerencia_op');
+    }
+    public function financiera(){
+        return view('principal.directorio.administrativo.gerencia_fi');
+    }
+    public function juridica(){
+        return view('principal.directorio.administrativo.direccion_ju');
+    }
+    public function uniq(){
+        return view('principal.directorio.administrativo.uniq_condons');
+    }
     
     
+    public function poli_gerencia_gestion_humana(){
+        return view('principal.politicas_procesos.gerencia_gh');
+    }
     
 
     

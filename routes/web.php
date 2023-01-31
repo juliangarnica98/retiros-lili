@@ -51,6 +51,17 @@ Route::group(['prefix' => 'intranet'], function() {
     Route::get('enyoi-con-lili/solicitud-de-préstamo', [App\Http\Controllers\HomeController::class, 'enyoiprestamos'])->name('home.enyoiprestamos');
     Route::get('enyoi-con-lili/política-de-bienestar', [App\Http\Controllers\HomeController::class, 'enyoibienestar'])->name('home.enyoibienestar');
 
+    Route::get('directorio/directorio-administrativo/gerencia-gestión-humana', [App\Http\Controllers\HomeController::class, 'gestionhumana'])->name('home.ggestionhumana');
+    Route::get('directorio/directorio-administrativo/gerencia-comercial', [App\Http\Controllers\HomeController::class, 'gcomercial'])->name('home.gcomercial');
+    Route::get('directorio/directorio-administrativo/gerencia-de-expansión-y-visual', [App\Http\Controllers\HomeController::class, 'expansionyvisual'])->name('home.gexpansionyvisual');
+    Route::get('directorio/directorio-administrativo/gerencia-de-mercadeo-y-producto', [App\Http\Controllers\HomeController::class, 'mercadeo'])->name('home.gmercadeo');
+    Route::get('directorio/directorio-administrativo/gerencia-de-operaciones', [App\Http\Controllers\HomeController::class, 'operaciones'])->name('home.goperaciones');
+    Route::get('directorio/directorio-administrativo/gerencia-financiera', [App\Http\Controllers\HomeController::class, 'financiera'])->name('home.gfinanciera');
+    Route::get('directorio/directorio-administrativo/dirección-jurídica', [App\Http\Controllers\HomeController::class, 'juridica'])->name('home.djuridica');
+    Route::get('directorio/directorio-administrativo/uniq-condoms', [App\Http\Controllers\HomeController::class, 'uniq'])->name('home.uniq');
+
+    Route::get('políticas-y-procesos/gerencia-de-gestión-humana', [App\Http\Controllers\HomeController::class, 'poli_gerencia_gestion_humana'])->name('home.poli_gerencia_gestion_humana');
+
     Route::get('fundación-los-sueños-de-lili', [App\Http\Controllers\HomeController::class, 'fundacion'])->name('home.fundacion');
 });
 

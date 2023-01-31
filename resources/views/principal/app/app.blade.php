@@ -129,7 +129,7 @@
                         Políticas y Procesos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-dark" href="#">Gerencia de Gestión Humana</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.poli_gerencia_gestion_humana')}}">Gerencia de Gestión Humana</a>
                         <a class="dropdown-item text-dark" href="#">Gerencia Comercial</a>
                         <a class="dropdown-item text-dark" href="#">Gerencia de Expansión y Visual</a>
                         <a class="dropdown-item text-dark" href="#">Gerencia de Mercadeo y Producto</a>

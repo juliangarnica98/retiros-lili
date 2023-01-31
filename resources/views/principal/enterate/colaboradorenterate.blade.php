@@ -5,13 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <iframe src="{{ asset('images/LILI ENTÉRATE/INGRESOS/Último periodo diciembre.pdf') }}" style="width:100%; height:700px;" frameborder="0" frameborder="0"></iframe>
-                {{-- <iframe<<
-                    src="https://docs.google.com/gview?url=
-http://www.educoas.org/portal/bdigital/contenido/valzacchi/ValzacchiCapitulo-2New.pdf
-&embedded=true"
-                    style="width:100%; height:700px;" frameborder="0"></iframe> --}}
             </div>
-          
         </div>
     </div>
 @endsection
