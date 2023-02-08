@@ -48,7 +48,7 @@ class BossController extends Controller
         $positions = Position::all();
         $user = Auth::user()->name;
         $boss = Boss::where('name',$user)->first();
-        $collaborators = Collaborator::where('state','1')->where('user_id',$boss->id)->paginate(20);
+        $collaborators = Collaborator::where('state','1')->where('user_id',$boss->email)->paginate(20);
         
         return view('boss.collaborator.indexcolaboradores',compact('collaborators','positions'));
     }
@@ -79,7 +79,7 @@ class BossController extends Controller
         
     }
     public function busqueda(Request $request){
-        $region_jefe=$request->region_jefe;
+        $jefe_id=$request->jefe_id;
         
         $collaborator = Collaborator::where('document',$request->document)->where('state',1)->first(); 
         $collaborator2 = Collaborator::where('document',$request->document)->where('state',0)->first(); 
@@ -90,7 +90,7 @@ class BossController extends Controller
         
         
         if($collaborator){
-            if($region_jefe != $collaborator->regional_id){
+            if($jefe_id != $collaborator->user_id){
                 return response()->json(['name' => "",'id'=>"",'position'=>""]);
             }else{
                 $id = $collaborator->id;

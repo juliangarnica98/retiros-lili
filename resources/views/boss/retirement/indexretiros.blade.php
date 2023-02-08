@@ -121,76 +121,90 @@
         </script>
     @endif
     <div class="container pt-4">
-        
+
         <div class="row pl-3 pr-3 pt-3 justify-content-center">
             <div class="col-md-12 grid-margin stretch-card">
 
                 <div class="card" style="background-color: #ebebeb;">
                     <div class="card-body">
                         <h1 class="card-title">Retiros</h1>
-                        <p class="card-description">
-                            <a href="{{ url('jefe/exporttable/' . $usuario) }}" class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
-                            style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i> Generar reporte</a>
-                        </p>
-                        {{-- @if (is_null($retiros))
-                            <p class="text-center">No hay retiros registrados</p>
-                        @else --}}
-                        <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
-                            <thead>
-                                <tr class="d-flex ">
-                                    <th class="col text-center">Fecha </th>
-                                    <th class="col-4 text-center">Nombre </th>
-                                  
-                                    <th class="col text-center">Documento </th>
-                                    <th class="col text-center">Tipo de retiro</th>
-                                    <th class="col text-center">Ultimo dia</th>
-                                    <th class="col text-center">Desempeño</th>
-                                    <th class="col text-center">Certificado</th>
-                                    <th class="col text-center">Carta renuncia</th>
-                                    
-                                   
-                                    <th class="col text-center">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+
+                        @if (count($retiros) == 0)
+                            No hay retiros registrados
+                        @else
+                            <p class="card-description">
+                                <a href="{{ url('jefe/exporttable/' . $usuario) }}"
+                                    class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
+                                    style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i>
+                                    Generar reporte</a>
+                            </p>
+                            <div class="table-responsive">
+                                <table class="table " style="background-color: #FFF; border-radius: 10px;">
+                                    <thead>
+                                        <tr class="d-flex ">
+                                            <th class="col text-center">Fecha </th>
+                                            <th class="col text-center">Nombre </th>
+
+                                            <th class="col text-center">Documento </th>
+                                            <th class="col text-center">Tipo de retiro</th>
+                                            <th class="col text-center">Ultimo dia</th>
+                                            <th class="col text-center">Desempeño</th>
+                                            <th class="col text-center">Certificado</th>
+                                            <th class="col text-center">Carta renuncia</th>
 
 
-                                @foreach ($retiros as $retiro)
-                                    <tr class="d-flex" style="padding-bottom: 10px;">
-                                        <td class="col text-center">
-                                            {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
-                                        <td class="col-4 text-center">{{ $retiro->name_collaborator }}</td>
-                                      
-                                        <td class="col text-center">{{ $retiro->document_collaborator }}</td>
+                                            <th class="col text-center">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                        @foreach ($tipo_retiro as $typo)
-                                            @if ($retiro->type_retirement_id == $typo->id)
-                                                <td class="col text-center">{{ $typo->description }}</td>
-                                            @endif
+
+                                        @foreach ($retiros as $retiro)
+                                            <tr class="d-flex" style="padding-bottom: 10px;">
+                                                <td class="col text-center">
+                                                    {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
+                                                <td class="col text-center">{{ $retiro->name_collaborator }}</td>
+
+                                                <td class="col text-center">{{ $retiro->document_collaborator }}</td>
+
+                                                @foreach ($tipo_retiro as $typo)
+                                                    @if ($retiro->type_retirement_id == $typo->id)
+                                                        <td class="col text-center">{{ $typo->description }}</td>
+                                                    @endif
+                                                @endforeach
+                                                <td class="col text-center">{{ $retiro->last_day }}</td>
+                                                <td class="col text-center">{{ $retiro->performance }}</td>
+                                                <td class="col text-center"><a class="btn btn-success"
+                                                        href="{{ Storage::url($retiro->dir_certificate) }}" download><i
+                                                            class="fas fa-file-download"> </i></a></td>
+                                                <td class="col text-center"><a class="btn btn-info"
+                                                        href="{{ Storage::url($retiro->dir_letter) }}" download><i
+                                                            class="fas fa-file-download"> </i></a></td>
+
+
+                                                <td class="col text-center">
+                                                    <div style="display: flex" class="text-center justify-content-center">
+                                                        <div class="pl-1">
+                                                            <button class="btn btn-warning"
+                                                                data-target="#Modalve{{ $retiro->id }}"
+                                                                data-toggle="modal"><i class="fas fa-eye"></i></button>
+
+                                                        </div>
+                                                    </div>
+                                                    @include('boss.retirement.showretiros')
+                                                </td>
+
+                                            </tr>
                                         @endforeach
-                                        <td class="col text-center">{{ $retiro->last_day }}</td>
-                                        <td class="col text-center">{{ $retiro->performance }}</td>
-                                        <td class="col text-center"><a class="btn btn-success" href="{{Storage::url($retiro->dir_certificate)}}" download><i class="fas fa-file-download"> </i></a></td>
-                                        <td class="col text-center"><a class="btn btn-info" href="{{Storage::url($retiro->dir_letter)}}" download><i class="fas fa-file-download"> </i></a></td>
-                                        
-                                            
-                                        <td class="col text-center">
-                                            <div style="display: flex" class="text-center justify-content-center">
-                                                <div class="pl-1">
-                                                    <button class="btn btn-warning"
-                                                        data-target="#Modalve{{ $retiro->id }}"
-                                                        data-toggle="modal"><i class="fas fa-eye"></i></button>
-                                                    
-                                                </div>
-                                            </div>
-                                            @include('boss.retirement.showretiros')
-                                        </td>
+                                    </tbody>
+                                </table>
 
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{-- @endif --}}
+                            </div>
+                        @endif
+
+
+
+
 
                     </div>
                     <div class="container pt-3">
@@ -205,7 +219,7 @@
 
         </div>
     </div>
-    
+
     <script>
         function doSearch()
 

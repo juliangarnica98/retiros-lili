@@ -20,16 +20,9 @@ class UsersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidati
 {
     use Importable, SkipsErrors; 
 
-    public function rules(): array
-    {
-        return [        
-        ];
-    }
+   
     public function model(array $row)
-
     {
-        
-        
         $user = User::where('email',$row['correo'])->first();
         if($user){
             $user->delete(); 
@@ -41,7 +34,15 @@ class UsersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidati
                 'password' => Hash::make($row['documento'])
             ])->assignRole('Jefe');
 
-       
+    }
+
+    public function rules(): array
+    {
+        return [
+            // 'name' => ['required','string',],
+            // 'email' => ['required','email'],
+            // 'password' => ['required']
+        ];
     }
     public function onError(Throwable $e)
     {

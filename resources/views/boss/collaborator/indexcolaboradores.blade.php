@@ -130,6 +130,9 @@
                     <div class="card-body">
                         <h1 class="card-title">Colaboradores activos</h1>
 
+                        @if (count($collaborators)==0)
+                            No se le han asignado colaboradores
+                        @else
                         <form action="{{route('boss.busqueda')}}" method="get">
                             <div class="form-row">
                                 <div class="col-sm-4">
@@ -140,32 +143,37 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
-                            <thead>
-                                <tr>
-                                    <th class="col-1 text-center">Nombre</th>
-                                    <th class="col-1 text-center">Documento</th>
-                                    <th class="col-1 text-center">Cargo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($collaborators as $collaborator)
+                        <div class="table-responsive">
+                            <table class="table" style="background-color: #FFF; border-radius: 10px;">
+                                <thead>
                                     <tr>
-                                        <td class="col-1 text-center">{{ $collaborator->name }}</td>
-                                        <td class="col-1 text-center">{{ $collaborator->document }}</td>
-                                        <td class="col-1 text-center">
-                                            @foreach ($positions as $position)
-                                                @if ($collaborator->position_id == $position->id)
-                                                    {{ $position->description }}
-                                                @endif
-                                            @endforeach
-                                        </td>
-
+                                        <th class="col-1 text-center">Nombre</th>
+                                        <th class="col-1 text-center">Documento</th>
+                                        <th class="col-1 text-center">Cargo</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($collaborators as $collaborator)
+                                        <tr>
+                                            <td class="col-1 text-center">{{ $collaborator->name }}</td>
+                                            <td class="col-1 text-center">{{ $collaborator->document }}</td>
+                                            <td class="col-1 text-center">
+                                                @foreach ($positions as $position)
+                                                    @if ($collaborator->position_id == $position->id)
+                                                        {{ $position->description }}
+                                                    @endif
+                                                @endforeach
+                                            </td>
+    
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @endif
+
+                       
+                        
                         <div class="container pt-3 d-flex justify-content-center">
                             <div class="row  aling-items-center">
                                 <div class="col-12 text-xs-center">

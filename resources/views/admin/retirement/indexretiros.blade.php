@@ -72,33 +72,23 @@
 
 
 
-    .table,
-    .jsgrid .jsgrid-table {
+    .table {
         width: 100%;
         max-width: 100%;
         margin-bottom: 1rem;
         background-color: transparent;
     }
 
-    .table thead th,
-    .jsgrid .jsgrid-table thead th {
+    .table thead th {
         border-top: 0;
         border-bottom-width: 1.5px;
         font-weight: 500;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
     }
 
-    .table td,
-    .jsgrid .jsgrid-table td {
+    .table td {
         font-size: 0.9rem;
-
-    }
-
-    .badge {
-        border-radius: 0;
-        font-size: 1rem;
-        line-height: 1;
     }
 </style>
 @section('content')
@@ -125,58 +115,7 @@
 
     <div class="page-content page-container" id="page-content">
         <div class="">
-            {{-- <div class="row pl-3 pr-3 pt-3">
 
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-danger shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total vacantes
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes abiertas
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vacantes cerradas
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div> --}}
             <div class="row pl-3 pr-3 pt-3 justify-content-center">
                 <div class="col-md-12 grid-margin stretch-card">
 
@@ -189,56 +128,57 @@
                                     style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i>
                                     Generar reporte</a>
                             </p>
-                            {{-- @if (is_null($retiros))
-                                <p class="text-center">No hay retiros registrados</p>
-                            @else --}}
-                            <table class="table table-responsive " style="background-color: #FFF; border-radius: 10px;">
-                                <thead>
-                                    <tr class="d-flex">
-                                        <th class="col text-center">Fecha </th>
-                                        <th class="col text-center">Nombre </th>
-                                        <th class="col text-center">Encargado </th>
-                                        <th class="col text-center">Documento </th>
-                                        <th class="col text-center">Tipo de retiro</th>
-                                        <th class="col text-center">Ultimo dia</th>
-                                        <th class="col text-center">Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-                                    @foreach ($retiros as $retiro)
-                                        <tr class="d-flex" style="padding-bottom: 10px;">
-                                            <td class="col text-center">
-                                                {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
-                                            <td class="col text-center">{{ $retiro->name_collaborator }}</td>
-                                            <td class="col text-center">{{ $retiro->user_id }}</td>
-                                            <td class="col text-center">{{ $retiro->document_collaborator }}</td>
-
-                                            @foreach ($tipo_retiro as $typo)
-                                                @if ($retiro->type_retirement_id == $typo->id)
-                                                    <td class="col text-center">{{ $typo->description }}</td>
-                                                @endif
+                            <div class="table-responsive">
+                                @if(count($retiros) != 0)
+                                    <table class="table table-hover" style="background-color: #FFF; border-radius: 10px;">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col " class="text-center">Fecha </th>
+                                                <th scope="col " class="text-center">Nombre </th>
+                                                <th scope="col " class="text-center">Encargado </th>
+                                                <th scope="col " class="text-center">Documento </th>
+                                                <th scope="col " class="text-center">Tipo de retiro</th>
+                                                <th scope="col " class="text-center">Ultimo dia</th>
+                                                <th scope="col " class="text-center">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($retiros as $retiro)
+                                                <tr>
+                                                    <td scope="row" class="text-center">
+                                                        {{ date('d-m-Y', strtotime($retiro->created_at)) }}</td>
+                                                    <td class="text-center">{{ $retiro->name_collaborator }}</td>
+                                                    <td class="text-center">{{ $retiro->user_id }}</td>
+                                                    <td class="text-center">{{ $retiro->document_collaborator }}</td>
+        
+                                                    @foreach ($tipo_retiro as $typo)
+                                                        @if ($retiro->type_retirement_id == $typo->id)
+                                                            <td class="text-center">{{ $typo->description }}</td>
+                                                        @endif
+                                                    @endforeach
+                                                    <td class="text-center">{{ $retiro->last_day }}</td>
+        
+                                                    <td class="text-center">
+                                                        <div style="display: flex" class="text-center justify-content-center">
+                                                            <div class="pl-1">
+                                                                <button class="btn btn-warning"
+                                                                    data-target="#Modalver{{ $retiro->id }}"
+                                                                    data-toggle="modal"><i class="fas fa-eye"></i></button>
+        
+                                                            </div>
+                                                        </div>
+                                                        @include('admin.retirement.showretiros')
+                                                    </td>
+        
+                                                </tr>
                                             @endforeach
-                                            <td class="col text-center">{{ $retiro->last_day }}</td>
-                                            <td class="col text-center">
-                                                <div style="display: flex" class="text-center justify-content-center">
-                                                    <div class="pl-1">
-                                                        <button class="btn btn-warning"
-                                                            data-target="#Modalver{{ $retiro->id }}"
-                                                            data-toggle="modal"><i class="fas fa-eye"></i></button>
-                                                        
-                                                    </div>
-                                                </div>
-                                                @include('admin.retirement.showretiros')
-                                            </td>
-
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            {{-- @endif --}}
-
+                                        </tbody>
+                                    </table>
+                                @else
+                                    No hay retiros registrados
+                                @endif
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -254,41 +194,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function doSearch() {
-            const tableReg = document.getElementById('datos');
-            const searchText = document.getElementById('searchTerm').value.toLowerCase();
-            let total = 0;
-            for (let i = 1; i < tableReg.rows.length; i++) {
-                if (tableReg.rows[i].classList.contains("noSearch")) {
-                    continue;
-                }
-                let found = false;
-                const cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
-                for (let j = 0; j < cellsOfRow.length && !found; j++) {
-                    const compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-                    if (searchText.length == 0 || compareWith.indexOf(searchText) > -1) {
-                        found = true;
-                        total++;
-                    }
-                }
-                if (found) {
-                    tableReg.rows[i].style.display = '';
-                } else {
-                    tableReg.rows[i].style.display = 'none';
-                }
-            }
-            const lastTR = tableReg.rows[tableReg.rows.length - 1];
-            const td = document.querySelector("#search");
-            lastTR.classList.remove("hide", "red");
-            if (searchText == "") {
-                lastTR.classList.add("hide");
-            } else if (total) {
-                td.innerHTML = "Se ha encontrado " + total + " coincidencia" + ((total > 1) ? "s" : "");
-            } else {
-                lastTR.classList.add("red");
-                td.innerHTML = "No se han encontrado coincidencias";
-            }
-        }
-    </script>
+ 
 @endsection

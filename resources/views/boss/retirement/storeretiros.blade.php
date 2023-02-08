@@ -24,10 +24,27 @@
         font-size: 17px;
         border: 1px solid #aaaaaa;
     } */
-    input {
+    input,select {
+        padding-top: 5px;
         color: #000000;
         border: none;
         border-bottom: 3px solid rgb(232, 81, 153);
+        display: block;
+        width: 100%;
+        background-color: #ebebeb
+    }
+    .input2 {
+        padding-top: 5px;
+        color: #000000;
+        border: none;
+        border-bottom: 3px solid #03b4a1;
+        display: block;
+        width: 100%;
+        background-color: #ebebeb
+    }
+    input:focus, select:focus{
+        border-bottom: 3px solid #03b4a1;
+        outline: none;
     }
 
     /* Mark input boxes that gets an error on validation: */
@@ -68,7 +85,9 @@
     .step.finish {
         background-color: #04AA6D;
     }
-
+    .form-control{
+        border: 0
+    }
     /* .redondo{
       margin-top: 5%;
       display: block;
@@ -99,31 +118,32 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-11">
-                <div class="card mt-5 border-info">
-                    <form id="regForm" action="{{ route('boss.create') }}" method="post" enctype="multipart/form-data">
+                <div class="card mt-5 " style="background-color: #ebebeb">
+                    <form id="regForm" action="{{ route('boss.create') }}" method="post" enctype="multipart/form-data" style="background-color: #ebebeb">
                         @csrf
+                        
                         <div class="tab">
                             <div class="row">
                                 <div class="col-12">
                                     <input type="text" id="id_co" name="collaborator_id" hidden>
                                     <div class="form-group">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Identificación del
+                                        <label for="full_name_id" class="control-label text-dark">Identificación del
                                             colaborador</label>
-                                        <input type="number" class="form-control" id="document"
+                                        <input type="number" class="" id="document"
                                             name="document_collaborator" placeholder="">
                                     </div>
 
                                     <div class="form-group">
                                         <!-- Street 1 -->
-                                        <label for="street1_id" class="control-label">Nombre del colaborador</label>
-                                        <input type="text" class="form-control" id="name" name="name_collaborator"
+                                        <label for="street1_id" class="control-label text-dark">Nombre del colaborador</label>
+                                        <input type="text" class="input2" id="name" name="name_collaborator"
                                             placeholder="" readonly>
                                     </div>
                                     <input type="hidden" class="form-control" id="region" name="region" placeholder=""
                                         readonly>
-                                    <input type="hidden" class="form-control" id="region_jefe" name="region_jefe"
-                                        placeholder="" readonly value="{{ $regional }}">
+                                    <input type="hidden" class="form-control" id="jefe_id" name="jefe_id"
+                                        placeholder="" readonly value="{{ $jefe_id }}">
 
 
                                 </div>
@@ -134,29 +154,29 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Calificación desempeño</label>
-                                        <label>Seleccione de 1 a 3 el desempeño del colaborador a retirar de acuerdo a su
+                                        <label for="full_name_id" class="control-label text-dark">Calificación desempeño</label>
+                                        <label class="text-dark">Seleccione de 1 a 3 el desempeño del colaborador a retirar de acuerdo a su
                                             criterio, tenga en cuenta la siguiente escala: 1 desempeño bajo, 2 desempeño
                                             medio y 3 desempeño bueno.</label>
                                         {{-- <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder=""> --}}
                                         <div class="form-check col-md-4">
                                             <input class="form-check-input " type="radio" name="performance"
                                                 id="performance" value="1" checked>
-                                            <label class="form-check-label ml-5" for="performance">
+                                            <label class="form-check-label ml-5 text-dark" for="performance">
                                                 1
                                             </label>
                                         </div>
                                         <div class="form-check col-md-4">
                                             <input class="form-check-input" type="radio" name="performance" value="1"
                                                 id="performance">
-                                            <label class="form-check-label ml-5" for="performance">
+                                            <label class="form-check-label ml-5 text-dark" for="performance">
                                                 2
                                             </label>
                                         </div>
                                         <div class="form-check col-md-4">
                                             <input class="form-check-input" type="radio" name="performance" value="1"
                                                 id="performance">
-                                            <label class="form-check-label ml-5" for="performance">
+                                            <label class="form-check-label ml-5 text-dark" for="performance">
                                                 3
                                             </label>
                                         </div>
@@ -170,9 +190,9 @@
                                     <div class="form-group">
                                         <!-- Full Name -->
 
-                                        <label for="full_name_id" class="control-label">Razón de desempeño</label>
-                                        {{-- <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder=""> --}}
-                                        <input type="text" class="form-control" id="reason_performance"
+                                        <label for="full_name_id" class="control-label text-dark">Razón de desempeño</label>
+                                        {{-- <input type="text" class="" id="full_name_id" name="full_name" placeholder=""> --}}
+                                        <input type="text" class="" id="reason_performance"
                                             name="reason_performance" placeholder="">
                                     </div>
                                 </div>
@@ -184,9 +204,9 @@
                                     <div class="form-group">
                                         <!-- Full Name -->
 
-                                        <label for="full_name_id" class="control-label">Tipo de retiro</label>
-                                        {{-- <input type="text" class="form-control" id="full_name_id" name="full_name" placeholder=""> --}}
-                                        <select class="form-select form-control" aria-label="Default select example"
+                                        <label for="full_name_id" class="control-label text-dark">Tipo de retiro</label>
+                                        {{-- <input type="text" class="" id="full_name_id" name="full_name" placeholder=""> --}}
+                                        <select class="form-select" aria-label="Default select example"
                                             name="type_retirement_id">
                                             {{-- <option value="" selected>Seleccione algun tipo de retiro</option> --}}
                                             @foreach ($type_retirements as $type_retirement)
@@ -203,9 +223,9 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">INDIQUE LA RAZON DEL RETIRO
+                                        <label for="full_name_id" class="control-label text-dark">INDIQUE LA RAZON DEL RETIRO
                                         </label>
-                                        <input type="text" class="form-control" id="reason" name="reason"
+                                        <input type="text" class="" id="reason" name="reason"
                                             placeholder="">
                                     </div>
                                 </div>
@@ -216,8 +236,8 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Ultimo día laborado</label>
-                                        <input type="date" class="form-control" id="last_day" name="last_day"
+                                        <label for="full_name_id" class="control-label text-dark">Ultimo día laborado</label>
+                                        <input type="date" class="" id="last_day" name="last_day"
                                             placeholder="">
                                     </div>
                                 </div>
@@ -228,20 +248,20 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Dinero pendiente</label>
-                                        <label for="full_name_id" class="control-label">Indique si el colaborador debe
+                                        <label for="full_name_id" class="control-label text-dark">Dinero pendiente</label>
+                                        <label for="full_name_id" class="control-label text-dark">Indique si el colaborador debe
                                             dinero de la tienda tales como caja menor u otros</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="money_pend"
                                                 id="dinero_si" value="si">
-                                            <label class="form-check-label" for="dinero_si">
+                                            <label class="form-check-label text-dark" for="dinero_si">
                                                 si
                                             </label>
                                         </div>
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="money_pend"
                                                 id="dinero_no" value="no" checked>
-                                            <label class="form-check-label" for="dinero_no">
+                                            <label class="form-check-label text-dark" for="dinero_no">
                                                 no
                                             </label>
                                         </div>
@@ -249,16 +269,16 @@
                                     <div id="dinero_pendiente" style="display: none">
                                         <div class="form-group">
                                             <!-- Full Name -->
-                                            <label for="full_name_id" class="control-label">Cantidad de dinero
+                                            <label for="full_name_id" class="control-label text-dark">Cantidad de dinero
                                                 pendiente</label>
-                                            <input type="text" class="form-control" id="full_name_id"
+                                            <input type="text" class="" id="full_name_id"
                                                 name="money_amou" value="0">
                                         </div>
                                         <div class="form-group">
                                             <!-- Full Name -->
-                                            <label for="full_name_id" class="control-label">Concepto dinero
+                                            <label for="full_name_id" class="control-label text-dark">Concepto dinero
                                                 pendiente</label>
-                                            <input type="text" class="form-control" id="money_conc" name="money_conc"
+                                            <input type="text" class="" id="money_conc" name="money_conc"
                                                 value="-">
                                         </div>
                                     </div>
@@ -268,38 +288,38 @@
                         <div class="tab" id="fecha_novedad">
                             <div class="row" id="fechas1">
                                 <div class="col-12">
-                                    <label for="full_name_id" class="control-label">Novedades Compensatorio
+                                    <label for="full_name_id" class="control-label text-dark">Novedades Compensatorio
                                         Indique las fechas de los días que se le deben al colaborador por términos de
                                         compensatorio.</label>
 
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha Novedad 1</label>
-                                        <input type="date" class="form-control fecha_n" id="date_1" name="date_1"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha Novedad 1</label>
+                                        <input type="date" class=" fecha_n" id="date_1" name="date_1"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha Novedad 2</label>
-                                        <input type="date" class="form-control fecha_n" id="date_2" name="date_2"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha Novedad 2</label>
+                                        <input type="date" class=" fecha_n" id="date_2" name="date_2"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha Novedad 3</label>
-                                        <input type="date" class="form-control fecha_n" id="date_3" name="date_3"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha Novedad 3</label>
+                                        <input type="date" class=" fecha_n" id="date_3" name="date_3"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha Novedad 4</label>
-                                        <input type="date" class="form-control fecha_n" id="date_4" name="date_4"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha Novedad 4</label>
+                                        <input type="date" class=" fecha_n" id="date_4" name="date_4"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha Novedad 5</label>
-                                        <input type="date" class="form-control fecha_n" id="date_5" name="date_5"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha Novedad 5</label>
+                                        <input type="date" class=" fecha_n" id="date_5" name="date_5"
                                             value="2000-01-01">
                                     </div>
                                 </div>
@@ -308,37 +328,37 @@
                         <div class="tab" id="fecha_dominical">
                             <div class="row" id="fechas2">
                                 <div class="col-12">
-                                    <label for="full_name_id" class="control-label"> Dominicales/Festivo A
+                                    <label for="full_name_id" class="control-label text-dark"> Dominicales/Festivo A
                                         Liquidar</label>
 
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha dominical 1</label>
-                                        <input type="date" class="form-control" id="date_d_1" name="date_d_1"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha dominical 1</label>
+                                        <input type="date" class="" id="date_d_1" name="date_d_1"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha dominical 2</label>
-                                        <input type="date" class="form-control" id="date_d_2" name="date_d_2"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha dominical 2</label>
+                                        <input type="date" class="" id="date_d_2" name="date_d_2"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha dominical 3</label>
-                                        <input type="date" class="form-control" id="date_d_3" name="date_d_3"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha dominical 3</label>
+                                        <input type="date" class="" id="date_d_3" name="date_d_3"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha dominical 4</label>
-                                        <input type="date" class="form-control" id="date_d_4" name="date_d_4"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha dominical 4</label>
+                                        <input type="date" class="" id="date_d_4" name="date_d_4"
                                             value="2000-01-01">
                                     </div>
                                     <div class="form-group fechas" id="fechas">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Fecha dominical 5</label>
-                                        <input type="date" class="form-control" id="date_d_5" name="date_d_5"
+                                        <label for="full_name_id" class="control-label text-dark">Fecha dominical 5</label>
+                                        <input type="date" class="" id="date_d_5" name="date_d_5"
                                             value="2000-01-01">
                                     </div>
                                 </div>
@@ -349,184 +369,185 @@
                                 <div class="col-12">
                                     <div class="form-group" id="entrega_tienda">
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Se realizo
+                                        <label for="full_name_id" class="control-label text-dark d-flex h4 justify-content-center">Se realizo
                                             entrega de</label>
 
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="jean"
                                                 name="ti_jean" id="jean">
-                                            <label class="form-check-label" for="jean">
+                                            <label class="form-check-label text-dark" for="jean">
                                                 Jean
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="camisa"
+                                            <input class="form-check-input " type="checkbox" value="camisa"
                                                 name="ti_camisa" id="camisa">
-                                            <label class="form-check-label" for="camisa">
+                                            <label class="form-check-label text-dark" for="camisa">
                                                 Camisa
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="gafete"
+                                            <input class="form-check-input " type="checkbox" value="gafete"
                                                 id="gafete" name="ti_gafete">
-                                            <label class="form-check-label" for="Gafete">
+                                            <label class="form-check-label text-dark" for="Gafete">
                                                 Gafete
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="token"
+                                            <input class="form-check-input " type="checkbox" value="token"
                                                 id="ti_token" name="ti_token">
-                                            <label class="form-check-label" for="ti_token">
+                                            <label class="form-check-label text-dark" for="ti_token">
                                                 Token
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="carnet"
+                                            <input class="form-check-input " type="checkbox" value="carnet"
                                                 id="ti_carnet" name="ti_carnet">
-                                            <label class="form-check-label" for="ti_carnet">
+                                            <label class="form-check-label text-dark" for="ti_carnet">
                                                 Carnet
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="canguro"
+                                            <input class="form-check-input " type="checkbox" value="canguro"
                                                 id="canguro" name="ti_canguro">
-                                            <label class="form-check-label" for="canguro">
+                                            <label class="form-check-label text-dark" for="canguro">
                                                 Canguro
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="celular"
+                                            <input class="form-check-input " type="checkbox" value="celular"
                                                 id="ti_celular" name="ti_celular">
-                                            <label class="form-check-label" for="canguro">
+                                            <label class="form-check-label text-dark" for="canguro">
                                                 Celular
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input " type="checkbox"
                                                 value="No hace entrega de ninguno de los anteriores" id="ti_ninguno"
                                                 name="ti_ninguno" checked>
-                                            <label class="form-check-label" for="ti_ninguno">
+                                            <label class="form-check-label text-dark" for="ti_ninguno">
                                                 No hace entrega de ninguno de los anteriores
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="form-group" id="entrega_administrador">
+                                    <div class="form-group" id="entrega_administrador" >
                                         <!-- Full Name -->
-                                        <label for="full_name_id" class="control-label">Se realizo
-                                            entrega de
+                                        <label for="full_name_id" class="control-label text-dark text-center d-flex h4 justify-content-center">Se realizo entrega de</label>
+                                            
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                <input class="form-check-input d-flex flex-row-reverse aling-items-end" type="checkbox" value="carnet"
                                                     name="ad_carnet" id="ad_carnet">
-                                                <label class="form-check-label" for="carnet">
+                                                <label class="form-check-label text-dark" for="carnet">
                                                     Carnet
                                                 </label>
                                             </div>
+                                            
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="tokens"
+                                                <input class="form-check-input d-flex flex-row-reverse" type="checkbox" value="tokens"
                                                     name="ad_tokens" id="ad_tokens">
-                                                <label class="form-check-label" for="tokens">
+                                                <label class="form-check-label text-dark" for="tokens">
                                                     Tokens
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="pc"
+                                                <input class="form-check-input d-flex flex-row-reverse" type="checkbox" value="pc"
                                                     id="ad_pc" name="ad_pc">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Equipo de computo
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="celular"
+                                                <input class="form-check-input d-flex flex-row-reverse" type="checkbox" value="celular"
                                                     id="ad_celular" name="ad_celular">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Celular
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="ad_ninguno"
+                                                <input class="form-check-input d-flex flex-row-reverse" type="checkbox" value="ad_ninguno"
                                                     id="ad_ninguno" name="ad_ninguno" checked>
-                                                <label class="form-check-label" for="ad_ninguno">
+                                                <label class="form-check-label text-dark" for="ad_ninguno">
                                                     No hace entrega de ninguno de los anteriores
                                                 </label>
                                             </div>
                                     </div>
                                     <div class="form-group" id="entrega_cedi">
-                                        <label for="full_name_id" class="control-label">Se realizo
-                                            entrega de
+                                        <label for="full_name_id" class="control-label text-dark text-center d-flex h4 justify-content-center">Se realizo
+                                            entrega de</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                <input class="form-check-input " type="checkbox" value="carnet"
                                                     name="cedi_jean" id="cedi_jean">
-                                                <label class="form-check-label" for="carnet">
+                                                <label class="form-check-label text-dark" for="carnet">
                                                     Jean
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="tokens"
+                                                <input class="form-check-input " type="checkbox" value="tokens"
                                                     name="cedi_camisa" id="cedi_camisa">
-                                                <label class="form-check-label" for="tokens">
+                                                <label class="form-check-label text-dark" for="tokens">
                                                     Camisa
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="botas"
+                                                <input class="form-check-input " type="checkbox" value="botas"
                                                     id="cedi_botas" name="cedi_botas">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Botas
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="terminal"
+                                                <input class="form-check-input " type="checkbox" value="terminal"
                                                     id="cedi_terminal" name="cedi_terminal">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Terminal
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="token"
+                                                <input class="form-check-input " type="checkbox" value="token"
                                                     id="cedi_token" name="cedi_token">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Token
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="carnet"
+                                                <input class="form-check-input " type="checkbox" value="carnet"
                                                     id="cedi_carnet" name="cedi_carnet">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Carnet
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="chaqueta"
+                                                <input class="form-check-input " type="checkbox" value="chaqueta"
                                                     id="cedi_chaqueta" name="cedi_chaqueta">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Chaqueta
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="canguro"
+                                                <input class="form-check-input " type="checkbox" value="canguro"
                                                     id="cedi_canguro" name="cedi_canguro">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Canguro
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="cofia"
+                                                <input class="form-check-input " type="checkbox" value="cofia"
                                                     id="cedi_cofia" name="cedi_cofia">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Cofia
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="celular"
+                                                <input class="form-check-input " type="checkbox" value="celular"
                                                     id="cedi_celular" name="cedi_celular">
-                                                <label class="form-check-label" for="pc">
+                                                <label class="form-check-label text-dark" for="pc">
                                                     Celular
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="ad_ninguno"
+                                                <input class="form-check-input " type="checkbox" value="ad_ninguno"
                                                     id="cedi_ninguno" name="cedi_ninguno" checked>
-                                                <label class="form-check-label" for="ad_ninguno">
+                                                <label class="form-check-label text-dark" for="ad_ninguno">
                                                     No hace entrega de ninguno de los anteriores
                                                 </label>
                                             </div>
@@ -540,8 +561,8 @@
                                 <div class="col-12">
                                     <div class="form-group">
 
-                                        <label for="full_name_id" class="control-label">Acta De Entrega</label>
-                                        <select class="form-select form-control" aria-label="Default select example"
+                                        <label for="full_name_id" class="control-label text-dark">Acta De Entrega</label>
+                                        <select class="form-select " aria-label="Default select example"
                                             name="delivery_certificate" id="delivery_certificate">
                                             <option value="no aplica">No aplica</option>
                                             <option value="si">Si</option>
@@ -549,8 +570,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="full_name_id" class="control-label"> Carta De Renuncia</label>
-                                        <select class="form-select form-control" aria-label="Default select example"
+                                        <label for="full_name_id" class="control-label text-dark"> Carta De Renuncia</label>
+                                        <select class="form-select " aria-label="Default select example"
                                             name="letter" id="letter">
                                             <option value="no"> No</option>
                                             <option value="si">Si</option>
@@ -558,22 +579,22 @@
                                         </select>
                                     </div>
                                     <div class="form-group" id="certificacion" style="display: none">
-                                        <label for="full_name_id" class="control-label">Adjunta certificación</label>
-                                        <input class="form-control" type="file" name="dir_certificate"
+                                        <label for="full_name_id" class="control-label text-dark">Adjunta certificación</label>
+                                        <input class="" type="file" name="dir_certificate"
                                             id="dir_certificate">
                                     </div>
                                     <div class="form-group" id="carta" style="display: none">
-                                        <label for="full_name_id" class="control-label">Adjunta carta</label>
-                                        <input class="form-control" type="file" name="dir_letter" id="dir_letter">
+                                        <label for="full_name_id" class="control-label text-dark">Adjunta carta</label>
+                                        <input class="" type="file" name="dir_letter" id="dir_letter">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div style="overflow:auto;">
                             <div>
-                                <button style="float:left;background-color:#03b4a1;color:#fff" class="col-md-4 btn "
+                                <button style="float:left;background-color:#03b4a1;color:#fff;border-radius: 25px;" class="col-md-4 btn box"
                                     type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
-                                <button style="float:right;background-color:#fc007e;color:#fff" class="col-md-4 btn "
+                                <button style="float:right;background-color:#fc007e;color:#fff; border-radius: 25px;" class="col-md-4 btn box"
                                     type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                             </div>
                         </div>
@@ -616,7 +637,7 @@
         let entrega_administrador = document.querySelector('#entrega_administrador');
         let entrega_cedi = document.querySelector('#entrega_cedi');
         let region = document.querySelector('#region');
-        let region_jefe = document.querySelector('#region_jefe');
+        let jefe_id = document.querySelector('#jefe_id');
 
         let carta = document.querySelector('#carta');
         let certificacion = document.querySelector('#certificacion');
@@ -708,7 +729,7 @@
 
             let data = {
                 'document': document.querySelector('#document').value,
-                'region_jefe': document.querySelector('#region_jefe').value,
+                'jefe_id': document.querySelector('#jefe_id').value,
             }
             fetch('busqueda', {
                     headers: {

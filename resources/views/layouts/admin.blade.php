@@ -11,19 +11,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Retiros LiliY&oi- @yield('title')</title>
 
-    <!-- Custom fonts for this template-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{ asset('libs/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
     <link href="{{ asset('libs/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script> -->
 
 </head>
 <style>
@@ -104,9 +98,22 @@
         color: #fff;
         font-weight: bold;
         box-shadow: none;
-        
-      
     }
+    .card{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .box{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .box-cicle{
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35) ;
+    }
+    /* i:hover{
+        color: #646464;
+    }
+    span:hover{
+        color: #646464;
+    } */
 </style>
 
 <body id="page-top">
@@ -134,15 +141,26 @@
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('admin.index') }}">
                             <i class="fas fa-external-link-alt"></i>
-                            <span>Retiros</span></a>
+                            <span>RETIROS</span></a>
                         </li>
                     
                     <hr class="sidebar-divider">
                     <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.jefes') }}">
+                            <i class="fas fa-user-tie"></i>
+                            <span>JEFES</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{{ route('admin.colaboradores') }}">
+                            <i class="fas fa-user-friends"></i>
+                            <span>COLABORADORES</span></a>
+                    </li>
+                    {{-- <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('admin.importar') }}">
                             <i class="fa fa-id-card" aria-hidden="true"></i>
-                            <span>Importar</span></a>
-                    </li>
+                            <span>IMPORTAR</span></a>
+                    </li> --}}
 
                 </div>
             @endcan
@@ -152,7 +170,7 @@
                         <a class="nav-link text-center" href="{{ route('boss.index') }}">
 
                             <i class="fas fa-external-link-alt"></i>
-                            <span>Retiros</span></a>
+                            <span>RETIROS</span></a>
                     </li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
@@ -160,14 +178,14 @@
                         <a class="nav-link text-center" href="{{ route('retirement.index') }}">
                             {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                             <i class="fas fa-solid fa-user"></i>
-                            <span>Retiro directo</span></a>
+                            <span>RETIRO DIRECTO</span></a>
                     </li>
                     <hr class="sidebar-divider">
                     <li class="nav-item">
                         <a class="nav-link text-center" href="{{ route('boss.show') }}">
                             {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                             <i class="fas fa-layer-group"></i>
-                            <span>Colaboradores</span></a>
+                            <span>COLABORADORES</span></a>
                     </li>
 
                 </div>
@@ -210,13 +228,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{-- <span class="mr-5 d-none d-lg-inline" >{{ Auth::user()->name[0] }} </span> --}}
                                 <span class="mr-5 pr-5 text-light">{{ Auth::user()->name }}</span>
-                                {{-- {{ Auth::user()->name }} --}}
-                                {{-- <img class="img-profile rounded-circle"
-                                    src="">  --}}
-                                {{-- <div class="topbar-divider d-none d-sm-block"></div>
-                                    <i class="fas fa-ellipsis-h"></i> --}}
                             </a>
 
                             <div class="dropdown-menu shadow animated--grow-in" aria-labelledby="userDropdown"
@@ -310,19 +322,8 @@
     <script src="{{ asset('libs/stacktable.js/stacktable.js') }}"></script>
 
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script> -->
     
 
 </body>
-{{-- <script>
-    
-    $(".nav .nav-link").on("click", function(){
-        console.log("hola");
-        $(".nav").find(".active").removeClass("active");
-        $(this).addClass("active");
-    });
-</script> --}}
 
 </html>

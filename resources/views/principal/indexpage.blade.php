@@ -83,10 +83,13 @@
             </button>
         </div>
     </div>
-    <div class=" d-flex justify-content-center aling-items-center pt-5 pb-5" style="background-color: #f7f7f7">
+    <div class=" d-flex justify-content-center aling-items-center pt-5 pb-5 mb-5" style="background-color: #f7f7f7">
 
         <div class="col-md-10 ">
-            <h2 class="text-center" style="color: #e75199">Galeria</h2>
+            {{-- <h2 class="text-center" style="color: #e75199">Galeria</h2> --}}
+            <div class="col-md-12">
+                <img src="{{ asset('images/pageindex/BANNER_BANNER copia 32.png') }}" class="d-block w-100" alt="...">
+            </div>
             <div id="carouselExampleIndicators3" class="carousel carousel-light slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators3" data-bs-slide-to="0"
@@ -102,35 +105,35 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{ asset('images/pageindex/gallery1.jpeg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/pageindex/galeria/08-02-2023/gallery1.jpeg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5 class="text-light">First slide label</h5>
-                            <p class="text-light">Some representative placeholder content for the first slide.</p>
+                            {{-- <h5 class="text-light">First slide label</h5>
+                            <p class="text-light">Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/pageindex/gallery2.jpeg') }}" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            {{-- <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p> --}}
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('images/pageindex/gallery3.jpeg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/pageindex/galeria/08-02-2023/gallery2.jpeg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             {{-- <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/pageindex/gallery4.jpeg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/pageindex/galeria/08-02-2023/gallery3.jpeg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             {{-- <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{ asset('images/pageindex/gallery5.jpeg') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/pageindex/galeria/08-02-2023/gallery4.jpeg') }}" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            {{-- <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p> --}}
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('images/pageindex/galeria/08-02-2023/gallery5.jpeg') }}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
 
                         </div>
@@ -155,15 +158,15 @@
         <div class="row">
             <div class="col-md-4">
 
-                <img src="{{ asset('images/pageindex/noticia1.jpeg') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/pageindex/comunicados/08-02-2023/noticia1.jpeg') }}" class="d-block w-100" alt="...">
             </div>
             <div class="col-md-4">
 
-                <img src="{{ asset('images/pageindex/comunicado1.png') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/pageindex/comunicados/08-02-2023/comunicado1.png') }}" class="d-block w-100" alt="...">
             </div>
             <div class="col-md-4">
 
-                <img src="{{ asset('images/pageindex/comunicado2.png') }}" class="d-block w-100" alt="...">
+                <img src="{{ asset('images/pageindex/comunicados/08-02-2023/noticia3.jpeg') }}" class="d-block w-100" alt="...">
             </div>
         </div>
     </div>

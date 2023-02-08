@@ -26,17 +26,17 @@ class RetirementController extends Controller
     {
         $usuario =Auth::user()->email;
         $jefe = Boss::where('email',$usuario)->first();
-        $regional = $jefe->regional_id;
+        $jefe_id = $jefe->email;
         $positions = Position::paginate();
         $type_retirements = TypeRetirement::paginate();
-        return view('boss.retirement.storeretiros',compact('type_retirements','positions','regional'));
+        return view('boss.retirement.storeretiros',compact('type_retirements','positions','jefe_id'));
     }
     
 
     
 
     public function create(Request $request){
-
+        
         if($request->dir_letter != null){
             $request->file('dir_letter')->store('public');
         }
@@ -85,10 +85,21 @@ class RetirementController extends Controller
 
         $retiro->admin_ent=$request->ad_carnet." " .$request->ad_tokens." " .$request->ad_pc." " .$request->ad_ninguno;
         $retiro->store_ent=$request->ti_jean." " .$request->ti_camisa. " " .$request->ti_gafete." " .$request->ti_token." " . $request->ti_carnet." " . $request->ti_canguro. " " .$request->ti_ninguno;
-        $retiro->letter=$request->letter;
         $retiro->cedi_ent=$request->cedi_jean." " .$request->cedi_camisa." " .$request->cedi_botas." " .$request->cedi_terminal." " .$request->cedi_token." " .$request->cedi_carnet." " .$request->cedi_chaqueta." " .$request->cedi_canguro." " .$request->cedi_cofia." " .$request->cedi_ninguno;
 
-        $retiro->delivery_certificate=$request->delivery_certificate;
+        if($request->letter){
+            $retiro->letter=$request->letter;
+        }else{
+            $retiro->letter='Sin carta';
+        }
+
+        if($request->delivery_certificate){
+            $retiro->delivery_certificate=$request->delivery_certificate;
+        }else{
+            $retiro->delivery_certificate=='Sin certificado';
+        }
+        
+        
         $retiro->save();
         return back()->with('message','Se a realizado el retiro de '.$retiro->name_collaborator.' satisfactoriamente');
     }

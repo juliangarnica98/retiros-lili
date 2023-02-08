@@ -32,7 +32,7 @@ Auth::routes(["register" => false]);
 Route::group(['prefix' => 'intranet'], function() {
     Route::get('inicio', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
     Route::get('nosotros', [App\Http\Controllers\HomeController::class, 'nosotros'])->name('home.nosotros');
-    Route::get('lili-te-enseña', [App\Http\Controllers\HomeController::class, 'enseña'])->name('home.teenseña');
+    Route::get('cultura-organizacional', [App\Http\Controllers\HomeController::class, 'cultura'])->name('home.cultura');
     
     Route::get('lili-enterate', [App\Http\Controllers\HomeController::class, 'enterate'])->name('home.enterate');
     Route::get('lili-enterate/cumpleaños', [App\Http\Controllers\HomeController::class, 'cumpleanos'])->name('home.cumpleaños');
@@ -61,13 +61,16 @@ Route::group(['prefix' => 'intranet'], function() {
     Route::get('directorio/directorio-administrativo/uniq-condoms', [App\Http\Controllers\HomeController::class, 'uniq'])->name('home.uniq');
 
     Route::get('políticas-y-procesos/gerencia-de-gestión-humana', [App\Http\Controllers\HomeController::class, 'poli_gerencia_gestion_humana'])->name('home.poli_gerencia_gestion_humana');
-
     Route::get('fundación-los-sueños-de-lili', [App\Http\Controllers\HomeController::class, 'fundacion'])->name('home.fundacion');
 });
 
 Route::group(['prefix' => 'administrador'], function() {
     Route::get('index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
-    Route::get('importar', [App\Http\Controllers\AdminController::class, 'importar'])->name('admin.importar');
+    Route::get('jefes', [App\Http\Controllers\AdminController::class, 'indexjefes'])->name('admin.jefes');
+    Route::get('colaboradores', [App\Http\Controllers\AdminController::class, 'indexcolaboradores'])->name('admin.colaboradores');
+
+
+
     Route::post('admin-import-colaborator', [App\Http\Controllers\AdminController::class, 'importCollaborator'])->name('admin.import.collaborator');
     Route::post('admin-import-excel', [App\Http\Controllers\AdminController::class, 'importExcel'])->name('admin.import.excel');
     Route::post('busqueda-cdc', [App\Http\Controllers\AdminController::class, 'busqueda'])->name('admin.search');

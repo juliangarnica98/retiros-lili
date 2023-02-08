@@ -19,10 +19,11 @@ class HomeController extends Controller
     {
         return view('principal.nosotrospage');
     }
-    public function enseña()
+    public function cultura()
     {
-        return view('principal.ensenapage');
+        return view('principal.culturapage');
     }
+
     public function fundacion(){
         return view('principal.fundacion.indexfundacion');
     }

@@ -44,8 +44,6 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
             $jefe_id = "";
         }
         
-
-        
         return new Collaborator(
             [
                 'name' => $row['nombre'],
@@ -54,9 +52,20 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
                 'position_id'=>$positions->id ,
                 'gerencia_id'=>$gerencia->id ,
                 'regional_id'=>$regional->id ,
-                'user_id'=> $jefe->id,
+                'user_id'=> $jefe->email,
                 'state_e'=> '1',
-                // 'centro_d'=>$row['centro_costo']
             ]);
+    }
+    public function rules(): array
+    {
+        return [
+            // 'name' => ['required','string',],
+            // 'email' => ['required','email'],
+            // 'document' => ['required'],
+            // 'position_id' => ['required'],
+            // 'gerencia_id' => ['required'],
+            // 'regional_id' => ['required'],
+            // 'user_id' => ['required'],
+        ];
     }
 }

@@ -21,6 +21,9 @@ use App\Models\Cv;
 use App\Models\State;
 use App\Models\User;
 use App\Models\Vacant;
+use ErrorException;
+use Exception;
+use Illuminate\Database\QueryException;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -33,17 +36,30 @@ class AdminController extends Controller
     }
     public function index()
     {
+
         Paginator::useBootstrap();
         $tipo_retiro= TypeRetirement::all();
         $retiros = Retirement::paginate(7);
         $users = User::paginate();
+       
         return view('admin.retirement.indexretiros',compact('retiros','users','tipo_retiro'));
     }
 
-    public function importar()
+    public function indexjefes()
     {
-        return view('admin.import.indeximport');
+        Paginator::useBootstrap();
+        $jefes = Boss::paginate(15);
+        return view('admin.boss.indexjefes',compact('jefes'));
     }
+
+    public function indexcolaboradores(){
+        Paginator::useBootstrap();
+        $collaborators = Collaborator::paginate(10);
+        $jefes = Boss::get();
+        $cargos = Position::get();
+        return view('admin.collaborators.indexcolaboradores',compact('collaborators','jefes','cargos'));
+    }
+
     public function importar2()
     {
         $jefes = User::role('Jefe')->get();
@@ -114,20 +130,16 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
+
         try {
             Excel::import(new UsersImport, $file);
             Excel::import(new BossImport, $file);
-        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-        
-            $failures = $e->failures();
-        
-            foreach ($failures as $failure) {
-                $failure->row(); // row that went wrong
-                $failure->attribute(); // either heading key (if using heading row concern) or column index
-                $failure->errors(); // Actual error messages from Laravel validator
-                $failure->values(); // The values of the row that has failed.
-            }
-            return back()->withFailures('error',$failures);
+        } catch (ErrorException $e) {
+            return back()->with('error','No se ha encontrado alguna columna en el archivo');
+        }catch (QueryException $x) {
+            return back()->with('error','Existen campos obligatorios que están vacios');
+        }catch (\Exception $x) {
+            return back()->with('error','Existen un error en el archivo');
         }
         return back()->with('message','importancion de usuarios completa');
     }
@@ -145,7 +157,16 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
-        Excel::import(new CollabolatorsImport($request->jefe), $file);
+        try {
+            Excel::import(new CollabolatorsImport($request->jefe), $file);
+        } catch (ErrorException $e) {
+            return back()->with('error','No se ha encontrado alguna columna en el archivo');
+        }catch (QueryException $x) {
+            return back()->with('error','Existen campos obligatorios que están vacios');
+        }catch (\Exception $x) {
+            return back()->with('error','Existen un error en el archivo');
+        }
+        
         return back()->with('message','Importancion de usuarios completa');
     }
     

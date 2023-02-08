@@ -71,15 +71,18 @@
                     <a class="nav-link" href="{{ route('home.index') }}">Inicio <span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ">
+                <li class="nav-item ps-3 ">
                     <a class="nav-link text-dark" href="{{route('home.nosotros')}}">Nosotros</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item ps-3">
+                    <a class="nav-link text-dark" href="{{route('home.cultura')}}">Cultura organizacional</a>
+                </li>
+                <li class="nav-item dropdown ps-3">
                     <a class="nav-link dropdown-toggle" href="{{route('home.enterate')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Lili Entérate
+                        Entérate
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-dark" href="{{route('home.enterate')}}">Entérate</a>
+                        <a class="dropdown-item text-dark" href="{{route('home.enterate')}}">Lili Entérate</a>
                         <a class="dropdown-item text-dark" href="{{route('home.cumpleaños')}}">Cumpleaños</a>
                         <a class="dropdown-item text-dark" href="{{route('home.novedad')}}">Novedades</a>
                         <a class="dropdown-item text-dark" href="{{route('home.colaborador')}}">Nuevos colaboradores</a>
@@ -95,9 +98,7 @@
 
 
                 </li>
-                <li class="nav-item ps-3">
-                    <a class="nav-link text-dark" href="{{route('home.teenseña')}}">Lili Te Enseña</a>
-                </li>
+
 
                 <li class="nav-item dropdown ps-3">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
