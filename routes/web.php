@@ -19,13 +19,13 @@ Route::get('/', function () {
     return redirect()->route('home.index');
 });
 
-Route::get('/home', function () {  
-    if(Auth::user()->id==1){
-        return redirect()->route('admin.index');
-    }else if(Auth::user()->id!=1){
-        return redirect()->route('boss.index');
-    }
-});
+// Route::get('/home', function () {  
+//     if(Auth::user()->id==1){
+//         return redirect()->route('admin.index');
+//     }else if(Auth::user()->id!=1){
+//         return redirect()->route('boss.index');
+//     }
+// });
 
 Auth::routes(["register" => false]);
 
@@ -88,6 +88,10 @@ Route::group(['prefix' => 'jefe'], function()
     Route::get('retiros', [App\Http\Controllers\RetirementController::class, 'index'])->name('retirement.index');
     Route::post('create', [App\Http\Controllers\RetirementController::class, 'create'])->name('boss.create');
     Route::post('busqueda', [App\Http\Controllers\BossController::class, 'busqueda'])->name('boss.search');
+});
+Route::group(['prefix' => 'comunicador'], function() 
+{
+    Route::get('index', [App\Http\Controllers\CommunicatorController::class,'index'])->name('communicator.index');
 });
 
 

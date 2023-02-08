@@ -17,6 +17,7 @@ class RolSeeder extends Seeder
     {
         $role_admin = Role::create(['name'=>'Admin']);
         $role_jefe = Role::create(['name'=>'Jefe']);
+        $role_comunicador = Role::create(['name'=>'Comunicador']);
         
         //assignRole($role);
         //syncRole([$role_admin,$role_jefe]);
@@ -25,6 +26,8 @@ class RolSeeder extends Seeder
 
         Permission::create(['name'=>'boss.index'])->assignRole($role_jefe);
         Permission::create(['name'=>'boss.show'])->assignRole($role_jefe);
+
+        Permission::create(['name'=>'cominicador.index'])->assignRole($role_comunicador);
 
         // Permission::create(['name'=>'admin.import.excel'])->assignRole($role_jefe);
     }

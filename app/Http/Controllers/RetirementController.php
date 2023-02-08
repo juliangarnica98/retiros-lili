@@ -13,6 +13,7 @@ use App\Models\Boss;
 use App\Models\Collaborator;
 use App\Models\Position;
 use Maatwebsite\Excel\Facades\Excel;
+use Validator;
 
 class RetirementController extends Controller
 {
@@ -36,23 +37,46 @@ class RetirementController extends Controller
     
 
     public function create(Request $request){
-        
-        if($request->dir_letter != null){
-            $request->file('dir_letter')->store('public');
+
+        $validator = Validator::make($request->all(), [
+            'document_collaborator'=> 'required|max:255',
+            'name_collaborator'=> 'required|max:255',
+            'type_retirement_id'=> 'required|max:255',
+            'performance'=> 'required|max:255',
+            'last_day'=> 'required|max:255',
+            'money_pend'=> 'required|max:255',
+            'money_conc'=> 'required|max:255',
+            'money_amou'=> 'required|max:255',
+            'date_1'=> 'required|max:255',
+            'date_2'=> 'required|max:255',
+            'date_3'=> 'required|max:255',
+            'date_4'=> 'required|max:255',
+            'date_5'=> 'required|max:255',
+            'date_d_1'=> 'required|max:255',
+            'date_d_2'=> 'required|max:255',
+            'date_d_3'=> 'required|max:255',
+            'date_d_4'=> 'required|max:255',
+            'date_d_5'=> 'required|max:255',
+            'letter'=> 'required|max:255',
+            'delivery_certificate'=> 'required|max:255',
+            'admin_ent'=> 'required|max:255',
+            'store_ent'=> 'required|max:255',
+            'cedi_ent'=> 'required|max:255',
+            'reason'=> 'required|max:255',
+            'reason_performance'=> 'required|max:255',
+            'dir_certificate'=> 'required|max:255',
+            'dir_letter'=> 'required|max:255',
+        ]);
+        if($validator->fails()){
+            return back()->with('error','¡Hay errores en los campos!');
         }
-        if($request->dir_certificate != null){
-            $request->file('dir_certificate')->store('public');
-        }
-        
+
         $retiro = new Retirement();
         $retiro->user_id=Auth::user()->name;
 
         $colaborador = Collaborator::where('id',$request->collaborator_id)->first();
         $colaborador->state = "0";
         $colaborador->save();
-
-        $retiro->dir_letter=$request->file('dir_letter')->store('public');
-        $retiro->dir_certificate=$request->file('dir_certificate')->store('public');
 
         $retiro->collaborator_id=$request->collaborator_id;
         $retiro->document_collaborator=$request->document_collaborator;
@@ -87,20 +111,27 @@ class RetirementController extends Controller
         $retiro->store_ent=$request->ti_jean." " .$request->ti_camisa. " " .$request->ti_gafete." " .$request->ti_token." " . $request->ti_carnet." " . $request->ti_canguro. " " .$request->ti_ninguno;
         $retiro->cedi_ent=$request->cedi_jean." " .$request->cedi_camisa." " .$request->cedi_botas." " .$request->cedi_terminal." " .$request->cedi_token." " .$request->cedi_carnet." " .$request->cedi_chaqueta." " .$request->cedi_canguro." " .$request->cedi_cofia." " .$request->cedi_ninguno;
 
-        if($request->letter){
-            $retiro->letter=$request->letter;
+        $retiro->letter=$request->letter;
+        $retiro->delivery_certificate=$request->delivery_certificate;
+
+
+        if($request->dir_letter != null){
+            $request->file('dir_letter')->store('public');
+            $retiro->dir_letter=$request->file('dir_letter')->store('public');
         }else{
-            $retiro->letter='Sin carta';
+            $retiro->dir_letter="No";
         }
 
-        if($request->delivery_certificate){
-            $retiro->delivery_certificate=$request->delivery_certificate;
-        }else{
-            $retiro->delivery_certificate=='Sin certificado';
+        if($request->dir_certificate != null){
+            $request->file('dir_certificate')->store('public');
+            $retiro->dir_certificate=$request->file('dir_certificate')->store('public');
         }
-        
-        
+        else{
+            $retiro->dir_certificate="No";
+        }
         $retiro->save();
+        $colaborador->state = "0";
+        $colaborador->save();
         return back()->with('message','Se a realizado el retiro de '.$retiro->name_collaborator.' satisfactoriamente');
     }
 }

@@ -120,7 +120,7 @@
             )
         </script>
     @endif
-    <div class="container pt-4">
+    
 
         <div class="row pl-3 pr-3 pt-3 justify-content-center">
             <div class="col-md-12 grid-margin stretch-card">
@@ -148,7 +148,6 @@
                                             <th class="col text-center">Documento </th>
                                             <th class="col text-center">Tipo de retiro</th>
                                             <th class="col text-center">Ultimo dia</th>
-                                            <th class="col text-center">Desempeño</th>
                                             <th class="col text-center">Certificado</th>
                                             <th class="col text-center">Carta renuncia</th>
 
@@ -173,13 +172,27 @@
                                                     @endif
                                                 @endforeach
                                                 <td class="col text-center">{{ $retiro->last_day }}</td>
-                                                <td class="col text-center">{{ $retiro->performance }}</td>
-                                                <td class="col text-center"><a class="btn btn-success"
+                                                {{-- <td class="col text-center">{{ $retiro->performance }}</td> --}}
+
+
+                                                @if ($retiro->dir_certificate != 'No')
+                                                    <td class="col text-center"><a class="btn btn-success"
                                                         href="{{ Storage::url($retiro->dir_certificate) }}" download><i
                                                             class="fas fa-file-download"> </i></a></td>
+                                                @else
+                                                      <td class="col text-center">Sin certificado</td>  
+                                                @endif
+
+
+                                                @if ($retiro->dir_letter != 'No')
                                                 <td class="col text-center"><a class="btn btn-info"
-                                                        href="{{ Storage::url($retiro->dir_letter) }}" download><i
-                                                            class="fas fa-file-download"> </i></a></td>
+                                                    href="{{ Storage::url($retiro->dir_letter) }}" download><i
+                                                        class="fas fa-file-download"> </i></a></td>
+                                                @else
+                                                    <td class="col text-center">Sin carta</td>  
+                                                @endif
+                                                
+                                            
 
 
                                                 <td class="col text-center">
@@ -218,7 +231,7 @@
             </div>
 
         </div>
-    </div>
+    
 
     <script>
         function doSearch()

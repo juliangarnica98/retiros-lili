@@ -3,9 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
+
+
+
+
+
+
+
+
 
 class LoginController extends Controller
 {
@@ -20,16 +30,28 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, HasRoles;
 
   
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     // public function redirectTo(){
     //     $user = Auth::user()->isAdmin;
     //     $this->redirectTo = $user ? route('admin.index'):route('boss.index');
     //     return $this->redirectTo;
     // }
+
+
+    public function redirectTo(){
+
+        if(Auth::user()->hasRole('Admin')){
+            return '/administrador/index'; 
+        }elseif(Auth::user()->hasRole('Jefe')){
+            return '/jefe/index';
+        }elseif(Auth::user()->hasRole('Comunicador')){
+            return '/comunicador/index';
+        }
+    }
   
     public function __construct()
     {
