@@ -68,7 +68,7 @@ class RetirementController extends Controller
             'dir_letter'=> 'required|max:255',
         ]);
         if($validator->fails()){
-            return back()->with('error','¡Hay errores en los campos!');
+            return back()->with('error','¡Hay campos vacios!');
         }
 
         $retiro = new Retirement();

@@ -100,7 +100,7 @@
     @if (Session::has('error'))
         <script>
             Swal.fire(
-                'Error al importar archivo',
+                'Error',
                 "{{ Session::get('error') }}",
                 'error'
             )
