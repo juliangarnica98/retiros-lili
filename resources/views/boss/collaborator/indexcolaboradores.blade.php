@@ -157,13 +157,14 @@
                                         <tr>
                                             <td class="col-1 text-center">{{ $collaborator->name }}</td>
                                             <td class="col-1 text-center">{{ $collaborator->document }}</td>
-                                            <td class="col-1 text-center">
+                                            <td class="col-1 text-center">{{ $collaborator->cargo }}</td>
+                                            {{-- <td class="col-1 text-center">
                                                 @foreach ($positions as $position)
                                                     @if ($collaborator->position_id == $position->id)
                                                         {{ $position->description }}
                                                     @endif
                                                 @endforeach
-                                            </td>
+                                            </td> --}}
     
                                         </tr>
                                     @endforeach

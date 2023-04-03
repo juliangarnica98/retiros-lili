@@ -19,9 +19,10 @@ class CreateBossesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('cargo');
+            $table->string('centro_costo');
 
-            $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
+            // $table->unsignedBigInteger('regional_id');
+            // $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
 
         
         });

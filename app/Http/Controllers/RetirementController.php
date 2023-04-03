@@ -59,16 +59,17 @@ class RetirementController extends Controller
             'date_d_5'=> 'required|max:255',
             'letter'=> 'required|max:255',
             'delivery_certificate'=> 'required|max:255',
-            'admin_ent'=> 'required|max:255',
-            'store_ent'=> 'required|max:255',
-            'cedi_ent'=> 'required|max:255',
+            'admin_ent'=> 'max:255',
+            'store_ent'=> 'max:255',
+            'cedi_ent'=> 'max:255',
             'reason'=> 'required|max:255',
             'reason_performance'=> 'required|max:255',
-            'dir_certificate'=> 'required|max:255',
-            'dir_letter'=> 'required|max:255',
+            'dir_certificate'=> 'max:255',
+            'dir_letter'=> 'max:255',
         ]);
         if($validator->fails()){
-            return back()->with('error','¡Hay campos vacios!');
+ 
+            return back()->with('error',$validator->errors()->first());
         }
 
         $retiro = new Retirement();

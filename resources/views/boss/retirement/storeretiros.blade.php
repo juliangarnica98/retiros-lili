@@ -754,7 +754,7 @@
                         })
                     }
 
-                    if (result.position == 1 || result.position == 2 || result.position == 14) {
+                    if (result.position == 'ADMINISTRATIVO') {
                         fecha1.style.display = 'none';
                         fechas1.style.display = 'none';
                         fecha2.style.display = 'none';
@@ -767,7 +767,7 @@
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'block';
                         entrega_cedi.style.display = 'none';
-                    } else if (result.position == 3 || result.position == 4) {
+                    } else if (result.position == 'CEDI') {
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'none';
                         entrega_cedi.style.display = 'block';

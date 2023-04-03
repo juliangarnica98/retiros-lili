@@ -23,14 +23,14 @@ class UsersImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidati
    
     public function model(array $row)
     {
-        $user = User::where('email',$row['correo'])->first();
+        $user = User::where('email',$row['email'])->first();
         if($user){
             $user->delete(); 
         }
         User::create(
             [
                 'name' =>$row['nombre'],
-                'email'=>$row['correo'], 
+                'email'=>$row['email'], 
                 'password' => Hash::make($row['documento'])
             ])->assignRole('Jefe');
 

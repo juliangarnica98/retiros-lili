@@ -95,7 +95,7 @@ class BossController extends Controller
             }else{
                 $id = $collaborator->id;
                 $name = $collaborator->name;
-                $regional = $collaborator->regional_id;
+                $regional = $collaborator->area;
                 return response()->json(['name' => $name,'id'=>$id,'position'=>$regional]);
             }
             

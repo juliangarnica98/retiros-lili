@@ -130,7 +130,8 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
-
+        // Excel::import(new UsersImport, $file);
+        // Excel::import(new BossImport, $file);
         try {
             Excel::import(new UsersImport, $file);
             Excel::import(new BossImport, $file);
@@ -157,6 +158,7 @@ class AdminController extends Controller
         if($validator->fails()){
             return back()->with('error','Seleccione un archivo valido');
         }
+        // Excel::import(new CollabolatorsImport($request->jefe), $file);
         try {
             Excel::import(new CollabolatorsImport($request->jefe), $file);
         } catch (ErrorException $e) {

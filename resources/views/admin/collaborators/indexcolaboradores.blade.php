@@ -184,11 +184,12 @@
                                                             <td class="text-center">{{ $jefe->name }}</td>
                                                         @endif
                                                     @endforeach
-                                                    @foreach ($cargos as $cargo)
+                                                    <td class="text-center">{{ $collaborator->cargo }}</td>
+                                                    {{-- @foreach ($cargos as $cargo)
                                                         @if ($collaborator->position_id== $cargo->id)
                                                             <td class="text-center">{{ $cargo->description }}</td>
                                                         @endif
-                                                    @endforeach                                            
+                                                    @endforeach                                             --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

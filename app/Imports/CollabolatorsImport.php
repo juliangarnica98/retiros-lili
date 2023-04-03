@@ -31,28 +31,33 @@ class CollabolatorsImport implements ToModel, WithHeadingRow
     {
 
         
-        $positions = Position::where("description", "like", "%".$row['cargo']."%")->first();
-        $regional = Regional::where("description", "like", "%".$row['regional']."%")->first();
-        $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();
+        // $positions = Position::where("description", "like", "%".$row['cargo']."%")->first();
+        // $regional = Regional::where("description", "like", "%".$row['regional']."%")->first();
+        // $gerencia = Gerencia::where("description", "like", "%".$row['gerencia']."%")->first();
         // $cdc = Gerencia::where("description", "like", "%".$row['Centro Costo']."%")->first();
-        $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['centro_costo'])->first();
-        $jefe = Boss::where('email',$row['jefe'])->first();
-
-        if($cdc->boss_id != null){
-            $jefe_id = $cdc->boss_id+1;
-        }else{
-            $jefe_id = "";
-        }
+        // $cdc = Cdc::where('regional_id',$regional->id)->where('description',$row['centro_costo'])->first();
+        
+        
+        //$jefe = Boss::where('email',$row['jefe'])->first();
+        
+        // if($cdc->boss_id != null){
+        //     $jefe_id = $cdc->boss_id+1;
+        // }else{
+        //     $jefe_id = "";
+        // }
         
         return new Collaborator(
             [
                 'name' => $row['nombre'],
                 'state'=>1, 
                 'document' => $row['documento'],
-                'position_id'=>$positions->id ,
-                'gerencia_id'=>$gerencia->id ,
-                'regional_id'=>$regional->id ,
-                'user_id'=> $jefe->email,
+                // 'position_id'=>$positions->id ,
+                // 'gerencia_id'=>$gerencia->id ,
+                // 'regional_id'=>$regional->id ,
+                'cargo'=>$row['cargo'],
+                'centro_costo'=>$row['ceco'],
+                'user_id'=> $row['jefe'],
+                'area'=>$row['area'],
                 'state_e'=> '1',
             ]);
     }

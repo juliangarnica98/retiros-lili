@@ -13,7 +13,7 @@ class Boss extends Model
         'name',
         'email',
         'cargo',
-        'regional_id',
+        'centro_costo',
         // 'cdc_id'
     ];
     public function regional()

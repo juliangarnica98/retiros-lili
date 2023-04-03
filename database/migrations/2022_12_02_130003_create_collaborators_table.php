@@ -19,21 +19,25 @@ class CreateCollaboratorsTable extends Migration
             $table->string('name');
             $table->string('state');
             $table->string('document');
+            //agregar cargo
+            $table->string('cargo');
             $table->string('user_id')->nullable();
             $table->string('state_e');
+            $table->string('centro_costo');
+            $table->string('area');
             // $table->string('centro_d');
 
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users');
             
-            $table->unsignedBigInteger('position_id');
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');;
+            // $table->unsignedBigInteger('position_id');
+            // $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');;
 
-            $table->unsignedBigInteger('regional_id');
-            $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
+            // $table->unsignedBigInteger('regional_id');
+            // $table->foreign('regional_id')->references('id')->on('regionals')->onDelete('cascade');;
 
-            $table->unsignedBigInteger('gerencia_id');
-            $table->foreign('gerencia_id')->references('id')->on('gerencias')->onDelete('cascade');;
+            // $table->unsignedBigInteger('gerencia_id');
+            // $table->foreign('gerencia_id')->references('id')->on('gerencias')->onDelete('cascade');;
         });
     }
 

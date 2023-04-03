@@ -13,11 +13,14 @@ class Collaborator extends Model
         'name',
         'document',
         'state',
-        'position_id',
-        'gerencia_id',
-        'regional_id',
+        'cargo',
+        'centro_costo',
+        'area',
+        //'position_id',
+        //'gerencia_id',
+        //'regional_id',
         'state_e',
-        // 'centro_d'
+        
     ];
     // public function user()
     // {
