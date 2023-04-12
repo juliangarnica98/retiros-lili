@@ -18,6 +18,7 @@ use App\Models\Boss;
 use App\Models\Cdc;
 use App\Models\Collaborator;
 use App\Models\Cv;
+use App\Models\File;
 use App\Models\State;
 use App\Models\User;
 use App\Models\Vacant;
@@ -116,7 +117,12 @@ class AdminController extends Controller
     {
         $file = $request->file('file');
         if(!empty($request->file('file'))){
-            $file->store('importJefe');;
+            // $archivo=$file->store('importJefe');
+            $files= new File();
+            $files->date_jefes=date("d-m-Y h:i:s");
+            $files->file_jefe = $file->store('importJefe');
+            $files->save();
+            $file->store('importJefe');
         
         }
         
@@ -151,7 +157,22 @@ class AdminController extends Controller
         if($file == null){
             return back()->with('error','Seleccione un archivo');
         } 
-        $file->store('import');
+        
+        $files= File::orderBy('id','DESC')->first();
+        if($files){
+            if($files->date_colaboradores==""){
+                $files->date_colaboradores=date("d-m-Y h:i:s");
+                $files->file_colaboradores = $file->store('importColaborator');
+                $files->save();
+            }else{
+                return back()->with('error','Actualice la base de datos de jefes activos');
+            }
+        }else{
+            return back()->with('error','Actualice la base de datos de jefes activos');
+        }
+        
+        
+        $file->store('importColaborator');
         $validator = Validator::make($request->all(), [
             'file*' => 'required|mimes:xlsx'
         ]);

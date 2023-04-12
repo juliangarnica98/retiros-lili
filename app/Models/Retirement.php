@@ -37,11 +37,7 @@ class Retirement extends Model
         'date_d_3',
         'date_d_4',
         'date_d_5',
-
-        // 'cum_bonus',
-        // 'cat_bonus',
-        // 'ext_bonus',
-        //'cell',
+        'hrs_extra',
 
         'letter',
         'delivery_certificate',

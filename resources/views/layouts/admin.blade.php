@@ -178,7 +178,7 @@
                         <a class="nav-link text-center" href="{{ route('retirement.index') }}">
                             {{-- <i class="fas fa-fw fa-tachometer-alt"></i> --}}
                             <i class="fas fa-solid fa-user"></i>
-                            <span>RETIRO DIRECTO</span></a>
+                            <span>CREAR RETIRO</span></a>
                     </li>
                     <hr class="sidebar-divider">
                     <li class="nav-item">

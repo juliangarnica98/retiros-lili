@@ -136,7 +136,7 @@
                         <form action="{{route('boss.busqueda')}}" method="get">
                             <div class="form-row">
                                 <div class="col-sm-4">
-                                    <input class="form-control" type="text" name="busqueda">
+                                    <input class="form-control" type="text" name="busqueda" placeholder="nombre o documento">
                                 </div>
                                 <div class="col-auto">
                                     <input type="submit" class="btn btn-primary" value="buscar">
@@ -158,14 +158,6 @@
                                             <td class="col-1 text-center">{{ $collaborator->name }}</td>
                                             <td class="col-1 text-center">{{ $collaborator->document }}</td>
                                             <td class="col-1 text-center">{{ $collaborator->cargo }}</td>
-                                            {{-- <td class="col-1 text-center">
-                                                @foreach ($positions as $position)
-                                                    @if ($collaborator->position_id == $position->id)
-                                                        {{ $position->description }}
-                                                    @endif
-                                                @endforeach
-                                            </td> --}}
-    
                                         </tr>
                                     @endforeach
                                 </tbody>

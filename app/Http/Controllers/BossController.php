@@ -48,29 +48,72 @@ class BossController extends Controller
         $positions = Position::all();
         $user = Auth::user()->name;
         $boss = Boss::where('name',$user)->first();
-        $collaborators = Collaborator::where('state','1')->where('user_id',$boss->email)->paginate(20);
+        $collaborators = Collaborator::where('state','1')
+            ->where('user_id1',$boss->email)
+            ->orWhere('user_id2',$boss->email)
+            ->orWhere('user_id3',$boss->email)
+            ->orWhere('user_id4',$boss->email)
+            ->orWhere('user_id5',$boss->email)
+            ->orWhere('user_id6',$boss->email)
+            ->orWhere('user_id7',$boss->email)
+            ->paginate(20);
         
         return view('boss.collaborator.indexcolaboradores',compact('collaborators','positions'));
     }
 
     public function search(Request $request)
-    {
-        
+    {   
+        if($request->busqueda==''){
+            return redirect()->route('boss.show');
+        }
+ 
         Paginator::useBootstrap();
         $busqueda=trim($request->busqueda);
         $positions = Position::all();
-        $user = Auth::user()->name;
-        $boss = Boss::where('name',$user)->first(); 
-        $collaborators = DB::table('collaborators')
-                            ->select('id','created_at','updated_at','name','state','document','user_id','state_e','position_id','regional_id','gerencia_id')
-                            ->where('state','1')
-                            ->where('regional_id',$boss->regional_id)
-                            ->where('name','LIKE','%'.$busqueda.'%')
-                            ->orWhere('document','LIKE','%'.$busqueda.'%')
-                            ->orderBy('name','asc')
-                            ->paginate(10);        
-        // $collaborators = Collaborator::where('state','1')->where('regional_id',$boss->regional_id)->paginate(20);
+        $user = Auth::user()->email;
+        $user_name=Auth::user()->name;
+        $name_jefe=Collaborator::where('name',$user_name)->first(); 
+
+        // dd($name_jefe);
         
+        if($name_jefe->area=='ADMINISTRATIVO'){
+            $collaborators = Collaborator::where('state','1')
+            ->where('area','ADMINISTRATIVO')
+            ->where('user_id1',$user)
+            ->where('name','LIKE','%'.$busqueda.'%')
+            ->orWhere('document','LIKE','%'.$busqueda.'%')
+            ->paginate();
+            
+        }elseif($name_jefe->area=='COMERCIAL'){
+            $collaborators = Collaborator::where('state','1')
+            ->where('area','COMERCIAL')
+            ->where('user_id1',$user)
+            ->where('name','LIKE','%'.$busqueda.'%')
+            ->orWhere('document','LIKE','%'.$busqueda.'%')
+            ->paginate();
+           
+        }elseif ($name_jefe->area=='CEDI') {
+            $collaborators = Collaborator::where('state','1')
+            ->where('area','CEDI')
+            ->where('user_id1',$user)
+            ->orWhere('user_id2',$user)
+            ->orWhere('user_id3',$user)
+            ->orWhere('user_id4',$user)
+            ->orWhere('user_id5',$user)
+            ->orWhere('user_id6',$user)
+            ->orWhere('user_id7',$user)
+            ->where('name','LIKE','%'.$busqueda.'%')
+            ->orWhere('document','LIKE','%'.$busqueda.'%')
+            ->paginate();
+        }else{
+            $collaborators = Collaborator::where('state','1')
+            ->where('user_id1',$user)
+            ->where('name','LIKE','%'.$busqueda.'%')
+            ->orWhere('document','LIKE','%'.$busqueda.'%')
+            ->paginate();
+        }
+        
+     
         return view('boss.collaborator.indexcolaboradores',compact('collaborators','positions'));
     }
 
@@ -79,24 +122,26 @@ class BossController extends Controller
         
     }
     public function busqueda(Request $request){
+        
         $jefe_id=$request->jefe_id;
-        
         $collaborator = Collaborator::where('document',$request->document)->where('state',1)->first(); 
-        $collaborator2 = Collaborator::where('document',$request->document)->where('state',0)->first(); 
-        
+        $collaborator2 = Collaborator::where('document',$request->document)->where('state',0)->first();
+   
         if($collaborator2){
             return response()->json(['name' => "",'id'=>"",'position'=>""]);
         }
         
         
         if($collaborator){
-            if($jefe_id != $collaborator->user_id){
-                return response()->json(['name' => "",'id'=>"",'position'=>""]);
-            }else{
+            if($jefe_id == $collaborator->user_id1 OR $jefe_id == $collaborator->user_id2 OR $jefe_id == $collaborator->user_id3
+            OR $jefe_id == $collaborator->user_id4 OR $jefe_id == $collaborator->user_id5 OR $jefe_id == $collaborator->user_id6
+            OR $jefe_id == $collaborator->user_id7){
                 $id = $collaborator->id;
                 $name = $collaborator->name;
                 $regional = $collaborator->area;
-                return response()->json(['name' => $name,'id'=>$id,'position'=>$regional]);
+                return response()->json(['name' => $name,'id'=>$id,'position'=>$regional]);                
+            }else{
+                return response()->json(['name' => "",'id'=>"",'position'=>""]);
             }
             
         }

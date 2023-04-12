@@ -148,10 +148,7 @@
                         <div class="card-body">
                             <h1 class="card-title">Colaboradores</h1>
                             <p class="card-description">
-                                {{-- <a href="{{ url('administrador/exporttable/') }}"
-                                    class="d-none d-sm-inline-block btn btn-sm  shadow-sm"
-                                    style="background-color:  #17a0a1; color:#fff"><i class="fas fa-download fa-sm "></i>
-                                    Generar reporte</a> --}}
+                            
                             </p>
                             @if (count($collaborators) == 0)
                                 No se han importado colaboradores
@@ -185,11 +182,6 @@
                                                         @endif
                                                     @endforeach
                                                     <td class="text-center">{{ $collaborator->cargo }}</td>
-                                                    {{-- @foreach ($cargos as $cargo)
-                                                        @if ($collaborator->position_id== $cargo->id)
-                                                            <td class="text-center">{{ $cargo->description }}</td>
-                                                        @endif
-                                                    @endforeach                                             --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>

@@ -26,6 +26,7 @@ class CreateRetirementsTable extends Migration
             $table->string('money_pend');
             $table->string('money_conc');
             $table->string('money_amou');
+            $table->string('hrs_extra');
             $table->string('date_1')->nullable();
             $table->string('date_2')->nullable();
             $table->string('date_3')->nullable();

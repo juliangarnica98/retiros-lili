@@ -243,7 +243,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab">
+                        <div class="tab" id="dinero_pendientes" >
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
@@ -285,6 +285,41 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab" id="horas_extra" >
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <!-- Full Name -->
+                                        <label for="full_name_id" class="control-label text-dark">Horas pendiente</label>
+                                        <label for="full_name_id" class="control-label text-dark">Indique cuantas horas extras se le deben al colaborador</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="hrs_pend"
+                                                id="hrs_si" value="si">
+                                            <label class="form-check-label text-dark" for="dinero_si">
+                                                si
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="hrs_pend"
+                                                id="hrs_no" value="no" checked>
+                                            <label class="form-check-label text-dark" for="dinero_no">
+                                                no
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div id="hrs_pendiente" style="display: none">
+                                        <div class="form-group">
+                                            <!-- Full Name -->
+                                            <label for="full_name_id" class="control-label text-dark">Cantidad de horas extra pendientes</label>
+                                            <input type="text" class="" id="full_name_id"
+                                                name="hrs_extra" value="0">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="tab" id="fecha_novedad">
                             <div class="row" id="fechas1">
                                 <div class="col-12">
@@ -598,6 +633,7 @@
                                     type="button" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                             </div>
                         </div>
+
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step"></span>
                             <span class="step"></span>
@@ -607,7 +643,8 @@
                             <span class="step" id="fecha1"></span>
                             <span class="step" id="fecha2"></span>
 
-                            <span class="step"></span>
+                            <span class="step" id="dineros_pendientes"></span>
+                            <span class="step" id="horas_extras"></span>
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
@@ -641,6 +678,15 @@
 
         let carta = document.querySelector('#carta');
         let certificacion = document.querySelector('#certificacion');
+
+        let horas_extras = document.querySelector('#horas_extras');
+        let horas_extra = document.querySelector('#horas_extra');
+
+        let dinero_pendientes = document.querySelector('#dinero_pendientes');
+        let dineros_pendientes = document.querySelector('#dineros_pendientes');
+    
+
+        // let certificacion = document.querySelector('#certificacion');
 
         showTab(currentTab);
 
@@ -724,6 +770,12 @@
         dinero_no.addEventListener("change", function(event) {
             dinero_pendiente.style.display = 'none';
         });
+        hrs_si.addEventListener("change", function(event) {
+            hrs_pendiente.style.display = 'block';
+        });
+        hrs_no.addEventListener("change", function(event) {
+            hrs_pendiente.style.display = 'none';
+        });
         //busqueda de colaborador
         documento.addEventListener("change", function() {
 
@@ -767,10 +819,37 @@
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'block';
                         entrega_cedi.style.display = 'none';
+
+                        dinero_pendientes.style.display = 'none';
+                        dinero_pendientes.classList.remove('tab');
+                        dineros_pendientes.classList.remove('tab');
+
+                        horas_extra.style.display = 'none';
+                        horas_extra.classList.remove('tab');
+                        horas_extras.classList.remove('tab');
+
                     } else if (result.position == 'CEDI') {
                         entrega_tienda.style.display = 'none';
                         entrega_administrador.style.display = 'none';
                         entrega_cedi.style.display = 'block';
+
+                        dinero_pendientes.style.display = 'none';
+                        dinero_pendientes.classList.remove('tab');
+                        dineros_pendientes.classList.remove('tab');
+
+                        fecha1.style.display = 'none';
+                        fechas1.style.display = 'none';
+                        fecha2.style.display = 'none';
+                        fechas2.style.display = 'none';
+                        fecha1.classList.remove('step');
+                        fecha2.classList.remove('step');
+                        fecha_dominical.classList.remove('tab');
+                        fecha_novedad.classList.remove('tab');
+                        // horas_extra.style.display = 'none';
+                        // horas_extra.classList.remove('tab');
+                        // horas_extras.classList.remove('tab');
+
+                        
                     } else {
                         entrega_tienda.style.display = 'block';
                         entrega_administrador.style.display = 'none';

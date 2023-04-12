@@ -21,7 +21,13 @@ class CreateCollaboratorsTable extends Migration
             $table->string('document');
             //agregar cargo
             $table->string('cargo');
-            $table->string('user_id')->nullable();
+            $table->string('user_id1')->nullable();
+            $table->string('user_id2')->nullable();
+            $table->string('user_id3')->nullable();
+            $table->string('user_id4')->nullable();
+            $table->string('user_id5')->nullable();
+            $table->string('user_id6')->nullable();
+            $table->string('user_id7')->nullable();
             $table->string('state_e');
             $table->string('centro_costo');
             $table->string('area');

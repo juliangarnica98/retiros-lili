@@ -95,6 +95,8 @@ class RetirementController extends Controller
         $retiro->money_amou=$request->money_amou;
         $retiro->money_conc=$request->money_conc;
 
+        $retiro->hrs_extra=$request->hrs_extra;
+
         $retiro->date_1= $request->date_1 == '2000-01-01' ? '':$request->date_1 ;
         $retiro->date_2= $request->date_2 == '2000-01-01' ? '':$request->date_2 ;
         $retiro->date_3= $request->date_3 == '2000-01-01' ? '':$request->date_3 ;
