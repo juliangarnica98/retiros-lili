@@ -67,19 +67,19 @@
                     <a class="nav-link " href="{{ route('home.index') }}"><img
                             src="{{ asset('images/pageindex/logo.png') }}" style="width: 30vh" alt=""></a>
                 </li>
-                <li class="nav-item active ps-3">
-                    <a class="nav-link" href="{{ route('home.index') }}">Inicio <span
+                <li class="nav-item active  pt-3 ps-3 text-center align-items-center justify-content-center">
+                    <a class="nav-link" href="{{ route('home.index') }}"><b  style="color: rgb(255, 189, 6)">Inicio</b><span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ps-3 ">
-                    <a class="nav-link text-dark" href="{{route('home.nosotros')}}">Nosotros</a>
+                <li class="nav-item ps-3 pt-3" >
+                    <a class="nav-link   "  style="color: rgb(6, 168, 159)" href="{{route('home.nosotros')}}"><b>Nosotros</b></a>
                 </li>
-                <li class="nav-item ps-3">
-                    <a class="nav-link text-dark" href="{{route('home.cultura')}}">Cultura organizacional</a>
+                <li class="nav-item ps-3 pt-3" >
+                    <a class="nav-link " style="color: rgb(228, 13, 126)" href="{{route('home.cultura')}}"><b>Cultura organizacional</b></a>
                 </li>
-                <li class="nav-item dropdown ps-3">
-                    <a class="nav-link dropdown-toggle" href="{{route('home.enterate')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Entérate
+                <li class="nav-item dropdown ps-3 pt-3" >
+                    <a class="nav-link dropdown-toggle" style="color: rgb(158, 170, 178)" href="{{route('home.enterate')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>Entérate</b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-dark" href="{{route('home.enterate')}}">Lili Entérate</a>
@@ -100,9 +100,9 @@
                 </li>
 
 
-                <li class="nav-item dropdown ps-3">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Directorio
+                <li class="nav-item dropdown ps-3 pt-3" >
+                    <a class="nav-link dropdown-toggle" style="color: rgb(255, 189, 6)" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>Directorio</b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-dark" href="{{route('home.administrativo')}}"> Directorio administrativo</a>
@@ -111,9 +111,9 @@
                         <a class="dropdown-item" href="#">Something else here</a> --}}
                     </div>
                 </li>
-                <li class="nav-item dropdown ps-3">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ENYOI CON LILI
+                <li class="nav-item dropdown ps-3 pt-3" >
+                    <a class="nav-link dropdown-toggle" style="color: rgb(6, 168, 159)" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>ENYOI CON LILI</b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-dark" href="{{route('home.enyoiadministrativo')}}">Administrativo</a>
@@ -125,9 +125,9 @@
 
                     </div>
                 </li>
-                <li class="nav-item dropdown ps-3">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Políticas y Procesos
+                <li class="nav-item dropdown ps-3 pt-3" >
+                    <a style="color: rgb(228, 13, 126)" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <b>Políticas y Procesos</b>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-dark" href="{{route('home.poli_gerencia_gestion_humana')}}">Gerencia de Gestión Humana</a>
@@ -138,8 +138,8 @@
                         <a class="dropdown-item text-dark" href="#">Gerencia Financiera</a>
                     </div>
                 </li>
-                <li class="nav-item ps-3">
-                    <a class="nav-link text-dark" href="{{route('home.fundacion')}}">Fundación Los Sueños de Lili</a>
+                <li class="nav-item ps-3 pt-3" >
+                    <a style="color: rgb(158, 170, 178)" class="nav-link" href="{{route('home.fundacion')}}"><b>Fundación Los Sueños de Lili</b></a>
                 </li>
             </ul>
         </div>
